@@ -1,0 +1,94 @@
+import { createBrowserRouter } from "react-router-dom";
+import SignInPage from "../pages/auth/SignInPage";
+import ForgetPassword from "../pages/auth/ForgetPassword";
+import VerificationCode from "../pages/auth/VerificationCode";
+import ResetPassword from "../pages/auth/ResetPassword";
+import MainLayout from "../layout/MainLayout";
+import DashboardPage from "../pages/dashboard/DashboardPage";
+import PrivacyPolicy from "../pages/Privacy Policy/PrivacyPolicy";
+import TermsCondition from "../pages/Terms Condition/TermsCondition";
+import UserDetails from "../pages/userDetails/UserDetails";
+import ProfilePage from "../pages/profile/ProfilePage";
+import Chat from "../pages/Chat/Chat";
+import MediaSocial from "../pages/Media&Social/MediaSocial";
+import ChatManagement from "../pages/ChatManagement/ChatManagement";
+import EventManagement from "../pages/eventManagement/eventManagement";
+import GroupManagement from "../pages/groupManagement/groupManagement";
+import Reports from "../pages/Reports/Reports";
+import Interactivity from "../pages/Interactivity/Interactivity";
+
+
+const router = createBrowserRouter([
+  {
+    path: "/sign-in",
+    element: <SignInPage />,
+  },
+  {
+    path: "/forget-password",
+    element: <ForgetPassword />,
+  },
+  {
+    path: "/verification-code",
+    element: <VerificationCode />,
+  },
+  {
+    path: "/new-password",
+    element: <ResetPassword />,
+  },
+
+  {
+    path: "/",
+    element: <MainLayout />,
+    children: [
+      {
+        path: "/",
+        element: <DashboardPage />,
+      },
+      {
+        path: "/user-details",
+        element: <UserDetails />,
+      },
+      {
+        path: "/event-management",
+        element: <EventManagement />,
+      },
+      {
+        path: "/chat",
+        element: <Chat />,
+      },
+
+      // media and social
+      {
+        path: "/media-social",
+        element: <MediaSocial />,
+      },
+      {
+        path: "/interactivity",
+        element: <Interactivity />,
+      },
+
+      // settings
+      {
+        path: "/privacy-policy",
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: "/terms-and-condition",
+        element: <TermsCondition />,
+      },
+      {
+        path: "/reports",
+        element: <Reports />,
+      },
+
+      //  navbar profile
+
+      {
+        path: "/profile",
+        element: <ProfilePage />,
+      },
+    ],
+  },
+]);
+
+export default router;
