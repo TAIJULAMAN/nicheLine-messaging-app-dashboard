@@ -62,45 +62,20 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <p className="text-lg font-semibold">User Management</p>
           </li>
         </Link>
-        {/* Event Management */}
-        <Link to="/event-management">
+        {/* Product */}
+        <Link to="/product">
           <li
             className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
-              isActive("/event-management")
-                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
-                : ""
-            }`}
-          >
-            <MdOutlineEventNote className="w-5 h-5" />
-            <p className="text-lg font-semibold">Event Management</p>
-          </li>
-        </Link>
-        {/*  Media & Social*/}
-        <Link to="/media-social">
-          <li
-            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
-              isActive("/media-social")
-                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
-                : ""
-            }`}
-          >
-            <TiMediaFastForwardOutline className="w-5 h-5" />
-            <p className="text-lg font-semibold">Media & Social</p>
-          </li>
-        </Link>
-        {/* Interactivity */}
-        <Link to="/interactivity">
-          <li
-            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
-              isActive("/interactivity")
+              isActive("/product")
                 ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
                 : ""
             }`}
           >
             <IoBagAddOutline className="w-5 h-5" />
-            <p className="text-lg font-semibold">Interactivity</p>
+            <p className="text-lg font-semibold">Product</p>
           </li>
         </Link>
+
         {/* Case Management */}
         <Link to="/case-management">
           <li

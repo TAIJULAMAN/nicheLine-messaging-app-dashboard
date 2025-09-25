@@ -24,6 +24,7 @@ import LabManagment from "../pages/LabManagment/LabManagment";
 import ClinicManagement from "../pages/ClinicManagement/ClinicManagement";
 import AddLab from "../pages/Add Lab/AddLab";
 import CaseManagment from "../pages/CaseManagment/CaseManagment";
+import Product from "../pages/Product/Product";
 
 const router = createBrowserRouter([
   {
@@ -126,6 +127,10 @@ const router = createBrowserRouter([
       {
         path: "/case-management",
         element: <CaseManagment />,
+      },
+      {
+        path: "/product",
+        element: <Product />,
       },
 
       //  navbar profile
