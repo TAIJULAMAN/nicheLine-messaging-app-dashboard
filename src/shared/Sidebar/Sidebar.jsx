@@ -101,7 +101,31 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <p className="text-lg font-semibold">Interactivity</p>
           </li>
         </Link>
-
+        <Link to="/create-admin">
+          <li
+            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
+              isActive("/create-admin")
+                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
+                : ""
+            }`}
+          >
+            <IoBagAddOutline className="w-5 h-5" />
+            <p className="text-lg font-semibold">Create Admin</p>
+          </li>
+        </Link>
+        {/* Lab Management */}
+        <Link to="/lab-management">
+          <li
+            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
+              isActive("/lab-management")
+                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
+                : ""
+            }`}
+          >
+            <IoBagAddOutline className="w-5 h-5" />
+            <p className="text-lg font-semibold">Lab Management</p>
+          </li>
+        </Link>
         {/* Chat */}
         <Link to="/chat">
           <li
@@ -112,33 +136,9 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             }`}
           >
             <TbBrandWechat className="w-5 h-5" />
-            <p className="text-lg font-semibold">Support Chat</p>
+            <p className="text-lg font-semibold">Chat</p>
           </li>
         </Link>
-        {/* <Link to="/privacy-policy">
-          <li
-            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
-              isActive("/privacy-policy")
-                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
-                : ""
-            }`}
-          >
-            <MdOutlinePrivacyTip className="w-5 h-5 text-lg font-semibold" />
-            <p className="text-lg font-semibold">Privacy Policy</p>
-          </li>
-        </Link>
-        <Link to="/terms-and-condition">
-          <li
-            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
-              isActive("/terms-and-condition")
-                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
-                : ""
-            }`}
-          >
-            <FaRegBookmark className="w-5 h-5 text-lg font-semibold" />
-            <p className="text-lg font-semibold">Terms and Conditions</p>
-          </li>
-        </Link> */}
         <Link to="/reports">
           <li
             className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${

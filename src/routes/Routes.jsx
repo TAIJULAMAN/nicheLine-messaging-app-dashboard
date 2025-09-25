@@ -11,15 +11,16 @@ import UserDetails from "../pages/userDetails/UserDetails";
 import ProfilePage from "../pages/profile/ProfilePage";
 import Chat from "../pages/Chat/Chat";
 import MediaSocial from "../pages/Media&Social/MediaSocial";
-import ChatManagement from "../pages/ChatManagement/ChatManagement";
 import EventManagement from "../pages/eventManagement/eventManagement";
-import GroupManagement from "../pages/groupManagement/groupManagement";
 import Reports from "../pages/Reports/Reports";
 import Interactivity from "../pages/Interactivity/Interactivity";
 import Settings from "../pages/Settings/Settings";
 import ChangePass from "../pages/profile/ChangePass";
 import AboutUs from "../pages/optional/AboutUs";
 import EditProfile from "../pages/profile/EditProfile";
+import CreateAdmin from "../pages/Create Admin/CreateAdmin";
+import AddAdmin from "../pages/Add Admin/AddAdmin";
+import LabManagment from "../pages/LabManagment/LabManagment";
 
 const router = createBrowserRouter([
   {
@@ -98,6 +99,18 @@ const router = createBrowserRouter([
       {
         path: "/about-us",
         element: <AboutUs />,
+      },
+      {
+        path: "/create-admin",
+        element: <CreateAdmin />,
+      },
+      {
+        path: "/add-admin",
+        element: <AddAdmin />,
+      },
+      {
+        path: "/lab-management",
+        element: <LabManagment />,
       },
 
       //  navbar profile

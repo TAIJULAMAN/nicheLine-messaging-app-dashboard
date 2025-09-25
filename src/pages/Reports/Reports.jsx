@@ -34,254 +34,94 @@ function Reports() {
     {
       key: "1",
       no: "1",
-      name: "John Doe",
-      reason: "The content is irrelevant.",
-      reportedFrom: "Event page",
-      type: "Spam/Scam",
+      reportFrom: "John Doe",
+      reportReason: "Harassment in comments.",
+      reportTo: "Emily Johnson",
+      type: "Harassment",
     },
     {
       key: "2",
       no: "2",
-      name: "Jane Smith",
-      reason: "Contains inappropriate language.",
-      reportedFrom: "User profile",
-      type: "Abusive Content",
+      reportFrom: "Jane Smith",
+      reportReason: "Spam links posted.",
+      reportTo: "Michael Wilson",
+      type: "Spam/Scam",
     },
     {
       key: "3",
       no: "3",
-      name: "Robert Brown",
-      reason: "Misleading information provided.",
-      reportedFrom: "Dashboard",
+      reportFrom: "Robert Brown",
+      reportReason: "Fake event details.",
+      reportTo: "Lucas Hall",
       type: "Fake Information",
     },
     {
       key: "4",
       no: "4",
-      name: "Emily Johnson",
-      reason: "Harassment in the comments section.",
-      reportedFrom: "Comment section",
-      type: "Harassment",
+      reportFrom: "Olivia Thomas",
+      reportReason: "Explicit images shared.",
+      reportTo: "William Anderson",
+      type: "Adult Content",
     },
     {
       key: "5",
       no: "5",
-      name: "Michael Wilson",
-      reason: "Repeated posting of promotional links.",
-      reportedFrom: "Forum",
-      type: "Spam/Scam",
+      reportFrom: "James Martinez",
+      reportReason: "Political misinformation.",
+      reportTo: "News Feed",
+      type: "Fake Information",
     },
     {
       key: "6",
       no: "6",
-      name: "Sophia Taylor",
-      reason: "Impersonating another user.",
-      reportedFrom: "User profile",
+      reportFrom: "Sophia Taylor",
+      reportReason: "Impersonation attempt.",
+      reportTo: "User Profile",
       type: "Identity Theft",
     },
     {
       key: "7",
       no: "7",
-      name: "William Anderson",
-      reason: "Posting explicit images.",
-      reportedFrom: "Gallery",
-      type: "Adult Content",
+      reportFrom: "Ethan Harris",
+      reportReason: "Offensive language.",
+      reportTo: "Group Chat",
+      type: "Abusive Content",
     },
     {
       key: "8",
       no: "8",
-      name: "Olivia Thomas",
-      reason: "Promoting harmful activities.",
-      reportedFrom: "Blog page",
-      type: "Harmful Content",
+      reportFrom: "Charlotte Clark",
+      reportReason: "Crypto spam.",
+      reportTo: "Dashboard",
+      type: "Spam/Scam",
     },
     {
       key: "9",
       no: "9",
-      name: "James Martinez",
-      reason: "Spreading political misinformation.",
-      reportedFrom: "News feed",
-      type: "Fake Information",
+      reportFrom: "Henry Young",
+      reportReason: "Extremist content.",
+      reportTo: "News Section",
+      type: "Harmful Content",
     },
     {
       key: "10",
       no: "10",
-      name: "Ava White",
-      reason: "Threatening another user.",
-      reportedFrom: "Direct messages",
-      type: "Harassment",
-    },
-    {
-      key: "11",
-      no: "11",
-      name: "Ethan Harris",
-      reason: "Using offensive slurs repeatedly.",
-      reportedFrom: "Group chat",
-      type: "Abusive Content",
-    },
-    {
-      key: "12",
-      no: "12",
-      name: "Charlotte Clark",
-      reason: "Excessive self-promotion.",
-      reportedFrom: "Forum",
-      type: "Spam/Scam",
-    },
-    {
-      key: "13",
-      no: "13",
-      name: "Benjamin Lewis",
-      reason: "Distributing pirated materials.",
-      reportedFrom: "Download section",
-      type: "Illegal Content",
-    },
-    {
-      key: "14",
-      no: "14",
-      name: "Amelia Walker",
-      reason: "Promoting unverified medical advice.",
-      reportedFrom: "Article page",
-      type: "Misinformation",
-    },
-    {
-      key: "15",
-      no: "15",
-      name: "Lucas Hall",
-      reason: "Repeatedly creating fake events.",
-      reportedFrom: "Event page",
-      type: "Fake Information",
-    },
-    {
-      key: "16",
-      no: "16",
-      name: "Mia Allen",
-      reason: "Sending phishing links.",
-      reportedFrom: "Direct messages",
-      type: "Spam/Scam",
-    },
-    {
-      key: "17",
-      no: "17",
-      name: "Henry Young",
-      reason: "Promoting extremist content.",
-      reportedFrom: "News section",
-      type: "Harmful Content",
-    },
-    {
-      key: "18",
-      no: "18",
-      name: "Harper King",
-      reason: "Sharing disturbing violent images.",
-      reportedFrom: "Gallery",
+      reportFrom: "Harper King",
+      reportReason: "Violent images.",
+      reportTo: "Gallery",
       type: "Violence",
-    },
-    {
-      key: "19",
-      no: "19",
-      name: "Alexander Scott",
-      reason: "Abusive language towards moderators.",
-      reportedFrom: "Support chat",
-      type: "Abusive Content",
-    },
-    {
-      key: "20",
-      no: "20",
-      name: "Ella Green",
-      reason: "Repeatedly posting irrelevant comments.",
-      reportedFrom: "Comment section",
-      type: "Spam/Scam",
-    },
-    {
-      key: "21",
-      no: "21",
-      name: "Daniel Baker",
-      reason: "Impersonating an official account.",
-      reportedFrom: "User profile",
-      type: "Identity Theft",
-    },
-    {
-      key: "22",
-      no: "22",
-      name: "Scarlett Adams",
-      reason: "Promoting pyramid schemes.",
-      reportedFrom: "Forum",
-      type: "Scam",
-    },
-    {
-      key: "23",
-      no: "23",
-      name: "Matthew Campbell",
-      reason: "Posting misleading discount offers.",
-      reportedFrom: "Product page",
-      type: "Fake Information",
-    },
-    {
-      key: "24",
-      no: "24",
-      name: "Victoria Roberts",
-      reason: "Spamming cryptocurrency promotions.",
-      reportedFrom: "Dashboard",
-      type: "Spam/Scam",
-    },
-    {
-      key: "25",
-      no: "25",
-      name: "Joseph Phillips",
-      reason: "Uploading inappropriate memes.",
-      reportedFrom: "Gallery",
-      type: "Adult Content",
-    },
-    {
-      key: "26",
-      no: "26",
-      name: "Grace Parker",
-      reason: "Promoting fake giveaways.",
-      reportedFrom: "Event page",
-      type: "Scam",
-    },
-    {
-      key: "27",
-      no: "27",
-      name: "Samuel Evans",
-      reason: "Repeated trolling behavior.",
-      reportedFrom: "Group chat",
-      type: "Harassment",
-    },
-    {
-      key: "28",
-      no: "28",
-      name: "Chloe Turner",
-      reason: "Sharing private information publicly.",
-      reportedFrom: "User profile",
-      type: "Privacy Violation",
-    },
-    {
-      key: "29",
-      no: "29",
-      name: "David Carter",
-      reason: "Posting dangerous challenges.",
-      reportedFrom: "Video section",
-      type: "Harmful Content",
-    },
-    {
-      key: "30",
-      no: "30",
-      name: "Lily Mitchell",
-      reason: "Spreading conspiracy theories.",
-      reportedFrom: "News section",
-      type: "Misinformation",
     },
   ];
 
   const columns = [
     {
-      title: "Sr.No",
+      title: "No",
       dataIndex: "no",
       key: "no",
     },
     {
-      title: "Name",
-      key: "name",
+      title: "Report From",
+      key: "reportFrom",
       render: (_, record) => (
         <div className="flex items-center gap-3">
           <img
@@ -290,20 +130,31 @@ function Reports() {
             alt="User Avatar"
           />
           <div className="flex flex-col gap-[2px]">
-            <span className="leading-none">{record.name}</span>
+            <span className="leading-none">{record.reportFrom}</span>
           </div>
         </div>
       ),
     },
     {
       title: "Reason",
-      dataIndex: "reason",
-      key: "reason",
+      dataIndex: "reportReason",
+      key: "reportReason",
     },
     {
-      title: "Reported Form",
-      dataIndex: "reportedFrom",
-      key: "reportedFrom",
+      title: "Reported To",
+      key: "reportTo",
+      render: (_, record) => (
+        <div className="flex items-center gap-3">
+          <img
+            src={`https://avatar.iran.liara.run/public/${record.key}`}
+            className="w-10 h-10 object-cover rounded-full"
+            alt="User Avatar"
+          />
+          <div className="flex flex-col gap-[2px]">
+            <span className="leading-none">{record.reportTo}</span>
+          </div>
+        </div>
+      ),
     },
     {
       title: "Type",
@@ -380,7 +231,7 @@ function Reports() {
           footer={null}
         >
           <div className="flex flex-col justify-center items-center py-10">
-            <h1 className="text-3xl text-center text-[#00c0b5]">
+            <h1 className="text-3xl text-center text-[#6BB43A]">
               Are you sure!
             </h1>
             <p className="text-xl text-center mt-5">
@@ -389,7 +240,7 @@ function Reports() {
             <div className="text-center py-5 w-full">
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="bg-[#00c0b5] text-white font-semibold w-1/3 py-3 px-5 rounded-lg"
+                className="bg-[#6BB43A] text-white font-semibold w-1/3 py-3 px-5 rounded-lg"
               >
                 CONFIRM
               </button>
@@ -409,7 +260,7 @@ function Reports() {
           {selectedUser && (
             <div className="relative">
               {/* Header with gradient background */}
-              <div className="bg-gradient-to-r from-[#00c0b5] to-[#00a89b] p-6 -m-6 mb-6 rounded-t-lg">
+              <div className="bg-gradient-to-r from-[#6BB43A] to-[#5EA233] p-6 -m-6 mb-6 rounded-t-lg">
                 <div className="flex items-center gap-6">
                   <div className="relative">
                     <img
@@ -425,9 +276,15 @@ function Reports() {
                     <h2 className="text-3xl font-bold mb-2">
                       Report #{selectedUser.no.padStart(4, "0")}
                     </h2>
-                    <div className="flex items-center gap-3 mb-2">
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
                       <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium">
-                        Reported User: {selectedUser.name}
+                        Report From: {selectedUser.reportFrom}
+                      </span>
+                      <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium">
+                        Report To: {selectedUser.reportTo}
+                      </span>
+                      <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium">
+                        Type: {selectedUser.type}
                       </span>
                     </div>
                     <p className="text-white/90">Status: Under Review</p>
@@ -440,7 +297,7 @@ function Reports() {
                 {/* Report Information */}
                 <div>
                   <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                    <div className="w-2 h-2 bg-[#00c0b5] rounded-full"></div>
+                    <div className="w-2 h-2 bg-[#6BB43A] rounded-full"></div>
                     Report Information
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -454,7 +311,7 @@ function Reports() {
                             Reason
                           </h4>
                           <p className="text-lg font-semibold text-gray-800">
-                            {selectedUser.reason}
+                            {selectedUser.reportReason}
                           </p>
                         </div>
                       </div>
@@ -480,8 +337,8 @@ function Reports() {
                 {/* Reporter & Additional Info */}
                 <div>
                   <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                    <div className="w-2 h-2 bg-[#00c0b5] rounded-full"></div>
-                    Reporter Details
+                    <div className="w-2 h-2 bg-[#6BB43A] rounded-full"></div>
+                    Participants
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-white border border-gray-200 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
@@ -491,10 +348,10 @@ function Reports() {
                         </div>
                         <div>
                           <h4 className="text-sm font-medium text-gray-600">
-                            Reported From
+                            Report From
                           </h4>
                           <p className="text-lg font-semibold text-gray-800">
-                            {selectedUser.reportedFrom}
+                            {selectedUser.reportFrom}
                           </p>
                         </div>
                       </div>
@@ -502,14 +359,14 @@ function Reports() {
                     <div className="bg-white border border-gray-200 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                          <span className="text-green-600 text-lg">📅</span>
+                          <span className="text-green-600 text-lg">📩</span>
                         </div>
                         <div>
                           <h4 className="text-sm font-medium text-gray-600">
-                            Report Date
+                            Report To
                           </h4>
                           <p className="text-lg font-semibold text-gray-800">
-                            {new Date().toLocaleDateString()}
+                            {selectedUser.reportTo}
                           </p>
                         </div>
                       </div>
@@ -520,16 +377,17 @@ function Reports() {
                 {/* Report Description */}
                 <div>
                   <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                    <div className="w-2 h-2 bg-[#00c0b5] rounded-full"></div>
+                    <div className="w-2 h-2 bg-[#6BB43A] rounded-full"></div>
                     Report Description
                   </h3>
                   <div className="bg-white border border-gray-200 p-4 rounded-xl shadow-sm">
                     <p className="text-gray-700 leading-relaxed">
-                      <strong>Report Details:</strong> {selectedUser.reason}
+                      <strong>Report Details:</strong>{" "}
+                      {selectedUser.reportReason}
                       <br />
                       <br />
-                      <strong>Location:</strong> This incident was reported from
-                      the {selectedUser.reportedFrom}.
+                      <strong>Location:</strong> This incident was reported to
+                      the {selectedUser.reportTo}.
                       <br />
                       <br />
                       <strong>Category:</strong> This report has been classified
