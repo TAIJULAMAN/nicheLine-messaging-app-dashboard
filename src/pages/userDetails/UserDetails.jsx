@@ -1,14 +1,20 @@
-import { ConfigProvider, Modal, Table } from "antd";
-import { useState } from "react";
-import { IoSearch } from "react-icons/io5";
-import PageHeading from "../../components/PageHeading/PageHeading";
-import { RiDeleteBin6Line } from "react-icons/ri";
+import { ConfigProvider, Modal, Table, Select } from "antd";
+import { useMemo, useState } from "react";
+import { IoSearch, IoChevronBack, IoAddOutline } from "react-icons/io5";
+import { FiEdit2 } from "react-icons/fi";
+import { MdBlock } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 import { FaRegEye } from "react-icons/fa";
 
 function UserDetails() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false); // block modal
   const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [editUser, setEditUser] = useState(null);
+  const [roleFilter, setRoleFilter] = useState();
+  const [searchQuery, setSearchQuery] = useState("");
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -25,352 +31,248 @@ function UserDetails() {
     setIsViewModalOpen(false);
     setSelectedUser(null);
   };
-  const dataSource = [
+  const [dataSource, setDataSource] = useState([
     {
       key: "1",
-      no: "1",
-      name: "John Doe",
-      role: "Host",
-      phone: "+1 9876543210",
-      email: "johndoe@example.com",
-      location: "New York, USA",
+      fullName: "John Doe",
+      role: "Dentist",
+      clinic: "Downtown Dental Clinic",
+      email: "john@example.com",
+      phone: "+1 987 654 3210",
+      joined: "2024-01-12",
     },
     {
       key: "2",
-      no: "2",
-      name: "Emma Smith",
-      role: "Driver",
-      phone: "+1 9876543211",
-      email: "emmasmith@example.com",
-      location: "Los Angeles, USA",
+      fullName: "Emma Smith",
+      role: "Practice Nurse",
+      clinic: "Smile Care Clinic",
+      email: "emma@example.com",
+      phone: "+1 987 654 3211",
+      joined: "2024-03-28",
     },
     {
       key: "3",
-      no: "3",
-      name: "Liam Johnson",
-      role: "Manager",
-      phone: "+1 9876543212",
-      email: "liamjohnson@example.com",
-      location: "Chicago, USA",
+      fullName: "Liam Johnson",
+      role: "Practice Manager",
+      clinic: "Healthy Teeth Clinic",
+      email: "liam@example.com",
+      phone: "+1 987 654 3212",
+      joined: "2024-06-15",
     },
     {
       key: "4",
-      no: "4",
-      name: "Olivia Brown",
-      role: "Supervisor",
-      phone: "+1 9876543213",
-      email: "oliviabrown@example.com",
-      location: "Houston, USA",
+      fullName: "Olivia Brown",
+      role: "Lab Technician",
+      clinic: "City Dental Center",
+      email: "olivia@example.com",
+      phone: "+1 987 654 3213",
+      joined: "2024-08-02",
     },
     {
       key: "5",
-      no: "5",
-      name: "Noah Davis",
-      role: "Host",
-      phone: "+1 9876543214",
-      email: "noahdavis@example.com",
-      location: "Phoenix, USA",
+      fullName: "Noah Davis",
+      role: "Lab Manager",
+      clinic: "Prime Smiles",
+      email: "noah@example.com",
+      phone: "+1 987 654 3214",
+      joined: "2024-09-10",
     },
     {
       key: "6",
-      no: "6",
-      name: "Sophia Miller",
-      role: "Driver",
-      phone: "+1 9876543215",
-      email: "sophiamiller@example.com",
-      location: "Philadelphia, USA",
+      fullName: "Sophia Miller",
+      role: "Dentist",
+      clinic: "Bright Smile Hub",
+      email: "sophia@example.com",
+      phone: "+1 987 654 3215",
+      joined: "2024-11-19",
     },
     {
       key: "7",
-      no: "7",
-      name: "James Wilson",
-      role: "Manager",
-      phone: "+1 9876543216",
-      email: "jameswilson@example.com",
-      location: "San Antonio, USA",
+      fullName: "James Wilson",
+      role: "Practice Manager",
+      clinic: "Downtown Dental Clinic",
+      email: "james@example.com",
+      phone: "+1 987 654 3216",
+      joined: "2025-01-05",
     },
     {
       key: "8",
-      no: "8",
-      name: "Isabella Moore",
-      role: "Supervisor",
-      phone: "+1 9876543217",
-      email: "isabellamoore@example.com",
-      location: "San Diego, USA",
+      fullName: "Isabella Moore",
+      role: "Practice Nurse",
+      clinic: "Healthy Teeth Clinic",
+      email: "isabella@example.com",
+      phone: "+1 987 654 3217",
+      joined: "2025-02-21",
     },
     {
       key: "9",
-      no: "9",
-      name: "Benjamin Taylor",
-      role: "Host",
-      phone: "+1 9876543218",
-      email: "benjamintaylor@example.com",
-      location: "Dallas, USA",
+      fullName: "Benjamin Taylor",
+      role: "Lab Technician",
+      clinic: "Prime Smiles",
+      email: "benjamin@example.com",
+      phone: "+1 987 654 3218",
+      joined: "2025-03-03",
     },
     {
       key: "10",
-      no: "10",
-      name: "Mia Anderson",
-      role: "Driver",
-      phone: "+1 9876543219",
-      email: "miaanderson@example.com",
-      location: "San Jose, USA",
+      fullName: "Mia Anderson",
+      role: "Dentist",
+      clinic: "City Dental Center",
+      email: "mia@example.com",
+      phone: "+1 987 654 3219",
+      joined: "2025-04-12",
     },
-    {
-      key: "11",
-      no: "11",
-      name: "Elijah Thomas",
-      role: "Manager",
-      phone: "+1 9876543220",
-      email: "elijahthomas@example.com",
-      location: "Austin, USA",
-    },
-    {
-      key: "12",
-      no: "12",
-      name: "Charlotte Jackson",
-      role: "Supervisor",
-      phone: "+1 9876543221",
-      email: "charlottejackson@example.com",
-      location: "Jacksonville, USA",
-    },
-    {
-      key: "13",
-      no: "13",
-      name: "William White",
-      role: "Host",
-      phone: "+1 9876543222",
-      email: "williamwhite@example.com",
-      location: "Fort Worth, USA",
-    },
-    {
-      key: "14",
-      no: "14",
-      name: "Amelia Harris",
-      role: "Driver",
-      phone: "+1 9876543223",
-      email: "ameliaharris@example.com",
-      location: "Columbus, USA",
-    },
-    {
-      key: "15",
-      no: "15",
-      name: "Henry Martin",
-      role: "Manager",
-      phone: "+1 9876543224",
-      email: "henrymartin@example.com",
-      location: "Charlotte, USA",
-    },
-    {
-      key: "16",
-      no: "16",
-      name: "Evelyn Thompson",
-      role: "Supervisor",
-      phone: "+1 9876543225",
-      email: "evelynthompson@example.com",
-      location: "San Francisco, USA",
-    },
-    {
-      key: "17",
-      no: "17",
-      name: "Alexander Garcia",
-      role: "Host",
-      phone: "+1 9876543226",
-      email: "alexandergarcia@example.com",
-      location: "Indianapolis, USA",
-    },
-    {
-      key: "18",
-      no: "18",
-      name: "Harper Martinez",
-      role: "Driver",
-      phone: "+1 9876543227",
-      email: "harpermartinez@example.com",
-      location: "Seattle, USA",
-    },
-    {
-      key: "19",
-      no: "19",
-      name: "Daniel Robinson",
-      role: "Manager",
-      phone: "+1 9876543228",
-      email: "danielrobinson@example.com",
-      location: "Denver, USA",
-    },
-    {
-      key: "20",
-      no: "20",
-      name: "Ella Clark",
-      role: "Supervisor",
-      phone: "+1 9876543229",
-      email: "ellaclark@example.com",
-      location: "Washington, USA",
-    },
-    {
-      key: "21",
-      no: "21",
-      name: "Matthew Rodriguez",
-      role: "Host",
-      phone: "+1 9876543230",
-      email: "matthewrodriguez@example.com",
-      location: "Boston, USA",
-    },
-    {
-      key: "22",
-      no: "22",
-      name: "Scarlett Lewis",
-      role: "Driver",
-      phone: "+1 9876543231",
-      email: "scarlettlewis@example.com",
-      location: "El Paso, USA",
-    },
-    {
-      key: "23",
-      no: "23",
-      name: "Jackson Lee",
-      role: "Manager",
-      phone: "+1 9876543232",
-      email: "jacksonlee@example.com",
-      location: "Nashville, USA",
-    },
-    {
-      key: "24",
-      no: "24",
-      name: "Victoria Walker",
-      role: "Supervisor",
-      phone: "+1 9876543233",
-      email: "victoriawalker@example.com",
-      location: "Detroit, USA",
-    },
-    {
-      key: "25",
-      no: "25",
-      name: "Sebastian Hall",
-      role: "Host",
-      phone: "+1 9876543234",
-      email: "sebastianhall@example.com",
-      location: "Oklahoma City, USA",
-    },
-    {
-      key: "26",
-      no: "26",
-      name: "Aria Allen",
-      role: "Driver",
-      phone: "+1 9876543235",
-      email: "ariaallen@example.com",
-      location: "Las Vegas, USA",
-    },
-    {
-      key: "27",
-      no: "27",
-      name: "David Young",
-      role: "Manager",
-      phone: "+1 9876543236",
-      email: "davideyoung@example.com",
-      location: "Portland, USA",
-    },
-    {
-      key: "28",
-      no: "28",
-      name: "Grace King",
-      role: "Supervisor",
-      phone: "+1 9876543237",
-      email: "graceking@example.com",
-      location: "Memphis, USA",
-    },
-    {
-      key: "29",
-      no: "29",
-      name: "Joseph Scott",
-      role: "Host",
-      phone: "+1 9876543238",
-      email: "josephscott@example.com",
-      location: "Louisville, USA",
-    },
-    {
-      key: "30",
-      no: "30",
-      name: "Chloe Green",
-      role: "Driver",
-      phone: "+1 9876543239",
-      email: "chloegreen@example.com",
-      location: "Baltimore, USA",
-    }
-  ];
+  ]);
   const columns = [
     {
       title: "No",
-      dataIndex: "no",
       key: "no",
+      width: 70,
+      render: (_, _r, index) => index + 1,
     },
     {
-      title: "Name",
-      key: "name",
-      render: (_, record) => (
+      title: "Full Name",
+      dataIndex: "fullName",
+      key: "fullName",
+      render: (value, record) => (
         <div className="flex items-center gap-3">
           <img
             src={`https://avatar.iran.liara.run/public/${record.key}`}
             className="w-10 h-10 object-cover rounded-full"
             alt="User Avatar"
           />
-          <div className="flex flex-col gap-[2px]">
-            <span className="leading-none">{record.name}</span>
-            {/* <span className="leading-none text-gray-500 text-sm">{record.email}</span> */}
-          </div>
+          <span className="leading-none">{value}</span>
         </div>
       ),
     },
-    {
-      title: "Role",
-      dataIndex: "role",
-      key: "role",
-    },
-    {
-      title: "Phone Number",
-      dataIndex: "phone",
-      key: "phone",
-    },
-    {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
-    },
-    {
-      title: "Location",
-      dataIndex: "location",
-      key: "location",
-    },
+    { title: "Role", dataIndex: "role", key: "role" },
+    { title: "Clinic", dataIndex: "clinic", key: "clinic" },
+    { title: "Email", dataIndex: "email", key: "email" },
+    { title: "Phone No", dataIndex: "phone", key: "phone" },
+    { title: "Joined Date", dataIndex: "joined", key: "joined" },
     {
       title: "Action",
       key: "action",
       render: (_, record) => (
         <div className="flex gap-2">
-          <button className="" onClick={() => showViewModal(record)}>
-            <FaRegEye className="text-[#00c0b5] w-10 h-10 cursor-pointer rounded-md" />
+          <button className="" onClick={() => openEdit(record)}>
+            <FiEdit2 className="text-[#74AA2E] w-10 h-10 cursor-pointer rounded-md" />
           </button>
-          <button className="" onClick={showModal}>
-            <RiDeleteBin6Line className="text-red-400 w-10 h-10 cursor-pointer rounded-md" />
+          <button className="" onClick={() => openBlock(record)}>
+            <MdBlock className="text-red-500 w-10 h-10 cursor-pointer rounded-md" />
+          </button>
+          <button className="" onClick={() => showViewModal(record)}>
+            <FaRegEye className="text-[#74AA2E] w-10 h-10 cursor-pointer rounded-md" />
           </button>
         </div>
       ),
     },
   ];
 
+  const filteredData = useMemo(() => {
+    const q = (searchQuery || "").toLowerCase().trim();
+    return dataSource.filter((r) => {
+      const matchRole = roleFilter ? r.role === roleFilter : true;
+      const matchQuery = q
+        ? [r.fullName, r.email, r.phone, r.clinic, r.role]
+            .filter(Boolean)
+            .some((v) => String(v).toLowerCase().includes(q))
+        : true;
+      return matchRole && matchQuery;
+    });
+  }, [dataSource, roleFilter, searchQuery]);
+
+  const openEdit = (row) => {
+    setEditUser({ ...row });
+    setIsEditOpen(true);
+  };
+  const closeEdit = () => {
+    setIsEditOpen(false);
+    setEditUser(null);
+  };
+  const saveEdit = () => {
+    if (!editUser) return;
+    setDataSource((prev) =>
+      prev.map((r) => (r.key === editUser.key ? editUser : r))
+    );
+    setIsEditOpen(false);
+    setEditUser(null);
+  };
+
+  const openBlock = (row) => {
+    setSelectedUser(row);
+    setIsModalOpen(true);
+  };
+
+  const confirmBlock = () => {
+    setIsModalOpen(false);
+    setSelectedUser(null);
+  };
+
   return (
     <div>
-      <div className="my-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
-        <PageHeading title="User Management" />
-        <div className="relative w-full sm:w-[300px] ">
-          <input
-            type="text"
-            placeholder="Search..."
-            className="border border-[#e5eaf2] py-3 pl-12 pr-[65px] outline-none w-full rounded-md"
-          />
-          <span className=" text-gray-500 absolute top-0 left-0 h-full px-5 flex items-center justify-center rounded-r-md cursor-pointer">
-            <IoSearch className="text-[1.3rem]" />
-          </span>
+      <div className="bg-[#74AA2E] px-5 py-3 rounded-md mb-3 flex items-center gap-3">
+        <button
+          onClick={() => navigate(-1)}
+          className="text-white hover:opacity-90 transition"
+          aria-label="Go back"
+        >
+          <IoChevronBack className="w-6 h-6" />
+        </button>
+        <h1 className="text-white text-2xl font-bold">User Management</h1>
+        <div className="ml-auto flex items-center gap-2 w-full md:w-auto">
+          <div className="relative hidden md:block">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search users..."
+              className="bg-white text-[#0D0D0D] placeholder-gray-500 pl-10 pr-3 py-2 rounded-md focus:outline-none"
+            />
+            <IoSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+          </div>
+          <ConfigProvider
+            theme={{
+              components: {
+                Select: {
+                  controlHeightLG: 44,
+                  controlPaddingHorizontal: 12,
+                  optionPadding: 10,
+                  borderRadiusLG: 8,
+                },
+              },
+            }}
+          >
+            <Select
+              placeholder="Select role"
+              value={roleFilter}
+              onChange={setRoleFilter}
+              size="large"
+              className="min-w-[220px]"
+              style={{ minWidth: 220 }}
+              popupMatchSelectWidth={false}
+              dropdownStyle={{ paddingTop: 8, paddingBottom: 8 }}
+              options={[
+                { label: "Dentist", value: "Dentist" },
+                { label: "Lab Manager", value: "Lab Manager" },
+                { label: "Practice Manager", value: "Practice Manager" },
+                { label: "Practice Nurse", value: "Practice Nurse" },
+                { label: "Lab Technician", value: "Lab Technician" },
+                { label: "Blocked Users", value: "Blocked" },
+              ]}
+            />
+          </ConfigProvider>
+          <button
+            type="button"
+            onClick={() => navigate('/create-user')}
+            className="bg-white text-[#74AA2E] px-3 py-2 rounded-md font-semibold flex items-center gap-2 hover:opacity-95 transition"
+          >
+            <IoAddOutline className="w-4 h-4" />
+            Create User
+          </button>
         </div>
       </div>
+
       <ConfigProvider
         theme={{
           components: {
@@ -386,21 +288,21 @@ function UserDetails() {
               colorPrimary: "#00c0b5",
             },
             Table: {
-              headerBg: "#00c0b5",
+              headerBg: "#74AA2E",
               headerColor: "rgb(255,255,255)",
               cellFontSize: 16,
-              headerSplitColor: "#00c0b5",
+              headerSplitColor: "#74AA2E",
             },
           },
         }}
       >
         <Table
-          dataSource={dataSource}
+          dataSource={filteredData}
           columns={columns}
           pagination={{ pageSize: 10 }}
           scroll={{ x: "max-content" }}
         />
-        {/* Delete Modal */}
+        {/* Block Modal */}
         <Modal
           open={isModalOpen}
           centered
@@ -408,21 +310,133 @@ function UserDetails() {
           footer={null}
         >
           <div className="flex flex-col justify-center items-center py-10">
-            <h1 className="text-3xl text-center text-[#00c0b5]">
-              Are you sure!
-            </h1>
+            <h1 className="text-3xl text-center text-[#74AA2E]">Block User</h1>
             <p className="text-xl text-center mt-5">
-              Do you want to delete this user profile?
+              {selectedUser
+                ? `Do you want to block ${selectedUser.fullName}?`
+                : `Do you want to block this user?`}
             </p>
-            <div className="text-center py-5 w-full">
+            <div className="text-center py-5 w-full flex justify-center gap-3">
               <button
-                onClick={() => setIsModalOpen(false)}
-                className="bg-[#00c0b5] text-white font-semibold w-1/3 py-3 px-5 rounded-lg"
+                onClick={handleCancel}
+                className="bg-gray-500 text-white font-semibold py-3 px-5 rounded-lg"
               >
-                CONFIRM
+                Cancel
+              </button>
+              <button
+                onClick={confirmBlock}
+                className="bg-[#74AA2E] text-white font-semibold py-3 px-5 rounded-lg"
+              >
+                Block
               </button>
             </div>
           </div>
+        </Modal>
+
+        {/* Edit Modal */}
+        <Modal open={isEditOpen} onCancel={closeEdit} footer={null} centered>
+          {editUser && (
+            <div className="p-1">
+              <h3 className="text-xl font-bold mb-4">Edit User</h3>
+              <div className="grid grid-cols-1 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    value={editUser.fullName}
+                    onChange={(e) =>
+                      setEditUser((s) => ({ ...s, fullName: e.target.value }))
+                    }
+                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#74AA2E]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
+                  <Select
+                    className="w-full"
+                    value={editUser.role}
+                    onChange={(val) => setEditUser((s) => ({ ...s, role: val }))}
+                    options={[
+                      { label: "Dentist", value: "Dentist" },
+                      { label: "Lab Manager", value: "Lab Manager" },
+                      { label: "Practice Manager", value: "Practice Manager" },
+                      { label: "Practice Nurse", value: "Practice Nurse" },
+                      { label: "Lab Technician", value: "Lab Technician" },
+                      { label: "Blocked", value: "Blocked" },
+                    ]}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Clinic
+                  </label>
+                  <input
+                    type="text"
+                    value={editUser.clinic}
+                    onChange={(e) =>
+                      setEditUser((s) => ({ ...s, clinic: e.target.value }))
+                    }
+                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#74AA2E]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    value={editUser.email}
+                    onChange={(e) =>
+                      setEditUser((s) => ({ ...s, email: e.target.value }))
+                    }
+                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#74AA2E]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Phone No
+                  </label>
+                  <input
+                    type="text"
+                    value={editUser.phone}
+                    onChange={(e) =>
+                      setEditUser((s) => ({ ...s, phone: e.target.value }))
+                    }
+                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#74AA2E]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Joined Date
+                  </label>
+                  <input
+                    type="date"
+                    value={editUser.joined}
+                    onChange={(e) =>
+                      setEditUser((s) => ({ ...s, joined: e.target.value }))
+                    }
+                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#74AA2E]"
+                  />
+                </div>
+              </div>
+              <div className="flex justify-end gap-2 mt-6">
+                <button
+                  onClick={closeEdit}
+                  className="bg-gray-500 text-white font-semibold px-6 py-2 rounded-md"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={saveEdit}
+                  className="bg-[#74AA2E] text-white font-semibold px-6 py-2 rounded-md"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          )}
         </Modal>
 
         {/* View Modal */}
@@ -436,121 +450,66 @@ function UserDetails() {
         >
           {selectedUser && (
             <div className="relative">
-              {/* Header with gradient background */}
-              <div className="bg-gradient-to-r from-[#00c0b5] to-[#00a89b] p-6 -m-6 mb-6 rounded-t-lg">
+              {/* Header with green gradient */}
+              <div className="bg-gradient-to-r from-[#74AA2E] to-[#5F8C22] p-6 -m-6 mb-6 rounded-t-lg">
                 <div className="flex items-center gap-6">
                   <div className="relative">
                     <img
                       src={`https://avatar.iran.liara.run/public/${selectedUser.key}`}
-                      alt={selectedUser.name}
+                      alt={selectedUser.fullName}
                       className="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover"
                     />
                   </div>
                   <div className="text-white">
-                    <h2 className="text-3xl font-bold mb-2">{selectedUser.name}</h2>
-                    <div className="flex items-center gap-3 mb-2">
+                    <h2 className="text-3xl font-bold mb-2">
+                      {selectedUser.fullName}
+                    </h2>
+                    <div className="flex items-center gap-3 mb-1">
                       <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium">
-                        {selectedUser.role}
+                        {selectedUser.clinic}
                       </span>
-
+                      <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium">
+                        Joined: {selectedUser.joined}
+                      </span>
                     </div>
-
                   </div>
                 </div>
               </div>
 
-              {/* Content sections */}
-              <div className="space-y-6">
-                {/* Contact Information */}
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                    <div className="w-2 h-2 bg-[#00c0b5] rounded-full"></div>
-                    Contact Information
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="bg-white border border-gray-200 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                          <span className="text-blue-600 text-lg">📞</span>
-                        </div>
-                        <div>
-                          <h4 className="text-sm font-medium text-gray-600">Phone Number</h4>
-                          <p className="text-lg font-semibold text-gray-800">{selectedUser.phone}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="bg-white border border-gray-200 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                          <span className="text-purple-600 text-lg">📧</span>
-                        </div>
-                        <div>
-                          <h4 className="text-sm font-medium text-gray-600">Email Address</h4>
-                          <p className="text-lg font-semibold text-gray-800">{selectedUser.email}</p>
-                        </div>
-                      </div>
-                    </div>
+              {/* Details */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-white border border-gray-200 p-4 rounded-xl shadow-sm">
+                  <div className="text-gray-600 text-sm">Email</div>
+                  <div className="text-lg font-semibold">
+                    {selectedUser.email}
                   </div>
                 </div>
-
-                {/* Location & Additional Info */}
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                    <div className="w-2 h-2 bg-[#00c0b5] rounded-full"></div>
-                    Location & Details
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="bg-white border border-gray-200 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                          <span className="text-green-600 text-lg">📍</span>
-                        </div>
-                        <div>
-                          <h4 className="text-sm font-medium text-gray-600">Location</h4>
-                          <p className="text-lg font-semibold text-gray-800">{selectedUser.location}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="bg-white border border-gray-200 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
-                          <span className="text-orange-600 text-lg">⏰</span>
-                        </div>
-                        <div>
-                          <h4 className="text-sm font-medium text-gray-600">Member Since</h4>
-                          <p className="text-lg font-semibold text-gray-800">January 2024</p>
-                        </div>
-                      </div>
-                    </div>
+                <div className="bg-white border border-gray-200 p-4 rounded-xl shadow-sm">
+                  <div className="text-gray-600 text-sm">Phone No</div>
+                  <div className="text-lg font-semibold">
+                    {selectedUser.phone}
                   </div>
                 </div>
-
-                {/* Activity Stats */}
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                    <div className="w-2 h-2 bg-[#00c0b5] rounded-full"></div>
-                    Activity Overview
-                  </h3>
-                  <div className="grid grid-cols-3 gap-4">
-                    <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-xl text-center">
-                      <div className="text-2xl font-bold text-blue-600 mb-1">24</div>
-                      <div className="text-sm text-blue-700">Events Attended</div>
-                    </div>
-                    <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-xl text-center">
-                      <div className="text-2xl font-bold text-green-600 mb-1">12</div>
-                      <div className="text-sm text-green-700">Events Hosted</div>
-                    </div>
-                    <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-xl text-center">
-                      <div className="text-2xl font-bold text-purple-600 mb-1">4.8</div>
-                      <div className="text-sm text-purple-700">Rating</div>
-                    </div>
+                <div className="bg-white border border-gray-200 p-4 rounded-xl shadow-sm">
+                  <div className="text-gray-600 text-sm">Role</div>
+                  <div className="text-lg font-semibold">{selectedUser.role}</div>
+                </div>
+                <div className="bg-white border border-gray-200 p-4 rounded-xl shadow-sm">
+                  <div className="text-gray-600 text-sm">Clinic</div>
+                  <div className="text-lg font-semibold">
+                    {selectedUser.clinic}
+                  </div>
+                </div>
+                <div className="bg-white border border-gray-200 p-4 rounded-xl shadow-sm">
+                  <div className="text-gray-600 text-sm">Joined Date</div>
+                  <div className="text-lg font-semibold">
+                    {selectedUser.joined}
                   </div>
                 </div>
               </div>
 
               {/* Action buttons */}
               <div className="flex justify-end items-center mt-8 pt-6 border-t border-gray-200">
-
                 <button
                   onClick={handleViewCancel}
                   className="bg-gray-500 text-white font-semibold px-8 py-2 rounded-lg hover:bg-gray-600 transition-colors"

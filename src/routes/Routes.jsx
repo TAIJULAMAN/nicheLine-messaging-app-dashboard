@@ -8,6 +8,7 @@ import DashboardPage from "../pages/dashboard/DashboardPage";
 import PrivacyPolicy from "../pages/Privacy Policy/PrivacyPolicy";
 import TermsCondition from "../pages/Terms Condition/TermsCondition";
 import UserDetails from "../pages/userDetails/UserDetails";
+import CreateUser from "../pages/userDetails/CreateUser";
 import ProfilePage from "../pages/profile/ProfilePage";
 import Chat from "../pages/Chat/Chat";
 import MediaSocial from "../pages/Media&Social/MediaSocial";
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: "/user-details",
         element: <UserDetails />,
+      },
+      {
+        path: "/create-user",
+        element: <CreateUser />,
       },
       {
         path: "/event-management",
