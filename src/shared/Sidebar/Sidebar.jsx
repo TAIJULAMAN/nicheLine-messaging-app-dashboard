@@ -101,16 +101,17 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <p className="text-lg font-semibold">Interactivity</p>
           </li>
         </Link>
-        <Link to="/create-admin">
+        {/* Clinic Management */}
+        <Link to="/clinic-management">
           <li
             className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
-              isActive("/create-admin")
+              isActive("/clinic-management")
                 ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
                 : ""
             }`}
           >
             <IoBagAddOutline className="w-5 h-5" />
-            <p className="text-lg font-semibold">Create Admin</p>
+            <p className="text-lg font-semibold">Clinic Management</p>
           </li>
         </Link>
         {/* Lab Management */}
@@ -126,6 +127,20 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <p className="text-lg font-semibold">Lab Management</p>
           </li>
         </Link>
+
+        <Link to="/create-admin">
+          <li
+            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
+              isActive("/create-admin")
+                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
+                : ""
+            }`}
+          >
+            <IoBagAddOutline className="w-5 h-5" />
+            <p className="text-lg font-semibold">Create Admin</p>
+          </li>
+        </Link>
+
         {/* Chat */}
         <Link to="/chat">
           <li

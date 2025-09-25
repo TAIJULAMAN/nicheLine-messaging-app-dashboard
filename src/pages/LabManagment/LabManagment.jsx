@@ -1,7 +1,7 @@
 import { ConfigProvider, Modal, Table } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { IoChevronBack } from "react-icons/io5";
+import { IoAddOutline, IoChevronBack } from "react-icons/io5";
 import { FaRegEye } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FiEdit2 } from "react-icons/fi";
@@ -124,6 +124,14 @@ export default function LabManagment() {
           <IoChevronBack className="w-6 h-6" />
         </button>
         <h1 className="text-white text-2xl font-bold">Lab Management</h1>
+        <button
+          type="button"
+          onClick={() => navigate("/add-lab")}
+          className="ml-auto bg-white text-[#6BB43A] px-3 py-1 rounded-md font-semibold flex items-center gap-2 hover:opacity-95 transition"
+        >
+          <IoAddOutline className="w-4 h-4" />
+          Add Lab
+        </button>
       </div>
 
       <ConfigProvider

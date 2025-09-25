@@ -21,6 +21,8 @@ import EditProfile from "../pages/profile/EditProfile";
 import CreateAdmin from "../pages/Create Admin/CreateAdmin";
 import AddAdmin from "../pages/Add Admin/AddAdmin";
 import LabManagment from "../pages/LabManagment/LabManagment";
+import ClinicManagement from "../pages/ClinicManagement/ClinicManagement";
+import AddLab from "../pages/Add Lab/AddLab";
 
 const router = createBrowserRouter([
   {
@@ -111,6 +113,14 @@ const router = createBrowserRouter([
       {
         path: "/lab-management",
         element: <LabManagment />,
+      },
+      {
+        path: "/add-lab",
+        element: <AddLab />,
+      },
+      {
+        path: "/clinic-management",
+        element: <ClinicManagement />,
       },
 
       //  navbar profile
