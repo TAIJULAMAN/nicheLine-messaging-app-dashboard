@@ -1,7 +1,6 @@
 import { ConfigProvider, Modal, Table } from "antd";
 import { useState } from "react";
-import { IoSearch } from "react-icons/io5";
-import PageHeading from "../../components/PageHeading/PageHeading";
+import { IoSearch, IoChevronBack } from "react-icons/io5";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FaRegEye } from "react-icons/fa";
 import { BiMessage } from "react-icons/bi";
@@ -14,11 +13,13 @@ function Reports() {
   const [selectedUser, setSelectedUser] = useState(null);
   const navigate = useNavigate();
 
-  const showModal = () => {
+  const showModal = (user) => {
+    setSelectedUser(user);
     setIsModalOpen(true);
   };
   const handleCancel = () => {
     setIsModalOpen(false);
+    setSelectedUser(null);
   };
 
   const showViewModal = (user) => {
@@ -290,7 +291,6 @@ function Reports() {
           />
           <div className="flex flex-col gap-[2px]">
             <span className="leading-none">{record.name}</span>
-
           </div>
         </div>
       ),
@@ -320,7 +320,10 @@ function Reports() {
           </button>
 
           <button className="" onClick={() => showViewModal(record)}>
-            <FaRegEye className="text-[#00c0b5] w-10 h-10 cursor-pointer rounded-md" />
+            <FaRegEye className="text-[#6BB43A] w-10 h-10 cursor-pointer rounded-md" />
+          </button>
+          <button className="" onClick={() => showModal(record)}>
+            <RiDeleteBin6Line className="text-red-500 w-10 h-10 cursor-pointer rounded-md" />
           </button>
         </div>
       ),
@@ -329,38 +332,36 @@ function Reports() {
 
   return (
     <div>
-      <div className="my-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
-        <PageHeading title="Reports" />
-        <div className="relative w-full sm:w-[300px] ">
-          <input
-            type="text"
-            placeholder="Search..."
-            className="border border-[#e5eaf2] py-3 pl-12 pr-[65px] outline-none w-full rounded-md"
-          />
-          <span className=" text-gray-500 absolute top-0 left-0 h-full px-5 flex items-center justify-center rounded-r-md cursor-pointer">
-            <IoSearch className="text-[1.3rem]" />
-          </span>
-        </div>
+      <div className="bg-[#6BB43A] px-5 py-3 rounded-md mb-3 flex items-center gap-3">
+        <button
+          onClick={() => navigate(-1)}
+          className="text-white hover:opacity-90 transition"
+          aria-label="Go back"
+        >
+          <IoChevronBack className="w-6 h-6" />
+        </button>
+        <h1 className="text-white text-2xl font-bold">Reports</h1>
       </div>
+
       <ConfigProvider
         theme={{
           components: {
             InputNumber: {
-              activeBorderColor: "#00c0b5",
+              activeBorderColor: "#6BB43A",
             },
             Pagination: {
-              colorPrimaryBorder: "#00c0b5",
-              colorBorder: "#00c0b5",
-              colorPrimaryHover: "#00c0b5",
-              colorTextPlaceholder: "#00c0b5",
-              itemActiveBgDisabled: "#00c0b5",
-              colorPrimary: "#00c0b5",
+              colorPrimaryBorder: "#6BB43A",
+              colorBorder: "#6BB43A",
+              colorPrimaryHover: "#6BB43A",
+              colorTextPlaceholder: "#6BB43A",
+              itemActiveBgDisabled: "#6BB43A",
+              colorPrimary: "#6BB43A",
             },
             Table: {
-              headerBg: "#00c0b5",
+              headerBg: "#6BB43A",
               headerColor: "rgb(255,255,255)",
               cellFontSize: 16,
-              headerSplitColor: "#00c0b5",
+              headerSplitColor: "#6BB43A",
             },
           },
         }}
@@ -422,7 +423,7 @@ function Reports() {
                   </div>
                   <div className="text-white">
                     <h2 className="text-3xl font-bold mb-2">
-                      Report #{selectedUser.no.padStart(4, '0')}
+                      Report #{selectedUser.no.padStart(4, "0")}
                     </h2>
                     <div className="flex items-center gap-3 mb-2">
                       <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium">
@@ -525,21 +526,22 @@ function Reports() {
                   <div className="bg-white border border-gray-200 p-4 rounded-xl shadow-sm">
                     <p className="text-gray-700 leading-relaxed">
                       <strong>Report Details:</strong> {selectedUser.reason}
-                      <br /><br />
-                      <strong>Location:</strong> This incident was reported from the {selectedUser.reportedFrom}.
-                      <br /><br />
-                      <strong>Category:</strong> This report has been classified as "{selectedUser.type}".
-                      Further investigation is required to determine the appropriate action.
+                      <br />
+                      <br />
+                      <strong>Location:</strong> This incident was reported from
+                      the {selectedUser.reportedFrom}.
+                      <br />
+                      <br />
+                      <strong>Category:</strong> This report has been classified
+                      as "{selectedUser.type}". Further investigation is
+                      required to determine the appropriate action.
                     </p>
                   </div>
                 </div>
-
-              
               </div>
 
               {/* Action buttons */}
               <div className="flex justify-end items-center mt-8 pt-6 border-t border-gray-200">
-             
                 <button
                   onClick={handleViewCancel}
                   className="bg-gray-500 text-white font-semibold px-8 py-2 rounded-lg hover:bg-gray-600 transition-colors"

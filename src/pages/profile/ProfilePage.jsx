@@ -1,15 +1,25 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FaCamera } from "react-icons/fa";
 import EditProfile from "./EditProfile";
 import ChangePass from "./ChangePass";
+import { IoChevronBack } from "react-icons/io5";
 
 function ProfilePage() {
   const [activeTab, setActiveTab] = useState("editProfile");
+  const navigate = useNavigate();
 
   return (
     <div className="overflow-y-auto">
       <div className="px-5 pb-5 h-full">
-        <div className="bg-[#6BB43A] px-5 py-3 rounded-md mb-3">
+        <div className="bg-[#6BB43A] px-5 py-3 rounded-md mb-3 flex items-center gap-3">
+          <button
+            onClick={() => navigate(-1)}
+            className="text-white hover:opacity-90 transition"
+            aria-label="Go back"
+          >
+            <IoChevronBack className="w-6 h-6" />
+          </button>
           <h1 className="text-white text-2xl font-bold">Profile</h1>
         </div>
         <div className="mx-auto flex flex-col justify-center items-center">
