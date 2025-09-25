@@ -22,8 +22,9 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
   return (
     <div
-      className={`fixed lg:static bg-[#EDF1ED] text-[#0D0D0D] w-[70%] sm:w-[70%] md:w-[15%] lg:w-[15%] h-screen overflow-y-auto py-5 md:py-0 z-50 transition-transform ${isOpen ? "translate-x-0 top-0 left-0 " : "-translate-x-full"
-        } lg:translate-x-0`}
+      className={`fixed lg:static bg-[#EDF1ED] text-[#0D0D0D] w-[70%] sm:w-[70%] md:w-[15%] lg:w-[15%] h-screen overflow-y-auto py-5 md:py-0 z-50 transition-transform ${
+        isOpen ? "translate-x-0 top-0 left-0 " : "-translate-x-full"
+      } lg:translate-x-0`}
     >
       {/* Close Button (Mobile Only) */}
       <button
@@ -38,10 +39,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         {/* Dashboard Page */}
         <Link to="/">
           <li
-            className={`flex items-center gap-2 cursor-pointer transition-all duration-300 ease-in-out ${isActive("/")
-              ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
-              : ""
-              }`}
+            className={`flex items-center gap-2 cursor-pointer transition-all duration-300 ease-in-out ${
+              isActive("/")
+                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
+                : ""
+            }`}
           >
             <RxDashboard className="w-5 h-5" />
             <p className="text-lg font-semibold">Dashboard</p>
@@ -50,10 +52,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         {/* User Management */}
         <Link to="/user-details">
           <li
-            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${isActive("/user-details")
-              ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
-              : ""
-              }`}
+            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
+              isActive("/user-details")
+                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
+                : ""
+            }`}
           >
             <LuUsers className="w-5 h-5" />
             <p className="text-lg font-semibold">User Management</p>
@@ -62,10 +65,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         {/* Event Management */}
         <Link to="/event-management">
           <li
-            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${isActive("/event-management")
-              ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
-              : ""
-              }`}
+            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
+              isActive("/event-management")
+                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
+                : ""
+            }`}
           >
             <MdOutlineEventNote className="w-5 h-5" />
             <p className="text-lg font-semibold">Event Management</p>
@@ -74,10 +78,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         {/*  Media & Social*/}
         <Link to="/media-social">
           <li
-            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${isActive("/media-social")
-              ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
-              : ""
-              }`}
+            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
+              isActive("/media-social")
+                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
+                : ""
+            }`}
           >
             <TiMediaFastForwardOutline className="w-5 h-5" />
             <p className="text-lg font-semibold">Media & Social</p>
@@ -86,10 +91,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         {/* Interactivity */}
         <Link to="/interactivity">
           <li
-            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${isActive("/interactivity")
-              ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
-              : ""
-              }`}
+            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
+              isActive("/interactivity")
+                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
+                : ""
+            }`}
           >
             <IoBagAddOutline className="w-5 h-5" />
             <p className="text-lg font-semibold">Interactivity</p>
@@ -99,21 +105,23 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         {/* Chat */}
         <Link to="/chat">
           <li
-            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${isActive("/chat")
-              ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
-              : ""
-              }`}
+            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
+              isActive("/chat")
+                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
+                : ""
+            }`}
           >
             <TbBrandWechat className="w-5 h-5" />
             <p className="text-lg font-semibold">Support Chat</p>
           </li>
         </Link>
-        <Link to="/privacy-policy">
+        {/* <Link to="/privacy-policy">
           <li
-            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${isActive("/privacy-policy")
-              ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
-              : ""
-              }`}
+            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
+              isActive("/privacy-policy")
+                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
+                : ""
+            }`}
           >
             <MdOutlinePrivacyTip className="w-5 h-5 text-lg font-semibold" />
             <p className="text-lg font-semibold">Privacy Policy</p>
@@ -121,37 +129,46 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         </Link>
         <Link to="/terms-and-condition">
           <li
-            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${isActive("/terms-and-condition")
-              ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
-              : ""
-              }`}
+            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
+              isActive("/terms-and-condition")
+                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
+                : ""
+            }`}
           >
             <FaRegBookmark className="w-5 h-5 text-lg font-semibold" />
             <p className="text-lg font-semibold">Terms and Conditions</p>
           </li>
-        </Link>
+        </Link> */}
         <Link to="/reports">
           <li
-            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${isActive("/reports")
-              ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
-              : ""
-              }`}
+            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
+              isActive("/reports")
+                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
+                : ""
+            }`}
           >
             <TbReport className="w-5 h-5 text-lg font-semibold" />
             <p className="text-lg font-semibold">Reports</p>
           </li>
         </Link>
-
-
-
+        <Link to="/settings">
+          <li
+            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
+              isActive("/settings")
+                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
+                : ""
+            }`}
+          >
+            <IoMdSettings className="w-5 h-5 text-lg font-semibold" />
+            <p className="text-lg font-semibold">Settings</p>
+          </li>
+        </Link>
       </ul>
 
       {/* Logout Button */}
       <div className="absolute mt-8 md:mt-20 mmd:mt-20 w-full px-5">
         <Link to="/sign-in">
-          <button
-            className="flex items-center gap-4 w-full py-3 rounded-lg bg-[#89D0C9]  px-3 duration-200 text-white justify-center "
-          >
+          <button className="flex items-center gap-4 w-full py-3 rounded-lg bg-[#89D0C9]  px-3 duration-200 text-white justify-center ">
             <TbReport className="w-5 h-5 font-bold" />
             <span>Logout</span>
           </button>

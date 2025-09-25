@@ -9,7 +9,9 @@ function AboutUs() {
 
   return (
     <div className="p-5">
-      <h1 className="text-start text-3xl font-bold mb-5">About Us</h1>
+      <div className="bg-[#6BB43A] px-5 py-3 rounded-md mb-3">
+        <h1 className="text-white text-2xl font-bold">About Us</h1>
+      </div>
 
       <div className=" bg-white rounded shadow p-5 h-full">
         <ReactQuill
@@ -22,7 +24,7 @@ function AboutUs() {
       <div className="text-center py-5">
         <button
           onClick={() => console.log(content)}
-          className="bg-[#FF0000] text-white font-semibold w-full py-2 rounded transition duration-200"
+          className="bg-[#74AA2E] text-white font-semibold w-full py-2 rounded transition duration-200"
         >
           Save changes
         </button>

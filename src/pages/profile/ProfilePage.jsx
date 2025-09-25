@@ -9,12 +9,12 @@ function ProfilePage() {
   return (
     <div className="overflow-y-auto">
       <div className="px-5 pb-5 h-full">
-        <h3 className="font-semibold pb-5 text-xl text-[#242424]">
-          Admin Profile(Super Admin)
-        </h3>
+        <div className="bg-[#6BB43A] px-5 py-3 rounded-md mb-3">
+          <h1 className="text-white text-2xl font-bold">Profile</h1>
+        </div>
         <div className="mx-auto flex flex-col justify-center items-center">
           {/* Profile Picture Section */}
-          <div className="flex justify-center items-center bg-[#00c0b5] mt-5 text-white w-[900px] mx-auto p-5 gap-5 rounded-lg">
+          <div className="flex justify-center items-center bg-[#74AA2E] mt-5 text-white w-[900px] mx-auto p-5 gap-5 rounded-lg">
             <div className="relative">
               <div className="w-[122px] h-[122px] bg-gray-300 rounded-full border-4 border-white shadow-xl flex justify-center items-center">
                 <img
@@ -43,7 +43,7 @@ function ProfilePage() {
               onClick={() => setActiveTab("editProfile")}
               className={`cursor-pointer pb-1 ${
                 activeTab === "editProfile"
-                  ? "text-[#00c0b5] border-b-2 border-[#00c0b5]"
+                  ? "text-[#74AA2E] border-b-2 border-[#74AA2E]"
                   : "text-[#6A6D76]"
               }`}
             >
@@ -53,7 +53,7 @@ function ProfilePage() {
               onClick={() => setActiveTab("changePassword")}
               className={`cursor-pointer pb-1 ${
                 activeTab === "changePassword"
-                  ? "text-[#00c0b5] border-b-2 border-[#00c0b5]"
+                  ? "text-[#74AA2E] border-b-2 border-[#74AA2E]"
                   : "text-[#6A6D76]"
               }`}
             >

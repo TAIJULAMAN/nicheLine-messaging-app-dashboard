@@ -16,7 +16,10 @@ import EventManagement from "../pages/eventManagement/eventManagement";
 import GroupManagement from "../pages/groupManagement/groupManagement";
 import Reports from "../pages/Reports/Reports";
 import Interactivity from "../pages/Interactivity/Interactivity";
-
+import Settings from "../pages/Settings/Settings";
+import ChangePass from "../pages/profile/ChangePass";
+import AboutUs from "../pages/optional/AboutUs";
+import EditProfile from "../pages/profile/EditProfile";
 
 const router = createBrowserRouter([
   {
@@ -79,6 +82,22 @@ const router = createBrowserRouter([
       {
         path: "/reports",
         element: <Reports />,
+      },
+      {
+        path: "/settings",
+        element: <Settings />,
+      },
+      {
+        path: "/edit-profile",
+        element: <EditProfile />,
+      },
+      {
+        path: "/change-password",
+        element: <ChangePass />,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
       },
 
       //  navbar profile

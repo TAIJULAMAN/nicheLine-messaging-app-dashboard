@@ -9,7 +9,9 @@ export default function PrivacyPolicy() {
 
   return (
     <div className="p-5">
-      <h1 className="text-start text-3xl font-bold mb-5">Privacy Policy</h1>
+      <div className="bg-[#6BB43A] px-5 py-3 rounded-md mb-3">
+        <h1 className="text-white text-2xl font-bold">Privacy Policy</h1>
+      </div>
 
       <div className=" bg-white rounded shadow p-5 h-full">
         <ReactQuill
@@ -22,7 +24,7 @@ export default function PrivacyPolicy() {
       <div className="text-center py-5 w-full">
         <button
           onClick={() => console.log(content)}
-          className="bg-[#00c0b5] text-white font-semibold w-full py-2 rounded transition duration-200"
+          className="bg-[#74AA2E] text-white font-semibold w-full py-2 rounded transition duration-200"
         >
           Save changes
         </button>
