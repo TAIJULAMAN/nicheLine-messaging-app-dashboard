@@ -1,19 +1,17 @@
 /* eslint-disable react/prop-types */
 import { Link, useLocation } from "react-router-dom";
-import { FaRegBookmark, FaRegUser } from "react-icons/fa";
-import { IoMdInformationCircleOutline, IoMdSettings } from "react-icons/io";
-import {
-  IoBagAddOutline,
-  IoChatboxEllipsesOutline,
-  IoCloseSharp,
-  IoLogInOutline,
-} from "react-icons/io5";
 import { RxDashboard } from "react-icons/rx";
-import { MdOutlineEventNote, MdOutlinePrivacyTip } from "react-icons/md";
-import { TbBrandWechat, TbReport } from "react-icons/tb";
 import { LuUsers } from "react-icons/lu";
-import { GrGroup } from "react-icons/gr";
-import { TiMediaFastForwardOutline } from "react-icons/ti";
+import { TbBrandWechat, TbReport } from "react-icons/tb";
+import { IoMdSettings } from "react-icons/io";
+import { IoCloseSharp, IoLogOutOutline } from "react-icons/io5";
+import {
+  MdOutlineInventory2,
+  MdOutlineAssignment,
+  MdLocalHospital,
+  MdAdminPanelSettings,
+} from "react-icons/md";
+import { RiFlaskLine } from "react-icons/ri";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const location = useLocation();
@@ -22,9 +20,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
   return (
     <div
-      className={`fixed lg:static bg-[#EDF1ED] text-[#0D0D0D] w-[70%] sm:w-[70%] md:w-[15%] lg:w-[15%] h-screen overflow-y-auto py-5 md:py-0 z-50 transition-transform ${
-        isOpen ? "translate-x-0 top-0 left-0 " : "-translate-x-full"
-      } lg:translate-x-0`}
+      className={`bg-[#fff] text-[#0D0D0D] w-[70%] sm:w-[70%] md:w-[15%] lg:w-[15%] h-screen overflow-y-auto py-5 md:py-0 z-50 transition-transform
+        ${isOpen ? "translate-x-0" : "-translate-x-full"}
+        fixed top-0 left-0
+        ${isOpen ? "lg:static lg:translate-x-0" : "lg:fixed lg:top-0 lg:left-0 lg:-translate-x-full"}
+      `}
     >
       {/* Close Button (Mobile Only) */}
       <button
@@ -33,6 +33,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       >
         <IoCloseSharp />
       </button>
+
+      {/* Logo */}
+      <div className="flex justify-center items-center gap-2 px-5 mt-2">
+        <img src="/logo.png" className="w-[150px] h-[100px]" alt="User Avatar" />
+      </div>
 
       {/* Sidebar Menu */}
       <ul className="mt-10 px-5 text-[10px]">
@@ -71,7 +76,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                 : ""
             }`}
           >
-            <IoBagAddOutline className="w-5 h-5" />
+            <MdOutlineInventory2 className="w-5 h-5" />
             <p className="text-lg font-semibold">Product</p>
           </li>
         </Link>
@@ -85,7 +90,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                 : ""
             }`}
           >
-            <IoBagAddOutline className="w-5 h-5" />
+            <MdOutlineAssignment className="w-5 h-5" />
             <p className="text-lg font-semibold">Case Management</p>
           </li>
         </Link>
@@ -98,7 +103,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                 : ""
             }`}
           >
-            <IoBagAddOutline className="w-5 h-5" />
+            <MdLocalHospital className="w-5 h-5" />
             <p className="text-lg font-semibold">Clinic Management</p>
           </li>
         </Link>
@@ -111,7 +116,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                 : ""
             }`}
           >
-            <IoBagAddOutline className="w-5 h-5" />
+            <RiFlaskLine className="w-5 h-5" />
             <p className="text-lg font-semibold">Lab Management</p>
           </li>
         </Link>
@@ -124,7 +129,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                 : ""
             }`}
           >
-            <IoBagAddOutline className="w-5 h-5" />
+            <MdAdminPanelSettings className="w-5 h-5" />
             <p className="text-lg font-semibold">Create Admin</p>
           </li>
         </Link>
@@ -172,7 +177,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       <div className="absolute mt-8 md:mt-20 mmd:mt-20 w-full px-5">
         <Link to="/sign-in">
           <button className="flex items-center gap-4 w-full py-3 rounded-lg bg-[#89D0C9]  px-3 duration-200 text-white justify-center ">
-            <TbReport className="w-5 h-5 font-bold" />
+            <IoLogOutOutline className="w-5 h-5 font-bold" />
             <span>Logout</span>
           </button>
         </Link>

@@ -1,22 +1,22 @@
 /* eslint-disable react/prop-types */
 
 import { useNavigate } from "react-router-dom";
+import { IoLogOutOutline, IoMenu } from "react-icons/io5";
 
 const MainHeader = ({ toggleSidebar }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full px-5">
       <header className="bg-[#EDF1ED] shadow-sm">
         <div className="flex justify-between items-center px-5 md:px-10 h-[80px]">
-          <div onClick={() => navigate("/")}>
-            {/* <img
-              src="/header.png"
-              className="w-[72px] h-[50px]"
-              alt="User Avatar"
-            /> */}
-            <h1 className="text-3xl text-[#0D0D0D] font-bold">LOGO</h1>
-          </div>
+          <button
+            onClick={toggleSidebar}
+            aria-label="Toggle sidebar"
+            className="p-2 rounded hover:opacity-80 focus:outline-none"
+          >
+            <IoMenu className="w-8 h-8 text-[#0D0D0D]" />
+          </button>
           <div className="flex">
             <div
               onClick={() => navigate("/profile")}
@@ -27,29 +27,13 @@ const MainHeader = ({ toggleSidebar }) => {
                 className="w-8 md:w-12 h-8 md:h-12 object-cover rounded-full"
                 alt="User Avatar"
               />
-              <h3 className="hidden md:block text-[#0D0D0D] text-lg font-semibold">
-                Mr. Admin
-              </h3>
+              <div>
+                <h3 className="hidden md:block text-[#0D0D0D] text-lg font-semibold">
+                  Mr. Admin
+                </h3>
+                <p className="text-[#0D0D0D] text-lg font-semibold">Admin</p>
+              </div>
             </div>
-            <button
-              onClick={toggleSidebar}
-              className="md:hidden p-2 rounded focus:outline-none"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
           </div>
         </div>
       </header>
