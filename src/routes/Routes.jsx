@@ -10,6 +10,7 @@ import TermsCondition from "../pages/Terms Condition/TermsCondition";
 import UserDetails from "../pages/userDetails/UserDetails";
 import CreateUser from "../pages/userDetails/CreateUser";
 import AddClinic from "../pages/Add Clinic/AddClinic";
+import Notifications from "../pages/Notifications/Notifications";
 import ProfilePage from "../pages/profile/ProfilePage";
 import Chat from "../pages/Chat/Chat";
 import MediaSocial from "../pages/Media&Social/MediaSocial";
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "/user-details",
         element: <UserDetails />,
+      },
+      {
+        path: "/notifications",
+        element: <Notifications />,
       },
       {
         path: "/create-user",

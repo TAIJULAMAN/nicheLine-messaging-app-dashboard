@@ -46,7 +46,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <li
             className={`flex items-center gap-2 cursor-pointer transition-all duration-300 ease-in-out ${
               isActive("/")
-                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
+                ? "bg-[#74AA2E] text-white px-3 py-3 rounded-lg"
                 : ""
             }`}
           >
@@ -59,7 +59,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <li
             className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
               isActive("/user-details")
-                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
+                ? "bg-[#74AA2E] text-white px-3 py-3 rounded-lg"
                 : ""
             }`}
           >
@@ -72,7 +72,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <li
             className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
               isActive("/product")
-                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
+                ? "bg-[#74AA2E] text-white px-3 py-3 rounded-lg"
                 : ""
             }`}
           >
@@ -86,7 +86,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <li
             className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
               isActive("/case-management")
-                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
+                ? "bg-[#74AA2E] text-white px-3 py-3 rounded-lg"
                 : ""
             }`}
           >
@@ -99,7 +99,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <li
             className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
               isActive("/clinic-management")
-                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
+                ? "bg-[#74AA2E] text-white px-3 py-3 rounded-lg"
                 : ""
             }`}
           >
@@ -112,7 +112,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <li
             className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
               isActive("/lab-management")
-                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
+                ? "bg-[#74AA2E] text-white px-3 py-3 rounded-lg"
                 : ""
             }`}
           >
@@ -125,7 +125,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <li
             className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
               isActive("/create-admin")
-                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
+                ? "bg-[#74AA2E] text-white px-3 py-3 rounded-lg"
                 : ""
             }`}
           >
@@ -139,7 +139,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <li
             className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
               isActive("/chat")
-                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
+                ? "bg-[#74AA2E] text-white px-3 py-3 rounded-lg"
                 : ""
             }`}
           >
@@ -151,7 +151,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <li
             className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
               isActive("/reports")
-                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
+                ? "bg-[#74AA2E] text-white px-3 py-3 rounded-lg"
                 : ""
             }`}
           >
@@ -163,7 +163,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <li
             className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
               isActive("/settings")
-                ? "bg-[#89D0C9] text-white px-3 py-3 rounded-lg"
+                ? "bg-[#74AA2E] text-white px-3 py-3 rounded-lg"
                 : ""
             }`}
           >
@@ -176,7 +176,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       {/* Logout Button */}
       <div className="absolute mt-8 md:mt-20 mmd:mt-20 w-full px-5">
         <Link to="/sign-in">
-          <button className="flex items-center gap-4 w-full py-3 rounded-lg bg-[#89D0C9]  px-3 duration-200 text-white justify-center ">
+          <button className="flex items-center gap-4 w-full py-3 rounded-lg bg-[#74AA2E]  px-3 duration-200 text-white justify-center ">
             <IoLogOutOutline className="w-5 h-5 font-bold" />
             <span>Logout</span>
           </button>
