@@ -59,6 +59,8 @@ export default function ClinicManagement() {
     setSelectedClinic(null);
   };
 
+  
+
   const columns = [
     { title: "No", dataIndex: "key", key: "no" },
     { title: "Clinic Name", dataIndex: "name", key: "name" },
@@ -218,6 +220,8 @@ export default function ClinicManagement() {
             </div>
           </div>
         </Modal>
+
+        
       </ConfigProvider>
     </div>
   );

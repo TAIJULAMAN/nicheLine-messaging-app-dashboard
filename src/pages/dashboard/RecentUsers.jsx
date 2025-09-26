@@ -1,69 +1,84 @@
 import { ConfigProvider, Modal, Table } from "antd";
-
+import { FaRegEye } from "react-icons/fa";
+import { FiEdit2 } from "react-icons/fi";
+import { MdBlock } from "react-icons/md";
 
 const RecentUsers = () => {
-
-
-
-
   const dataSource = [
     {
       key: "1",
-      no: "1",
-      name: "John Doe",
-      date: "05/03/2025",
-      phone: "+1 9876543210",
-      email: "johndoe@example.com",
-      location: "New York, USA",
+      fullName: "John Doe",
+      role: "Dentist",
+      clinic: "Downtown Dental Clinic",
+      email: "john@example.com",
+      phone: "+1 987 654 3210",
+      joined: "2024-01-12",
     },
     {
       key: "2",
-      no: "2",
-      name: "Jane Smith",
-      date: "10/04/2025",
-      phone: "+44 1234567890",
-      email: "janesmith@example.com",
-      location: "London, UK",
+      fullName: "Emma Smith",
+      role: "Practice Nurse",
+      clinic: "Smile Care Clinic",
+      email: "emma@example.com",
+      phone: "+1 987 654 3211",
+      joined: "2024-03-28",
     },
     {
       key: "3",
-      no: "3",
-      name: "Ali Khan",
-      date: "15/02/2025",
-      phone: "+92 3345678901",
-      email: "alikhan@example.com",
-      location: "Karachi, Pakistan",
+      fullName: "Liam Johnson",
+      role: "Practice Manager",
+      clinic: "Healthy Teeth Clinic",
+      email: "liam@example.com",
+      phone: "+1 987 654 3212",
+      joined: "2024-06-15",
     },
     {
       key: "4",
-      no: "4",
-      name: "Emily Davis",
-      date: "20/05/2025",
-      phone: "+33 6789012345",
-      email: "emilydavis@example.com",
-      location: "Paris, France",
+      fullName: "Olivia Brown",
+      role: "Lab Technician",
+      clinic: "City Dental Center",
+      email: "olivia@example.com",
+      phone: "+1 987 654 3213",
+      joined: "2024-08-02",
     },
     {
       key: "5",
-      no: "5",
-      name: "Michael Brown",
-      date: "25/06/2025",
-      phone: "+61 4567890123",
-      email: "michaelbrown@example.com",
-      location: "Sydney, Australia",
-    }
+      fullName: "Noah Davis",
+      role: "Lab Manager",
+      clinic: "Prime Smiles",
+      email: "noah@example.com",
+      phone: "+1 987 654 3214",
+      joined: "2024-09-10",
+    },
   ];
 
-
-
   const columns = [
-    { title: "No", dataIndex: "no", key: "no" },
-    { title: "Name", dataIndex: "name", key: "name" },
-    { title: "Date", dataIndex: "date", key: "date" },
-    { title: "Phone Number", dataIndex: "phone", key: "phone" },
+    {
+      title: "No",
+      key: "no",
+      width: 70,
+      render: (_, _r, index) => index + 1,
+    },
+    {
+      title: "Full Name",
+      dataIndex: "fullName",
+      key: "fullName",
+      render: (value, record) => (
+        <div className="flex items-center gap-3">
+          <img
+            src={`https://avatar.iran.liara.run/public/${record.key}`}
+            className="w-10 h-10 object-cover rounded-full"
+            alt="User Avatar"
+          />
+          <span className="leading-none">{value}</span>
+        </div>
+      ),
+    },
+    { title: "Role", dataIndex: "role", key: "role" },
+    { title: "Clinic", dataIndex: "clinic", key: "clinic" },
     { title: "Email", dataIndex: "email", key: "email" },
-    { title: "Location", dataIndex: "location", key: "location" },
-
+    { title: "Phone No", dataIndex: "phone", key: "phone" },
+    { title: "Joined Date", dataIndex: "joined", key: "joined" },
   ];
 
   return (
@@ -76,10 +91,10 @@ const RecentUsers = () => {
             },
 
             Table: {
-              headerBg: "#00c0b5",
+              headerBg: "#74AA2E",
               headerColor: "rgb(255,255,255)",
               cellFontSize: 16,
-              headerSplitColor: "#00c0b5",
+              headerSplitColor: "#74AA2E",
             },
           },
         }}

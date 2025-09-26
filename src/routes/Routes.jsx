@@ -9,6 +9,7 @@ import PrivacyPolicy from "../pages/Privacy Policy/PrivacyPolicy";
 import TermsCondition from "../pages/Terms Condition/TermsCondition";
 import UserDetails from "../pages/userDetails/UserDetails";
 import CreateUser from "../pages/userDetails/CreateUser";
+import AddClinic from "../pages/Add Clinic/AddClinic";
 import ProfilePage from "../pages/profile/ProfilePage";
 import Chat from "../pages/Chat/Chat";
 import MediaSocial from "../pages/Media&Social/MediaSocial";
@@ -128,6 +129,10 @@ const router = createBrowserRouter([
       {
         path: "/clinic-management",
         element: <ClinicManagement />,
+      },
+      {
+        path: "/add-clinic",
+        element: <AddClinic />,
       },
       {
         path: "/case-management",
