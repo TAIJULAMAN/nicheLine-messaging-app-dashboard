@@ -1,5 +1,5 @@
-import { useState, useMemo } from "react";
-import { ConfigProvider, List, Badge, Button } from "antd";
+import { useState } from "react";
+import { ConfigProvider, List, Button } from "antd";
 import { IoChevronBack } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
@@ -17,13 +17,13 @@ export default function Notifications() {
     setItems(prev => prev.map(i => (i.id === id ? { ...i, read } : i)));
   };
   const markAllRead = () => setItems(prev => prev.map(i => ({ ...i, read: true })));
-  const clearAll = () => setItems([]);
+  // const clearAll = () => setItems([]);
 
   // Clicking an item card will mark it as read
 
   return (
-    <div className="p-5">
-      <div className="bg-[#74AA2E] px-5 py-3 rounded-md mb-3 flex items-center gap-3">
+    <div className="p-5 min-h-screen">
+      <div className="bg-[#74AA2E] px-4 md:px-5 py-3 rounded-md mb-3 flex flex-wrap md:flex-nowrap items-start md:items-center gap-2 md:gap-3">
         <button
           onClick={() => navigate(-1)}
           className="text-white hover:opacity-90 transition"
@@ -31,8 +31,8 @@ export default function Notifications() {
         >
           <IoChevronBack className="w-6 h-6" />
         </button>
-        <h1 className="text-white text-2xl font-bold">Notifications</h1>
-        <div className="ml-auto flex items-center gap-2">
+        <h1 className="text-white text-xl sm:text-2xl font-bold">Notifications</h1>
+        <div className="ml-0 md:ml-auto w-full md:w-auto flex items-center justify-between md:justify-end gap-2 mt-2 md:mt-0">
           {/* <Badge count={unreadCount} size="small" color="#fff" style={{ color: '#74AA2E' }}>
             <span className="text-white text-sm">Unread</span>
           </Badge> */}

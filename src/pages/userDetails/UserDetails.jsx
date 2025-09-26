@@ -16,9 +16,9 @@ function UserDetails() {
   const [roleFilter, setRoleFilter] = useState();
   const [searchQuery, setSearchQuery] = useState("");
 
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
+  // const showModal = () => {
+  //   setIsModalOpen(true);
+  // };
   const handleCancel = () => {
     setIsModalOpen(false);
   };
@@ -211,7 +211,7 @@ function UserDetails() {
 
   return (
     <div>
-      <div className="bg-[#74AA2E] px-5 py-3 rounded-md mb-3 flex items-center gap-3">
+      <div className="bg-[#74AA2E] px-4 md:px-5 py-3 rounded-md mb-3 flex flex-wrap md:flex-nowrap items-start md:items-center gap-2 md:gap-3">
         <button
           onClick={() => navigate(-1)}
           className="text-white hover:opacity-90 transition"
@@ -219,8 +219,19 @@ function UserDetails() {
         >
           <IoChevronBack className="w-6 h-6" />
         </button>
-        <h1 className="text-white text-2xl font-bold">User Management</h1>
-        <div className="ml-auto flex items-center gap-2 w-full md:w-auto">
+        <h1 className="text-white text-xl sm:text-2xl font-bold">User Management</h1>
+        {/* Mobile search */}
+        <div className="relative w-full md:hidden mt-1">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search users..."
+            className="w-full bg-white text-[#0D0D0D] placeholder-gray-500 pl-10 pr-3 py-2 rounded-md focus:outline-none"
+          />
+          <IoSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+        </div>
+        <div className="ml-0 md:ml-auto flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
           <div className="relative hidden md:block">
             <input
               type="text"
@@ -248,7 +259,7 @@ function UserDetails() {
               value={roleFilter}
               onChange={setRoleFilter}
               size="large"
-              className="min-w-[220px]"
+              className="w-full md:w-auto md:min-w-[220px]"
               style={{ minWidth: 220 }}
               popupMatchSelectWidth={false}
               dropdownStyle={{ paddingTop: 8, paddingBottom: 8 }}
@@ -265,7 +276,7 @@ function UserDetails() {
           <button
             type="button"
             onClick={() => navigate('/create-user')}
-            className="bg-white text-[#74AA2E] px-3 py-2 rounded-md font-semibold flex items-center gap-2 hover:opacity-95 transition"
+            className="bg-white text-[#74AA2E] px-3 py-2 rounded-md font-semibold flex items-center justify-center gap-2 hover:opacity-95 transition w-full md:w-auto"
           >
             <IoAddOutline className="w-4 h-4" />
             Create User

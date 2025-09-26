@@ -5,15 +5,15 @@ function ChangePass() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="bg-white px-20 w-[715px] pt-10 py-5 rounded-md">
-      <p className="text-primary text-center font-bold text-xl mb-5">
+    <div className="bg-white w-full max-w-xl mx-auto px-4 sm:px-6 md:px-8 pt-8 py-5 rounded-md border border-gray-200 shadow-sm">
+      <p className="text-primary text-center font-bold text-xl sm:text-2xl mb-5">
         Change Password
       </p>
       <form className="space-y-4">
         <div className="w-full">
           <label
             htmlFor="password"
-            className="text-xl text-[#0D0D0D] mb-2 font-bold"
+            className="text-sm md:text-base text-[#0D0D0D] mb-2 font-semibold"
           >
             Current Password
           </label>
@@ -22,13 +22,13 @@ function ChangePass() {
               type={showPassword ? "text" : "password"}
               name="password"
               placeholder="**********"
-              className="w-full border-2 border-[#6A6D76] rounded-md outline-none px-5 py-3 mt-5 placeholder:text-xl"
+              className="w-full border border-gray-300 rounded-md outline-none px-4 py-3 placeholder:text-sm md:placeholder:text-base focus:ring-2 focus:ring-[#74AA2E]"
               required
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 bottom-4 flex items-center text-[#6A6D76]"
+              className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center text-[#6A6D76]"
             >
               {showPassword ? (
                 <IoEyeOffOutline className="w-5 h-5" />
@@ -41,7 +41,7 @@ function ChangePass() {
         <div className="w-full">
           <label
             htmlFor="password"
-            className="text-xl text-[#0D0D0D] mb-2 font-bold"
+            className="text-sm md:text-base text-[#0D0D0D] mb-2 font-semibold"
           >
             New Password
           </label>
@@ -50,13 +50,13 @@ function ChangePass() {
               type={showPassword ? "text" : "password"}
               name="password"
               placeholder="**********"
-              className="w-full border-2 border-[#6A6D76] rounded-md outline-none px-5 py-3 mt-5 placeholder:text-xl"
+              className="w-full border border-gray-300 rounded-md outline-none px-4 py-3 placeholder:text-sm md:placeholder:text-base focus:ring-2 focus:ring-[#74AA2E]"
               required
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 bottom-4 flex items-center text-[#6A6D76]"
+              className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center text-[#6A6D76]"
             >
               {showPassword ? (
                 <IoEyeOffOutline className="w-5 h-5" />
@@ -69,7 +69,7 @@ function ChangePass() {
         <div className="w-full">
           <label
             htmlFor="password"
-            className="text-xl text-[#0D0D0D] mb-2 font-bold"
+            className="text-sm md:text-base text-[#0D0D0D] mb-2 font-semibold"
           >
             Confirm New Password
           </label>
@@ -78,13 +78,13 @@ function ChangePass() {
               type={showPassword ? "text" : "password"}
               name="password"
               placeholder="**********"
-              className="w-full border-2 border-[#6A6D76] rounded-md outline-none px-5 py-3 mt-5 placeholder:text-xl"
+              className="w-full border border-gray-300 rounded-md outline-none px-4 py-3 placeholder:text-sm md:placeholder:text-base focus:ring-2 focus:ring-[#74AA2E]"
               required
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 bottom-4 flex items-center text-[#6A6D76]"
+              className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center text-[#6A6D76]"
             >
               {showPassword ? (
                 <IoEyeOffOutline className="w-5 h-5" />
@@ -94,8 +94,8 @@ function ChangePass() {
             </button>
           </div>
         </div>
-        <div className="text-center py-5">
-          <button className="bg-[#74AA2E] text-white font-semibold w-full py-3 rounded-md">
+        <div className="text-center pt-2">
+          <button className="bg-[#74AA2E] text-white font-semibold w-full py-3 rounded-md hover:opacity-95 transition">
             Save & Change
           </button>
         </div>
