@@ -23,7 +23,7 @@ export default function CreateUser() {
 
   return (
     <div className="p-5">
-      <div className="bg-[#74AA2E] px-5 py-3 rounded-md mb-3 flex items-center gap-3">
+      <div className="bg-[#74AA2E] px-4 md:px-5 py-3 rounded-md mb-3 flex flex-wrap items-start md:items-center gap-2 md:gap-3">
         <button
           onClick={() => navigate(-1)}
           className="text-white hover:opacity-90 transition"
@@ -31,7 +31,7 @@ export default function CreateUser() {
         >
           <IoChevronBack className="w-6 h-6" />
         </button>
-        <h1 className="text-white text-2xl font-bold">Create User</h1>
+        <h1 className="text-white text-xl sm:text-2xl font-bold">Create User</h1>
       </div>
 
       <form onSubmit={save} className="bg-white rounded-md shadow border border-gray-200 p-5">

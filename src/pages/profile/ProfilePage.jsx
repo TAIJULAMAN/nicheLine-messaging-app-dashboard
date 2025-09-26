@@ -12,7 +12,7 @@ function ProfilePage() {
   return (
     <div className="overflow-y-auto">
       <div className="px-5 pb-5 h-full">
-        <div className="bg-[#6BB43A] px-5 py-3 rounded-md mb-3 flex items-center gap-3">
+        <div className="bg-[#6BB43A] px-4 md:px-5 py-3 rounded-md mb-3 flex flex-wrap md:flex-nowrap items-start md:items-center gap-2 md:gap-3">
           <button
             onClick={() => navigate(-1)}
             className="text-white hover:opacity-90 transition"
@@ -20,11 +20,11 @@ function ProfilePage() {
           >
             <IoChevronBack className="w-6 h-6" />
           </button>
-          <h1 className="text-white text-2xl font-bold">Profile</h1>
+          <h1 className="text-white text-xl sm:text-2xl font-bold">Profile</h1>
         </div>
         <div className="mx-auto flex flex-col justify-center items-center">
           {/* Profile Picture Section */}
-          <div className="flex justify-center items-center bg-[#74AA2E] mt-5 text-white w-[900px] mx-auto p-5 gap-5 rounded-lg">
+          <div className="flex flex-col md:flex-row justify-center items-center bg-[#74AA2E] mt-5 text-white w-full max-w-3xl mx-auto p-4 md:p-5 gap-4 md:gap-5 rounded-lg">
             <div className="relative">
               <div className="w-[122px] h-[122px] bg-gray-300 rounded-full border-4 border-white shadow-xl flex justify-center items-center">
                 <img
@@ -41,17 +41,17 @@ function ProfilePage() {
                 </div>
               </div>
             </div>
-            <div>
-              <p className="text-xl md:text-3xl font-bold">Shah Aman</p>
-              <p className="text-xl font-semibold">Admin</p>
+            <div className="text-center md:text-left">
+              <p className="text-lg sm:text-xl md:text-3xl font-bold">Shah Aman</p>
+              <p className="text-base sm:text-lg font-semibold">Admin</p>
             </div>
           </div>
 
           {/* Tab Navigation Section */}
-          <div className="flex justify-center items-center gap-5 text-md md:text-xl font-semibold my-5">
+          <div className="flex flex-wrap justify-center items-center gap-3 md:gap-5 text-sm sm:text-base md:text-xl font-semibold my-4 md:my-5">
             <p
               onClick={() => setActiveTab("editProfile")}
-              className={`cursor-pointer pb-1 ${
+              className={`cursor-pointer px-3 py-1 rounded-md pb-1 ${
                 activeTab === "editProfile"
                   ? "text-[#74AA2E] border-b-2 border-[#74AA2E]"
                   : "text-[#6A6D76]"
@@ -61,7 +61,7 @@ function ProfilePage() {
             </p>
             <p
               onClick={() => setActiveTab("changePassword")}
-              className={`cursor-pointer pb-1 ${
+              className={`cursor-pointer px-3 py-1 rounded-md pb-1 ${
                 activeTab === "changePassword"
                   ? "text-[#74AA2E] border-b-2 border-[#74AA2E]"
                   : "text-[#6A6D76]"
@@ -72,7 +72,7 @@ function ProfilePage() {
           </div>
 
           {/* Tab Content Section */}
-          <div className="flex justify-center items-center p-5 rounded-md">
+          <div className="flex justify-center items-center p-4 md:p-5 rounded-md w-full">
             <div className="w-full max-w-3xl">
               {activeTab === "editProfile" && <EditProfile />}
               {activeTab === "changePassword" && <ChangePass />}
