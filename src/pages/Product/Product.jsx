@@ -11,14 +11,23 @@ export default function Product() {
   const [dataSource, setDataSource] = useState([
     { key: "1", name: "Crown Full Ceramic", type: "Crown", price: 250.0 },
     { key: "2", name: "Implant Abutment", type: "Implant", price: 320.5 },
-    { key: "3", name: "Clear Aligner Set", type: "Orthodontics", price: 899.99 },
+    {
+      key: "3",
+      name: "Clear Aligner Set",
+      type: "Orthodontics",
+      price: 899.99,
+    },
   ]);
 
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isAddOpen, setIsAddOpen] = useState(false);
-  const [newProduct, setNewProduct] = useState({ name: "", type: "", price: "" });
+  const [newProduct, setNewProduct] = useState({
+    name: "",
+    type: "",
+    price: "",
+  });
 
   const openEdit = (row) => {
     setSelectedProduct({ ...row });
@@ -30,7 +39,9 @@ export default function Product() {
   };
   const saveEdit = () => {
     if (!selectedProduct) return;
-    setDataSource((prev) => prev.map((r) => (r.key === selectedProduct.key ? selectedProduct : r)));
+    setDataSource((prev) =>
+      prev.map((r) => (r.key === selectedProduct.key ? selectedProduct : r))
+    );
     setIsEditOpen(false);
     setSelectedProduct(null);
   };
@@ -67,14 +78,22 @@ export default function Product() {
       alert("Please enter a valid non-negative price");
       return;
     }
-    const row = { key: Date.now().toString(), name: newProduct.name, type: newProduct.type, price: priceNum };
+    const row = {
+      key: Date.now().toString(),
+      name: newProduct.name,
+      type: newProduct.type,
+      price: priceNum,
+    };
     setDataSource((prev) => [row, ...prev]);
     setIsAddOpen(false);
     setNewProduct({ name: "", type: "", price: "" });
   };
 
   const currency = (n) =>
-    new Intl.NumberFormat(undefined, { style: "currency", currency: "USD" }).format(Number(n || 0));
+    new Intl.NumberFormat(undefined, {
+      style: "currency",
+      currency: "USD",
+    }).format(Number(n || 0));
 
   const columns = [
     { title: "No", dataIndex: "key", key: "no", width: 80 },
@@ -103,7 +122,7 @@ export default function Product() {
   ];
 
   return (
-    <div className="p-5">
+    <div className="md:p-5">
       <div className="bg-[#6BB43A] px-5 py-3 rounded-md mb-3 flex items-center gap-3">
         <button
           onClick={() => navigate(-1)}
@@ -112,11 +131,11 @@ export default function Product() {
         >
           <IoChevronBack className="w-6 h-6" />
         </button>
-        <h1 className="text-white text-2xl font-bold">Product</h1>
+        <h1 className="text-white text-xl sm:text-2xl font-bold ">Product</h1>
         <button
           type="button"
           onClick={openAdd}
-          className="ml-auto bg-white text-[#6BB43A] px-3 py-1 rounded-md font-semibold flex items-center gap-2 hover:opacity-95 transition"
+          className="ml-auto bg-white text-[#6BB43A] whitespace-nowrap px-3 py-1 rounded-md font-semibold flex items-center gap-2 hover:opacity-95 transition"
         >
           <IoAddOutline className="w-4 h-4" />
           Add Product
@@ -143,7 +162,12 @@ export default function Product() {
           },
         }}
       >
-        <Table dataSource={dataSource} columns={columns} pagination={{ pageSize: 10 }} scroll={{ x: "max-content" }} />
+        <Table
+          dataSource={dataSource}
+          columns={columns}
+          pagination={{ pageSize: 10 }}
+          scroll={{ x: "max-content" }}
+        />
 
         {/* Add Modal */}
         <Modal open={isAddOpen} onCancel={closeAdd} footer={null} centered>
@@ -151,40 +175,58 @@ export default function Product() {
             <h3 className="text-xl font-bold mb-4">Add Product</h3>
             <div className="grid grid-cols-1 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Product Name</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Product Name
+                </label>
                 <input
                   type="text"
                   value={newProduct.name}
-                  onChange={(e) => setNewProduct((s) => ({ ...s, name: e.target.value }))}
+                  onChange={(e) =>
+                    setNewProduct((s) => ({ ...s, name: e.target.value }))
+                  }
                   className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#6BB43A]"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Product Type</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Product Type
+                </label>
                 <input
                   type="text"
                   value={newProduct.type}
-                  onChange={(e) => setNewProduct((s) => ({ ...s, type: e.target.value }))}
+                  onChange={(e) =>
+                    setNewProduct((s) => ({ ...s, type: e.target.value }))
+                  }
                   className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#6BB43A]"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Product Price</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Product Price
+                </label>
                 <input
                   type="number"
                   step="0.01"
                   min="0"
                   value={newProduct.price}
-                  onChange={(e) => setNewProduct((s) => ({ ...s, price: e.target.value }))}
+                  onChange={(e) =>
+                    setNewProduct((s) => ({ ...s, price: e.target.value }))
+                  }
                   className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#6BB43A]"
                 />
               </div>
             </div>
             <div className="flex justify-end gap-2 mt-6">
-              <button onClick={closeAdd} className="bg-gray-500 text-white font-semibold px-6 py-2 rounded-md">
+              <button
+                onClick={closeAdd}
+                className="bg-gray-500 text-white font-semibold px-6 py-2 rounded-md"
+              >
                 Cancel
               </button>
-              <button onClick={saveAdd} className="bg-[#6BB43A] text-white font-semibold px-6 py-2 rounded-md">
+              <button
+                onClick={saveAdd}
+                className="bg-[#6BB43A] text-white font-semibold px-6 py-2 rounded-md"
+              >
                 Save
               </button>
             </div>
@@ -198,40 +240,67 @@ export default function Product() {
               <h3 className="text-xl font-bold mb-4">Edit Product</h3>
               <div className="grid grid-cols-1 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Product Name</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Product Name
+                  </label>
                   <input
                     type="text"
                     value={selectedProduct.name}
-                    onChange={(e) => setSelectedProduct((s) => ({ ...s, name: e.target.value }))}
+                    onChange={(e) =>
+                      setSelectedProduct((s) => ({
+                        ...s,
+                        name: e.target.value,
+                      }))
+                    }
                     className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#6BB43A]"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Product Type</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Product Type
+                  </label>
                   <input
                     type="text"
                     value={selectedProduct.type}
-                    onChange={(e) => setSelectedProduct((s) => ({ ...s, type: e.target.value }))}
+                    onChange={(e) =>
+                      setSelectedProduct((s) => ({
+                        ...s,
+                        type: e.target.value,
+                      }))
+                    }
                     className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#6BB43A]"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Product Price</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Product Price
+                  </label>
                   <input
                     type="number"
                     step="0.01"
                     min="0"
                     value={selectedProduct.price}
-                    onChange={(e) => setSelectedProduct((s) => ({ ...s, price: Number(e.target.value || 0) }))}
+                    onChange={(e) =>
+                      setSelectedProduct((s) => ({
+                        ...s,
+                        price: Number(e.target.value || 0),
+                      }))
+                    }
                     className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#6BB43A]"
                   />
                 </div>
               </div>
               <div className="flex justify-end gap-2 mt-6">
-                <button onClick={closeEdit} className="bg-gray-500 text-white font-semibold px-6 py-2 rounded-md">
+                <button
+                  onClick={closeEdit}
+                  className="bg-gray-500 text-white font-semibold px-6 py-2 rounded-md"
+                >
                   Cancel
                 </button>
-                <button onClick={saveEdit} className="bg-[#6BB43A] text-white font-semibold px-6 py-2 rounded-md">
+                <button
+                  onClick={saveEdit}
+                  className="bg-[#6BB43A] text-white font-semibold px-6 py-2 rounded-md"
+                >
                   Save
                 </button>
               </div>
@@ -240,15 +309,30 @@ export default function Product() {
         </Modal>
 
         {/* Delete Modal */}
-        <Modal open={isDeleteOpen} onCancel={cancelDelete} footer={null} centered>
+        <Modal
+          open={isDeleteOpen}
+          onCancel={cancelDelete}
+          footer={null}
+          centered
+        >
           <div className="flex flex-col justify-center items-center py-8">
-            <h1 className="text-2xl text-center text-[#6BB43A]">Are you sure?</h1>
-            <p className="text-base text-center mt-4">Do you want to delete this product?</p>
+            <h1 className="text-2xl text-center text-[#6BB43A]">
+              Are you sure?
+            </h1>
+            <p className="text-base text-center mt-4">
+              Do you want to delete this product?
+            </p>
             <div className="text-center pt-6 w-full flex justify-center gap-3">
-              <button onClick={cancelDelete} className="bg-gray-500 text-white font-semibold py-2 px-5 rounded-md">
+              <button
+                onClick={cancelDelete}
+                className="bg-gray-500 text-white font-semibold py-2 px-5 rounded-md"
+              >
                 Cancel
               </button>
-              <button onClick={confirmDelete} className="bg-[#6BB43A] text-white font-semibold py-2 px-5 rounded-md">
+              <button
+                onClick={confirmDelete}
+                className="bg-[#6BB43A] text-white font-semibold py-2 px-5 rounded-md"
+              >
                 Confirm
               </button>
             </div>

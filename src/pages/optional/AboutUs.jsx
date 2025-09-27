@@ -11,7 +11,7 @@ function AboutUs() {
   const navigate = useNavigate();
 
   return (
-    <div className="p-5">
+    <div className="md:p-5">
       <div className="bg-[#6BB43A] px-5 py-3 rounded-md mb-3 flex items-center gap-3">
         <button
           onClick={() => navigate(-1)}
@@ -20,7 +20,7 @@ function AboutUs() {
         >
           <IoChevronBack className="w-6 h-6" />
         </button>
-        <h1 className="text-white text-2xl font-bold">About Us</h1>
+        <h1 className="text-white text-xl sm:text-2xl font-bold ">About Us</h1>
       </div>
 
       <div className=" bg-white rounded shadow p-5 h-full">

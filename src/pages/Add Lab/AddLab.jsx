@@ -5,7 +5,12 @@ import { IoChevronBack } from "react-icons/io5";
 export default function AddLab() {
   const navigate = useNavigate();
 
-  const [form, setForm] = useState({ name: "", email: "", joined: "", users: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    joined: "",
+    users: "",
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,7 +21,12 @@ export default function AddLab() {
     alert(
       "Lab created successfully (demo)\n\n" +
         JSON.stringify(
-          { name: form.name, email: form.email, joined: form.joined, users: form.users || 0 },
+          {
+            name: form.name,
+            email: form.email,
+            joined: form.joined,
+            users: form.users || 0,
+          },
           null,
           2
         )
@@ -25,7 +35,7 @@ export default function AddLab() {
   };
 
   return (
-    <div className="p-5">
+    <div className="md:p-5">
       {/* Header */}
       <div className="bg-[#6BB43A] px-5 py-3 rounded-md mb-3 flex items-center gap-3">
         <button
@@ -35,14 +45,19 @@ export default function AddLab() {
         >
           <IoChevronBack className="w-6 h-6" />
         </button>
-        <h1 className="text-white text-2xl font-bold">Add Lab</h1>
+        <h1 className="text-white text-xl sm:text-2xl font-bold ">Add Lab</h1>
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="bg-white rounded-md shadow border border-gray-200 p-5">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white rounded-md shadow border border-gray-200 p-5"
+      >
         <div className="grid grid-cols-1 gap-4">
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">Lab Name</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              Lab Name
+            </label>
             <input
               type="text"
               value={form.name}
@@ -53,7 +68,9 @@ export default function AddLab() {
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">Email</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              Email
+            </label>
             <input
               type="email"
               value={form.email}
@@ -65,7 +82,9 @@ export default function AddLab() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">Joined Date</label>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
+                Joined Date
+              </label>
               <input
                 type="date"
                 value={form.joined}
@@ -74,7 +93,9 @@ export default function AddLab() {
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">Assign Users</label>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
+                Assign Users
+              </label>
               <input
                 type="number"
                 min="0"
@@ -87,7 +108,10 @@ export default function AddLab() {
           </div>
 
           <div className="pt-2">
-            <button type="submit" className="w-full bg-[#6BB43A] text-white font-semibold py-3 rounded-md">
+            <button
+              type="submit"
+              className="w-full bg-[#6BB43A] text-white font-semibold py-3 rounded-md"
+            >
               Create Lab
             </button>
           </div>
