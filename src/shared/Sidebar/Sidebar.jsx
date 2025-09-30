@@ -20,11 +20,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
   return (
     <div
-      className={`bg-[#fff] text-[#0D0D0D] h-screen overflow-y-auto py-5 md:py-0 z-50 transition-transform
-        w-[80%] sm:w-[70%] md:w-[50%] lg:w-68 xl:w-72
-        ${isOpen ? "translate-x-0" : "-translate-x-full"}
+      className={`bg-[#fff] text-[#0D0D0D] h-screen overflow-y-auto py-5 md:py-0 z-50 transition-all duration-300 transform overflow-hidden
+        w-[80%] sm:w-[70%] md:w-[50%] ${isOpen ? "lg:w-68 xl:w-72" : "lg:w-0"}
+        ${isOpen ? "translate-x-0" : "-translate-x-full"} ${isOpen ? "lg:translate-x-0" : "lg:-translate-x-full"}
         fixed top-0 left-0
-        lg:static lg:translate-x-0
+        lg:static
       `}
     >
       {/* Close Button (Mobile Only) */}

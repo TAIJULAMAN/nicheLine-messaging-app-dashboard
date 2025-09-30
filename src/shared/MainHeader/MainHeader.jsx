@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import { useNavigate } from "react-router-dom";
-import { IoLogOutOutline, IoMenu, IoNotificationsOutline, IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import { IoMenu, IoNotificationsOutline, IoChatbubbleEllipsesOutline } from "react-icons/io5";
 
 const MainHeader = ({ toggleSidebar }) => {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ const MainHeader = ({ toggleSidebar }) => {
           <button
             onClick={toggleSidebar}
             aria-label="Toggle sidebar"
-            className="p-2 rounded hover:opacity-80 focus:outline-none"
+            className="p-2 rounded hover:opacity-80 focus:outline-none cursor-pointer"
           >
             <IoMenu className="w-8 h-8 text-[#0D0D0D]" />
           </button>
