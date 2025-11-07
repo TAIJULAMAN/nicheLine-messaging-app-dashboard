@@ -219,7 +219,9 @@ function UserDetails() {
         >
           <IoChevronBack className="w-6 h-6" />
         </button>
-        <h1 className="text-white text-xl sm:text-2xl font-bold">User Management</h1>
+        <h1 className="text-white text-xl sm:text-2xl font-bold">
+          User Management
+        </h1>
         {/* Mobile search */}
         <div className="relative w-full md:hidden mt-1">
           <input
@@ -231,7 +233,7 @@ function UserDetails() {
           />
           <IoSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
         </div>
-        <div className="ml-0 md:ml-auto flex items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
+        <div className="ml-0 md:ml-auto flex flex-col md:flex-row items-stretch md:items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
           <div className="relative hidden md:block">
             <input
               type="text"
@@ -275,7 +277,7 @@ function UserDetails() {
           </ConfigProvider>
           <button
             type="button"
-            onClick={() => navigate('/create-user')}
+            onClick={() => navigate("/create-user")}
             className="bg-white text-[#74AA2E] px-3 py-2 rounded-md font-semibold flex items-center justify-center gap-2 hover:opacity-95 transition w-full md:w-auto"
           >
             <IoAddOutline className="w-4 h-4" />
@@ -364,11 +366,15 @@ function UserDetails() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Role
+                  </label>
                   <Select
                     className="w-full"
                     value={editUser.role}
-                    onChange={(val) => setEditUser((s) => ({ ...s, role: val }))}
+                    onChange={(val) =>
+                      setEditUser((s) => ({ ...s, role: val }))
+                    }
                     options={[
                       { label: "Dentist", value: "Dentist" },
                       { label: "Lab Manager", value: "Lab Manager" },
@@ -503,7 +509,9 @@ function UserDetails() {
                 </div>
                 <div className="bg-white border border-gray-200 p-4 rounded-xl shadow-sm">
                   <div className="text-gray-600 text-sm">Role</div>
-                  <div className="text-lg font-semibold">{selectedUser.role}</div>
+                  <div className="text-lg font-semibold">
+                    {selectedUser.role}
+                  </div>
                 </div>
                 <div className="bg-white border border-gray-200 p-4 rounded-xl shadow-sm">
                   <div className="text-gray-600 text-sm">Clinic</div>

@@ -1,9 +1,9 @@
 import { ConfigProvider, Modal, Table } from "antd";
 import { useState } from "react";
-import { IoSearch, IoChevronBack } from "react-icons/io5";
+import { IoChevronBack } from "react-icons/io5";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FaRegEye } from "react-icons/fa";
-import { BiMessage } from "react-icons/bi";
+// import { BiMessage } from "react-icons/bi";
 import { LuMessageSquareText } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 
@@ -191,7 +191,7 @@ function Reports() {
         >
           <IoChevronBack className="w-6 h-6" />
         </button>
-        <h1 className="text-white text-2xl font-bold">Reports</h1>
+        <h1 className="text-white text-xl sm:text-2xl font-bold ">Reports</h1>
       </div>
 
       <ConfigProvider

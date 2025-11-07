@@ -1,11 +1,21 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { IoChevronBack, IoEyeOutline, IoEyeOffOutline, IoCloudUploadOutline } from "react-icons/io5";
+import {
+  IoChevronBack,
+  IoEyeOutline,
+  IoEyeOffOutline,
+  IoCloudUploadOutline,
+} from "react-icons/io5";
 
 export default function AddAdmin() {
   const navigate = useNavigate();
 
-  const [form, setForm] = useState({ name: "", email: "", password: "", confirmPassword: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
   const [showPass, setShowPass] = useState({ new: false, confirm: false });
   const [imagePreview, setImagePreview] = useState("");
   const fileInputRef = useRef(null);
@@ -28,12 +38,15 @@ export default function AddAdmin() {
       alert("Passwords do not match");
       return;
     }
-    alert("Admin created successfully (demo)\n\n" + JSON.stringify({ name: form.name, email: form.email }, null, 2));
+    alert(
+      "Admin created successfully (demo)\n\n" +
+        JSON.stringify({ name: form.name, email: form.email }, null, 2)
+    );
     navigate(-1);
   };
 
   return (
-    <div className="p-5">
+    <div className="md:p-5">
       {/* Header */}
       <div className="bg-[#6BB43A] px-5 py-3 rounded-md mb-3 flex items-center gap-3">
         <button
@@ -43,14 +56,19 @@ export default function AddAdmin() {
         >
           <IoChevronBack className="w-6 h-6" />
         </button>
-        <h1 className="text-white text-2xl font-bold">Add Admin</h1>
+        <h1 className="text-white text-xl sm:text-2xl font-bold ">Add Admin</h1>
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="bg-white rounded-md shadow border border-gray-200 p-5 mb-5">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white rounded-md shadow border border-gray-200 p-5 mb-5"
+      >
         <div className="grid grid-cols-1 gap-4">
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">Name</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              Name
+            </label>
             <input
               type="text"
               value={form.name}
@@ -61,7 +79,9 @@ export default function AddAdmin() {
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">Email</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              Email
+            </label>
             <input
               type="email"
               value={form.email}
@@ -73,12 +93,16 @@ export default function AddAdmin() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">New Password</label>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
+                New Password
+              </label>
               <div className="relative">
                 <input
                   type={showPass.new ? "text" : "password"}
                   value={form.password}
-                  onChange={(e) => setForm({ ...form, password: e.target.value })}
+                  onChange={(e) =>
+                    setForm({ ...form, password: e.target.value })
+                  }
                   placeholder="********"
                   className="w-full border border-gray-300 rounded-md px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-[#6BB43A]"
                 />
@@ -92,18 +116,24 @@ export default function AddAdmin() {
               </div>
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">Confirm New Password</label>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
+                Confirm New Password
+              </label>
               <div className="relative">
                 <input
                   type={showPass.confirm ? "text" : "password"}
                   value={form.confirmPassword}
-                  onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
+                  onChange={(e) =>
+                    setForm({ ...form, confirmPassword: e.target.value })
+                  }
                   placeholder="********"
                   className="w-full border border-gray-300 rounded-md px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-[#6BB43A]"
                 />
                 <button
                   type="button"
-                  onClick={() => setShowPass((s) => ({ ...s, confirm: !s.confirm }))}
+                  onClick={() =>
+                    setShowPass((s) => ({ ...s, confirm: !s.confirm }))
+                  }
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
                 >
                   {showPass.confirm ? <IoEyeOffOutline /> : <IoEyeOutline />}
@@ -113,26 +143,41 @@ export default function AddAdmin() {
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">Profile Image</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              Profile Image
+            </label>
             <div
               className="w-full border border-gray-300 rounded-md px-4 py-8 flex flex-col items-center justify-center text-gray-500 bg-gray-50"
               onClick={() => fileInputRef.current?.click()}
               role="button"
             >
               {imagePreview ? (
-                <img src={imagePreview} alt="Preview" className="h-24 w-24 rounded-full object-cover" />
+                <img
+                  src={imagePreview}
+                  alt="Preview"
+                  className="h-24 w-24 rounded-full object-cover"
+                />
               ) : (
                 <>
                   <IoCloudUploadOutline className="w-8 h-8 mb-2" />
                   <span>Upload Image</span>
                 </>
               )}
-              <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageChange} className="hidden" />
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="hidden"
+              />
             </div>
           </div>
 
           <div className="pt-2">
-            <button type="submit" className="w-full bg-[#6BB43A] text-white font-semibold py-3 rounded-md">
+            <button
+              type="submit"
+              className="w-full bg-[#6BB43A] text-white font-semibold py-3 rounded-md"
+            >
               Create Admin
             </button>
           </div>

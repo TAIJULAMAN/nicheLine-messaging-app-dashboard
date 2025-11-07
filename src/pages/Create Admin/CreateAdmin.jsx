@@ -1,18 +1,12 @@
 import { ConfigProvider, Table } from "antd";
 import { useNavigate } from "react-router-dom";
-import { useState, useRef } from "react";
-import {
-  IoChevronBack,
-  IoAddOutline,
-  IoEyeOutline,
-  IoEyeOffOutline,
-  IoCloudUploadOutline,
-} from "react-icons/io5";
+import { useState } from "react";
+import { IoChevronBack, IoAddOutline } from "react-icons/io5";
 
 export default function CreateAdmin() {
   const navigate = useNavigate();
 
-  const [dataSource, setDataSource] = useState([
+  const [dataSource] = useState([
     {
       key: "1",
       no: "1",
@@ -39,48 +33,48 @@ export default function CreateAdmin() {
     },
   ]);
 
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-  const [showPass, setShowPass] = useState({ new: false, confirm: false });
-  const [imagePreview, setImagePreview] = useState("");
-  const fileInputRef = useRef(null);
+  // const [form, setForm] = useState({
+  //   name: "",
+  //   email: "",
+  //   password: "",
+  //   confirmPassword: "",
+  // });
+  // const [showPass, setShowPass] = useState({ new: false, confirm: false });
+  // const [imagePreview, setImagePreview] = useState("");
+  // const fileInputRef = useRef(null);
 
-  const handleImageChange = (e) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const url = URL.createObjectURL(file);
-      setImagePreview(url);
-    }
-  };
+  // const handleImageChange = (e) => {
+  //   const file = e.target.files?.[0];
+  //   if (file) {
+  //     const url = URL.createObjectURL(file);
+  //     setImagePreview(url);
+  //   }
+  // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!form.name || !form.email || !form.password || !form.confirmPassword) {
-      alert("Please fill in all fields");
-      return;
-    }
-    if (form.password !== form.confirmPassword) {
-      alert("Passwords do not match");
-      return;
-    }
-    const nextNo = String(dataSource.length + 1);
-    const newRow = {
-      key: nextNo,
-      no: nextNo,
-      name: form.name,
-      email: form.email,
-      password: "********",
-      designation: "Admin",
-    };
-    setDataSource((prev) => [newRow, ...prev]);
-    setForm({ name: "", email: "", password: "", confirmPassword: "" });
-    setImagePreview("");
-    if (fileInputRef.current) fileInputRef.current.value = "";
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (!form.name || !form.email || !form.password || !form.confirmPassword) {
+  //     alert("Please fill in all fields");
+  //     return;
+  //   }
+  //   if (form.password !== form.confirmPassword) {
+  //     alert("Passwords do not match");
+  //     return;
+  //   }
+  //   const nextNo = String(dataSource.length + 1);
+  //   const newRow = {
+  //     key: nextNo,
+  //     no: nextNo,
+  //     name: form.name,
+  //     email: form.email,
+  //     password: "********",
+  //     designation: "Admin",
+  //   };
+  //   setDataSource((prev) => [newRow, ...prev]);
+  //   setForm({ name: "", email: "", password: "", confirmPassword: "" });
+  //   setImagePreview("");
+  //   if (fileInputRef.current) fileInputRef.current.value = "";
+  // };
 
   const columns = [
     { title: "No", dataIndex: "no", key: "no" },
@@ -91,7 +85,7 @@ export default function CreateAdmin() {
   ];
 
   return (
-    <div className="p-5">
+    <div className="md:p-5">
       <div className="bg-[#6BB43A] px-5 py-3 rounded-md mb-3 flex items-center gap-3">
         <button
           onClick={() => navigate(-1)}
@@ -100,11 +94,13 @@ export default function CreateAdmin() {
         >
           <IoChevronBack className="w-6 h-6" />
         </button>
-        <h1 className="text-white text-2xl font-bold">Create Admin</h1>
+        <h1 className="text-white text-xl sm:text-2xl font-bold ">
+          Create Admin
+        </h1>
         <button
           type="button"
           onClick={() => navigate("/add-admin")}
-          className="ml-auto bg-white text-[#6BB43A] px-3 py-1 rounded-md font-semibold flex items-center gap-2 hover:opacity-95 transition"
+          className="ml-auto bg-white text-[#6BB43A] whitespace-nowrap px-3 py-1 rounded-md font-semibold flex items-center gap-2 hover:opacity-95 transition"
         >
           <IoAddOutline className="w-4 h-4" />
           Add Admin

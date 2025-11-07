@@ -11,7 +11,7 @@ function ProfilePage() {
 
   return (
     <div className="overflow-y-auto">
-      <div className="px-5 pb-5 h-full">
+      <div className="md:px-5 pb-5 h-full">
         <div className="bg-[#6BB43A] px-4 md:px-5 py-3 rounded-md mb-3 flex flex-wrap md:flex-nowrap items-start md:items-center gap-2 md:gap-3">
           <button
             onClick={() => navigate(-1)}
@@ -72,7 +72,7 @@ function ProfilePage() {
           </div>
 
           {/* Tab Content Section */}
-          <div className="flex justify-center items-center p-4 md:p-5 rounded-md w-full">
+          <div className="flex justify-center items-center p-0 md:p-5 rounded-md w-full">
             <div className="w-full max-w-3xl">
               {activeTab === "editProfile" && <EditProfile />}
               {activeTab === "changePassword" && <ChangePass />}

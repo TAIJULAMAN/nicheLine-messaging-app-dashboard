@@ -114,7 +114,7 @@ export default function LabManagment() {
   ];
 
   return (
-    <div className="p-5">
+    <div className="md:p-5">
       <div className="bg-[#6BB43A] px-5 py-3 rounded-md mb-3 flex items-center gap-3">
         <button
           onClick={() => navigate(-1)}
@@ -123,11 +123,13 @@ export default function LabManagment() {
         >
           <IoChevronBack className="w-6 h-6" />
         </button>
-        <h1 className="text-white text-2xl font-bold">Lab Management</h1>
+        <h1 className="text-white text-xl sm:text-2xl font-bold ">
+          Lab Management
+        </h1>
         <button
           type="button"
           onClick={() => navigate("/add-lab")}
-          className="ml-auto bg-white text-[#6BB43A] px-3 py-1 rounded-md font-semibold flex items-center gap-2 hover:opacity-95 transition"
+          className="ml-auto bg-white text-[#6BB43A] whitespace-nowrap px-3 py-1 rounded-md font-semibold flex items-center gap-2 hover:opacity-95 transition"
         >
           <IoAddOutline className="w-4 h-4" />
           Add Lab

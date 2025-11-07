@@ -2,9 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { RiSendPlane2Fill } from "react-icons/ri";
 import { FiMenu, FiMoreVertical } from "react-icons/fi";
-import { IoImagesOutline, IoAttachOutline } from "react-icons/io5";
-import { BsEmojiSmile, BsCheck2All } from "react-icons/bs";
-import { MdOnlinePrediction } from "react-icons/md";
+import { IoImagesOutline } from "react-icons/io5";
+import { BsCheck2All } from "react-icons/bs";
+// import { MdOnlinePrediction } from "react-icons/md";
 
 const users = [
   {
@@ -124,7 +124,7 @@ const Chat = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  // const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const messagesEndRef = useRef(null);
   const fileInputRef = useRef(null);
 
@@ -384,14 +384,14 @@ const Chat = () => {
           </div>
 
           {/* Message Input */}
-          <div className="bg-white border-t border-gray-200 p-4">
-            <div className="flex items-end gap-3">
+          <div className="bg-white border-t border-gray-200 md:p-4 py-2">
+            <div className="flex items-center gap-3">
               <div className="flex-1 relative">
                 <textarea
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  placeholder="Type your message..."
+                  placeholder="message"
                   className="w-full px-4 py-3 pr-12 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent resize-none max-h-32"
                   rows="1"
                 />
