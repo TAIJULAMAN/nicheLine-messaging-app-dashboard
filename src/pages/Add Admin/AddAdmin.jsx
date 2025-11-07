@@ -48,7 +48,7 @@ export default function AddAdmin() {
   return (
     <div className="md:p-5">
       {/* Header */}
-      <div className="bg-[#6BB43A] px-5 py-3 rounded-md mb-3 flex items-center gap-3">
+      <div className="bg-[#00e0b7] px-5 py-3 rounded-md mb-3 flex items-center gap-3">
         <button
           onClick={() => navigate(-1)}
           className="text-white hover:opacity-90 transition"
@@ -74,7 +74,7 @@ export default function AddAdmin() {
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder="John Doe"
-              className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#6BB43A]"
+              className="w-full border border-gray-300 rounded-md px-4 py-3 "
             />
           </div>
 
@@ -87,7 +87,7 @@ export default function AddAdmin() {
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
               placeholder="abc@gmail.com"
-              className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#6BB43A]"
+              className="w-full border border-gray-300 rounded-md px-4 py-3 "
             />
           </div>
 
@@ -104,7 +104,7 @@ export default function AddAdmin() {
                     setForm({ ...form, password: e.target.value })
                   }
                   placeholder="********"
-                  className="w-full border border-gray-300 rounded-md px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-[#6BB43A]"
+                  className="w-full border border-gray-300 rounded-md px-4 py-3 pr-10"
                 />
                 <button
                   type="button"
@@ -127,7 +127,7 @@ export default function AddAdmin() {
                     setForm({ ...form, confirmPassword: e.target.value })
                   }
                   placeholder="********"
-                  className="w-full border border-gray-300 rounded-md px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-[#6BB43A]"
+                  className="w-full border border-gray-300 rounded-md px-4 py-3 pr-10"
                 />
                 <button
                   type="button"
@@ -176,7 +176,7 @@ export default function AddAdmin() {
           <div className="pt-2">
             <button
               type="submit"
-              className="w-full bg-[#6BB43A] text-white font-semibold py-3 rounded-md"
+              className="w-full bg-[#00e0b7] text-white font-semibold py-3 rounded-md"
             >
               Create Admin
             </button>

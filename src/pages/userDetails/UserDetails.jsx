@@ -19,7 +19,6 @@ function UserDetails() {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-
   const showViewModal = (user) => {
     setSelectedUser(user);
     setIsViewModalOpen(true);
@@ -32,8 +31,7 @@ function UserDetails() {
     {
       key: "1",
       fullName: "John Doe",
-      role: "Dentist",
-      clinic: "Downtown Dental Clinic",
+      role: "User",
       email: "john@example.com",
       phone: "+1 987 654 3210",
       joined: "2024-01-12",
@@ -41,8 +39,7 @@ function UserDetails() {
     {
       key: "2",
       fullName: "Emma Smith",
-      role: "Practice Nurse",
-      clinic: "Smile Care Clinic",
+      role: "Clients",
       email: "emma@example.com",
       phone: "+1 987 654 3211",
       joined: "2024-03-28",
@@ -50,8 +47,7 @@ function UserDetails() {
     {
       key: "3",
       fullName: "Liam Johnson",
-      role: "Practice Manager",
-      clinic: "Healthy Teeth Clinic",
+      role: "Vendor",
       email: "liam@example.com",
       phone: "+1 987 654 3212",
       joined: "2024-06-15",
@@ -59,8 +55,7 @@ function UserDetails() {
     {
       key: "4",
       fullName: "Olivia Brown",
-      role: "Lab Technician",
-      clinic: "City Dental Center",
+      role: "User",
       email: "olivia@example.com",
       phone: "+1 987 654 3213",
       joined: "2024-08-02",
@@ -68,8 +63,7 @@ function UserDetails() {
     {
       key: "5",
       fullName: "Noah Davis",
-      role: "Lab Manager",
-      clinic: "Prime Smiles",
+      role: "Clients",
       email: "noah@example.com",
       phone: "+1 987 654 3214",
       joined: "2024-09-10",
@@ -77,8 +71,7 @@ function UserDetails() {
     {
       key: "6",
       fullName: "Sophia Miller",
-      role: "Dentist",
-      clinic: "Bright Smile Hub",
+      role: "Vendor",
       email: "sophia@example.com",
       phone: "+1 987 654 3215",
       joined: "2024-11-19",
@@ -86,8 +79,7 @@ function UserDetails() {
     {
       key: "7",
       fullName: "James Wilson",
-      role: "Practice Manager",
-      clinic: "Downtown Dental Clinic",
+      role: "Vendor",
       email: "james@example.com",
       phone: "+1 987 654 3216",
       joined: "2025-01-05",
@@ -95,8 +87,7 @@ function UserDetails() {
     {
       key: "8",
       fullName: "Isabella Moore",
-      role: "Practice Nurse",
-      clinic: "Healthy Teeth Clinic",
+      role: "Clients",
       email: "isabella@example.com",
       phone: "+1 987 654 3217",
       joined: "2025-02-21",
@@ -104,8 +95,7 @@ function UserDetails() {
     {
       key: "9",
       fullName: "Benjamin Taylor",
-      role: "Lab Technician",
-      clinic: "Prime Smiles",
+      role: "User",
       email: "benjamin@example.com",
       phone: "+1 987 654 3218",
       joined: "2025-03-03",
@@ -113,8 +103,7 @@ function UserDetails() {
     {
       key: "10",
       fullName: "Mia Anderson",
-      role: "Dentist",
-      clinic: "City Dental Center",
+      role: "Clients",
       email: "mia@example.com",
       phone: "+1 987 654 3219",
       joined: "2025-04-12",
@@ -143,7 +132,6 @@ function UserDetails() {
       ),
     },
     { title: "Role", dataIndex: "role", key: "role" },
-    { title: "Clinic", dataIndex: "clinic", key: "clinic" },
     { title: "Email", dataIndex: "email", key: "email" },
     { title: "Phone No", dataIndex: "phone", key: "phone" },
     { title: "Joined Date", dataIndex: "joined", key: "joined" },
@@ -153,13 +141,13 @@ function UserDetails() {
       render: (_, record) => (
         <div className="flex gap-2">
           <button className="" onClick={() => openEdit(record)}>
-            <FiEdit2 className="text-[#74AA2E] w-10 h-10 cursor-pointer rounded-md" />
+            <FiEdit2 className="text-[#00e0b7] w-6 h-6 cursor-pointer rounded-md" />
           </button>
           <button className="" onClick={() => openBlock(record)}>
-            <MdBlock className="text-red-500 w-10 h-10 cursor-pointer rounded-md" />
+            <MdBlock className="text-red-500 w-6 h-6 cursor-pointer rounded-md" />
           </button>
           <button className="" onClick={() => showViewModal(record)}>
-            <FaRegEye className="text-[#74AA2E] w-10 h-10 cursor-pointer rounded-md" />
+            <FaRegEye className="text-[#00e0b7] w-6 h-6 cursor-pointer rounded-md" />
           </button>
         </div>
       ),
@@ -172,8 +160,8 @@ function UserDetails() {
       const matchRole = roleFilter ? r.role === roleFilter : true;
       const matchQuery = q
         ? [r.fullName, r.email, r.phone, r.clinic, r.role]
-            .filter(Boolean)
-            .some((v) => String(v).toLowerCase().includes(q))
+          .filter(Boolean)
+          .some((v) => String(v).toLowerCase().includes(q))
         : true;
       return matchRole && matchQuery;
     });
@@ -208,7 +196,7 @@ function UserDetails() {
 
   return (
     <div>
-      <div className="bg-[#74AA2E] px-4 md:px-5 py-3 rounded-md mb-3 flex flex-wrap md:flex-nowrap items-start md:items-center gap-2 md:gap-3">
+      <div className="bg-[#00e0b7] px-4 md:px-5 py-3 rounded-md mb-3 flex flex-wrap md:flex-nowrap items-start md:items-center gap-2 md:gap-3">
         <button
           onClick={() => navigate(-1)}
           className="text-white hover:opacity-90 transition"
@@ -263,11 +251,9 @@ function UserDetails() {
               popupMatchSelectWidth={false}
               dropdownStyle={{ paddingTop: 8, paddingBottom: 8 }}
               options={[
-                { label: "Dentist", value: "Dentist" },
-                { label: "Lab Manager", value: "Lab Manager" },
-                { label: "Practice Manager", value: "Practice Manager" },
-                { label: "Practice Nurse", value: "Practice Nurse" },
-                { label: "Lab Technician", value: "Lab Technician" },
+                { label: "User", value: "User" },
+                { label: "Clients", value: "Clients" },
+                { label: "Vendor", value: "Vendor" },
                 { label: "Blocked Users", value: "Blocked" },
               ]}
             />
@@ -275,7 +261,7 @@ function UserDetails() {
           <button
             type="button"
             onClick={() => navigate("/create-user")}
-            className="bg-white text-[#74AA2E] px-3 py-2 rounded-md font-semibold flex items-center justify-center gap-2 hover:opacity-95 transition w-full md:w-auto"
+            className="bg-white text-[#00e0b7] px-3 py-2 rounded-md font-semibold flex items-center justify-center gap-2 hover:opacity-95 transition w-full md:w-auto"
           >
             <IoAddOutline className="w-4 h-4" />
             Create User
@@ -298,10 +284,14 @@ function UserDetails() {
               colorPrimary: "#00c0b5",
             },
             Table: {
-              headerBg: "#74AA2E",
-              headerColor: "rgb(255,255,255)",
+              headerBg: "#00E0B7",
+              headerColor: "#0E1527",
               cellFontSize: 16,
-              headerSplitColor: "#74AA2E",
+              headerSplitColor: "#00e0b7",
+              colorBgBase: "#0e1527",
+              colorText: "#ffffff",
+              colorBgContainer: "#0e1527",
+
             },
           },
         }}
@@ -320,7 +310,7 @@ function UserDetails() {
           footer={null}
         >
           <div className="flex flex-col justify-center items-center py-10">
-            <h1 className="text-3xl text-center text-[#74AA2E]">Block User</h1>
+            <h1 className="text-3xl text-center text-[#00e0b7]">Block User</h1>
             <p className="text-xl text-center mt-5">
               {selectedUser
                 ? `Do you want to block ${selectedUser.fullName}?`
@@ -335,7 +325,7 @@ function UserDetails() {
               </button>
               <button
                 onClick={confirmBlock}
-                className="bg-[#74AA2E] text-white font-semibold py-3 px-5 rounded-lg"
+                className="bg-[#00e0b7] text-white font-semibold py-3 px-5 rounded-lg"
               >
                 Block
               </button>
@@ -359,7 +349,7 @@ function UserDetails() {
                     onChange={(e) =>
                       setEditUser((s) => ({ ...s, fullName: e.target.value }))
                     }
-                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#74AA2E]"
+                    className="w-full border border-gray-300 rounded-md px-3 py-2"
                   />
                 </div>
                 <div>
@@ -384,19 +374,6 @@ function UserDetails() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Clinic
-                  </label>
-                  <input
-                    type="text"
-                    value={editUser.clinic}
-                    onChange={(e) =>
-                      setEditUser((s) => ({ ...s, clinic: e.target.value }))
-                    }
-                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#74AA2E]"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
                     Email
                   </label>
                   <input
@@ -405,7 +382,7 @@ function UserDetails() {
                     onChange={(e) =>
                       setEditUser((s) => ({ ...s, email: e.target.value }))
                     }
-                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#74AA2E]"
+                    className="w-full border border-gray-300 rounded-md px-3 py-2"
                   />
                 </div>
                 <div>
@@ -418,7 +395,7 @@ function UserDetails() {
                     onChange={(e) =>
                       setEditUser((s) => ({ ...s, phone: e.target.value }))
                     }
-                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#74AA2E]"
+                    className="w-full border border-gray-300 rounded-md px-3 py-2"
                   />
                 </div>
                 <div>
@@ -431,7 +408,7 @@ function UserDetails() {
                     onChange={(e) =>
                       setEditUser((s) => ({ ...s, joined: e.target.value }))
                     }
-                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#74AA2E]"
+                    className="w-full border border-gray-300 rounded-md px-3 py-2"
                   />
                 </div>
               </div>
@@ -444,7 +421,7 @@ function UserDetails() {
                 </button>
                 <button
                   onClick={saveEdit}
-                  className="bg-[#74AA2E] text-white font-semibold px-6 py-2 rounded-md"
+                  className="bg-[#00e0b7] text-white font-semibold px-6 py-2 rounded-md"
                 >
                   Save
                 </button>
@@ -465,7 +442,7 @@ function UserDetails() {
           {selectedUser && (
             <div className="relative">
               {/* Header with green gradient */}
-              <div className="bg-gradient-to-r from-[#74AA2E] to-[#5F8C22] p-6 -m-6 mb-6 rounded-t-lg">
+              <div className="bg-gradient-to-r from-[#00e0b7] to-[#0e1527] p-6 -m-6 mb-6 rounded-t-lg">
                 <div className="flex items-center gap-6">
                   <div className="relative">
                     <img
@@ -480,7 +457,7 @@ function UserDetails() {
                     </h2>
                     <div className="flex items-center gap-3 mb-1">
                       <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium">
-                        {selectedUser.clinic}
+                        {selectedUser.role}
                       </span>
                       <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium">
                         Joined: {selectedUser.joined}
@@ -508,12 +485,6 @@ function UserDetails() {
                   <div className="text-gray-600 text-sm">Role</div>
                   <div className="text-lg font-semibold">
                     {selectedUser.role}
-                  </div>
-                </div>
-                <div className="bg-white border border-gray-200 p-4 rounded-xl shadow-sm">
-                  <div className="text-gray-600 text-sm">Clinic</div>
-                  <div className="text-lg font-semibold">
-                    {selectedUser.clinic}
                   </div>
                 </div>
                 <div className="bg-white border border-gray-200 p-4 rounded-xl shadow-sm">

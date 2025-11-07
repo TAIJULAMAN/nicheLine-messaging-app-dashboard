@@ -16,14 +16,14 @@ export default function CreateUser() {
     }
     alert(
       "User created successfully (demo)\n\n" +
-        JSON.stringify({ fullName, role, clinic, email, phone, joined }, null, 2)
+      JSON.stringify({ fullName, role, clinic, email, phone, joined }, null, 2)
     );
     navigate(-1);
   };
 
   return (
     <div className="p-5">
-      <div className="bg-[#74AA2E] px-4 md:px-5 py-3 rounded-md mb-3 flex flex-wrap items-start md:items-center gap-2 md:gap-3">
+      <div className="bg-[#00e0b7] px-4 md:px-5 py-3 rounded-md mb-3 flex flex-wrap items-start md:items-center gap-2 md:gap-3">
         <button
           onClick={() => navigate(-1)}
           className="text-white hover:opacity-90 transition"
@@ -43,7 +43,7 @@ export default function CreateUser() {
               value={form.fullName}
               onChange={(e) => setForm({ ...form, fullName: e.target.value })}
               placeholder="John Doe"
-              className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#74AA2E]"
+              className="w-full border border-gray-300 rounded-md px-4 py-3"
             />
           </div>
 
@@ -67,24 +67,13 @@ export default function CreateUser() {
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">Clinic</label>
-            <input
-              type="text"
-              value={form.clinic}
-              onChange={(e) => setForm({ ...form, clinic: e.target.value })}
-              placeholder="Downtown Dental Clinic"
-              className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#74AA2E]"
-            />
-          </div>
-
-          <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1">Email</label>
             <input
               type="email"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
               placeholder="john@example.com"
-              className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#74AA2E]"
+              className="w-full border border-gray-300 rounded-md px-4 py-3"
             />
           </div>
 
@@ -95,7 +84,7 @@ export default function CreateUser() {
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
               placeholder="+1 987 654 3210"
-              className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#74AA2E]"
+              className="w-full border border-gray-300 rounded-md px-4 py-3"
             />
           </div>
 
@@ -105,12 +94,12 @@ export default function CreateUser() {
               type="date"
               value={form.joined}
               onChange={(e) => setForm({ ...form, joined: e.target.value })}
-              className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#74AA2E]"
+              className="w-full border border-gray-300 rounded-md px-4 py-3"
             />
           </div>
 
           <div className="pt-2">
-            <button type="submit" className="w-full bg-[#74AA2E] text-white font-semibold py-3 rounded-md">
+            <button type="submit" className="w-full bg-[#00e0b7] text-white font-semibold py-3 rounded-md">
               Create User
             </button>
           </div>

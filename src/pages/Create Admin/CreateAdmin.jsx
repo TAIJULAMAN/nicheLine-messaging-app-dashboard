@@ -86,7 +86,7 @@ export default function CreateAdmin() {
 
   return (
     <div className="md:p-5">
-      <div className="bg-[#6BB43A] px-5 py-3 rounded-md mb-3 flex items-center gap-3">
+      <div className="bg-[#00e0b7] px-5 py-3 rounded-md mb-3 flex items-center gap-3">
         <button
           onClick={() => navigate(-1)}
           className="text-white hover:opacity-90 transition"
@@ -100,7 +100,7 @@ export default function CreateAdmin() {
         <button
           type="button"
           onClick={() => navigate("/add-admin")}
-          className="ml-auto bg-white text-[#6BB43A] whitespace-nowrap px-3 py-1 rounded-md font-semibold flex items-center gap-2 hover:opacity-95 transition"
+          className="ml-auto bg-white text-[#00e0b7] whitespace-nowrap px-3 py-1 rounded-md font-semibold flex items-center gap-2 hover:opacity-95 transition"
         >
           <IoAddOutline className="w-4 h-4" />
           Add Admin
@@ -111,18 +111,22 @@ export default function CreateAdmin() {
         theme={{
           components: {
             Table: {
-              headerBg: "#6BB43A",
-              headerColor: "rgb(255,255,255)",
+              headerBg: "#00E0B7",
+              headerColor: "#0E1527",
               cellFontSize: 16,
-              headerSplitColor: "#6BB43A",
+              headerSplitColor: "#00e0b7",
+              colorBgBase: "#0e1527",
+              colorText: "#ffffff",
+              colorBgContainer: "#0e1527",
+
             },
             Pagination: {
-              colorPrimaryBorder: "#6BB43A",
-              colorBorder: "#6BB43A",
-              colorPrimaryHover: "#6BB43A",
-              colorTextPlaceholder: "#6BB43A",
-              itemActiveBgDisabled: "#6BB43A",
-              colorPrimary: "#6BB43A",
+              colorPrimaryBorder: "#00e0b7",
+              colorBorder: "#00e0b7",
+              colorPrimaryHover: "#00e0b7",
+              colorTextPlaceholder: "#00e0b7",
+              itemActiveBgDisabled: "#00e0b7",
+              colorPrimary: "#00e0b7",
             },
           },
         }}
