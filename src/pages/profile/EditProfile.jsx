@@ -46,7 +46,7 @@ function EditProfile() {
           </div>
 
           <div className="text-center pt-2">
-            <button className="bg-[#74AA2E] text-white font-semibold w-full py-3 rounded-lg hover:opacity-95 transition">
+            <button className="bg-[#00e0b7] text-white font-semibold w-full py-3 rounded-lg hover:opacity-95 transition">
               Save & Change
             </button>
           </div>

@@ -8,34 +8,40 @@ const MainHeader = ({ toggleSidebar }) => {
 
   return (
     <div className="relative w-full px-5">
-      <header className="bg-[#EDF1ED] shadow-sm rounded-lg border border-[#E5E7EB] overflow-hidden">
+      <header className="bg-[#0e1527] shadow-sm rounded-lg">
         <div className="flex justify-between items-center px-5 md:px-10 h-[80px]">
-          <button
-            onClick={toggleSidebar}
-            aria-label="Toggle sidebar"
-            className="p-2 rounded hover:opacity-80 focus:outline-none cursor-pointer"
-          >
-            <IoMenu className="w-8 h-8 text-[#0D0D0D]" />
-          </button>
+          <div>
+            <button
+              onClick={toggleSidebar}
+              aria-label="Toggle sidebar"
+              className="p-2 rounded hover:opacity-80 focus:outline-none cursor-pointer"
+            >
+              <IoMenu className="w-8 h-8 text-white" />
+            </button>
+            <div className="hidden md:inline-block ml-4 text-white">
+              <h1 className="text-white text-2xl font-bold">Welcome, Aman</h1>
+              <p>Have a nice day!</p>
+            </div>
+          </div>
           <div className="flex items-center gap-3">
             {/* Notification */}
             <button
               type="button"
               aria-label="Notifications"
               onClick={() => navigate('/notifications')}
-              className="relative p-2 rounded-full border border-[#74AA2E] hover:bg-white/60 transition"
+              className="relative p-2 rounded-full border border-[#00e0b7]"
             >
-              <IoNotificationsOutline className="w-6 h-6 text-[#0D0D0D]" />
-              <span className="absolute -top-0.5 -right-0.5 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-[#74AA2E] text-white text-[10px] px-1 leading-none">3</span>
+              <IoNotificationsOutline className="w-6 h-6 text-[#00e0b7]" />
+              <span className="absolute -top-0.5 -right-0.5 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-[#00e0b7] text-white text-[10px] px-1 leading-none">3</span>
             </button>
             {/* Chat */}
             <button
               type="button"
               aria-label="Open chat"
               onClick={() => navigate('/chat')}
-              className="p-2 rounded-full border border-[#74AA2E] hover:bg-white/60 transition"
+              className="p-2 rounded-full border border-[#00e0b7]"
             >
-              <IoChatbubbleEllipsesOutline className="w-6 h-6 text-[#0D0D0D]" />
+              <IoChatbubbleEllipsesOutline className="w-6 h-6 text-[#00e0b7]" />
             </button>
             <div
               onClick={() => navigate("/profile")}
@@ -46,11 +52,11 @@ const MainHeader = ({ toggleSidebar }) => {
                 className="w-8 md:w-12 h-8 md:h-12 object-cover rounded-full"
                 alt="User Avatar"
               />
-              <div>
-                <h3 className="hidden md:block text-[#0D0D0D] text-lg font-semibold">
+              <div className="hidden md:block">
+                <h3 className="text-white text-lg font-semibold">
                   Mr. Admin
                 </h3>
-                <p className="text-[#0D0D0D] text-lg font-semibold">Admin</p>
+                <p className="text-white text-lg font-semibold">Admin</p>
               </div>
             </div>
           </div>

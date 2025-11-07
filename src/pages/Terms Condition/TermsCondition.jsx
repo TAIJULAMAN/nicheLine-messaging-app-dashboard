@@ -12,7 +12,7 @@ function TermsCondition() {
 
   return (
     <div className="md:px-5 md:py-5">
-      <div className="bg-[#6BB43A] px-5 py-3 rounded-md mb-3 flex items-center gap-3">
+      <div className="bg-[#00e0b7] px-5 py-3 rounded-md mb-3 flex items-center gap-3">
         <button
           onClick={() => navigate(-1)}
           className="text-white hover:opacity-90 transition"
@@ -36,7 +36,7 @@ function TermsCondition() {
       <div className="text-center py-5">
         <button
           onClick={() => console.log(content)}
-          className="bg-[#74AA2E] text-white font-semibold w-full py-2 rounded transition duration-200"
+          className="bg-[#00e0b7] text-white font-semibold w-full py-2 rounded transition duration-200"
         >
           Save changes
         </button>

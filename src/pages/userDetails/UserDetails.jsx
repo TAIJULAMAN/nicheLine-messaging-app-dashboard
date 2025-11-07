@@ -16,9 +16,6 @@ function UserDetails() {
   const [roleFilter, setRoleFilter] = useState();
   const [searchQuery, setSearchQuery] = useState("");
 
-  // const showModal = () => {
-  //   setIsModalOpen(true);
-  // };
   const handleCancel = () => {
     setIsModalOpen(false);
   };

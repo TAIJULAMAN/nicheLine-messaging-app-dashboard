@@ -45,16 +45,16 @@ const TotalView = () => {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 220) {
-        setChartHeight(250); // Adjust height for mobile
+        setChartHeight(250);
       } else if (window.innerWidth < 768) {
-        setChartHeight(220); // Adjust height for smaller tablets
+        setChartHeight(220); 
       } else {
-        setChartHeight(220); // Default height for larger screens
+        setChartHeight(220); 
       }
     };
 
     window.addEventListener("resize", handleResize);
-    handleResize(); // Call on mount to set the initial height
+    handleResize();
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -81,7 +81,7 @@ const TotalView = () => {
             barSize={30}
             radius={[5, 5, 0, 0]}
             dataKey="videoView"
-            fill="#74AA2E"
+            fill="#00e0b7"
           />
         </BarChart>
       </ResponsiveContainer>

@@ -1,7 +1,4 @@
 import { ConfigProvider, Modal, Table } from "antd";
-import { FaRegEye } from "react-icons/fa";
-import { FiEdit2 } from "react-icons/fi";
-import { MdBlock } from "react-icons/md";
 
 const RecentUsers = () => {
   const dataSource = [
@@ -91,10 +88,14 @@ const RecentUsers = () => {
             },
 
             Table: {
-              headerBg: "#74AA2E",
-              headerColor: "rgb(255,255,255)",
+              headerBg: "#00E0B7",
+              headerColor: "#0E1527",
               cellFontSize: 16,
-              headerSplitColor: "#74AA2E",
+              headerSplitColor: "#00e0b7",
+              colorBgBase: "#0e1527",
+              colorText: "#ffffff",
+              colorBgContainer: "#0e1527",
+
             },
           },
         }}
