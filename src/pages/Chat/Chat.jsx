@@ -4,7 +4,6 @@ import { RiSendPlane2Fill } from "react-icons/ri";
 import { FiMenu, FiMoreVertical } from "react-icons/fi";
 import { IoImagesOutline } from "react-icons/io5";
 import { BsCheck2All } from "react-icons/bs";
-// import { MdOnlinePrediction } from "react-icons/md";
 
 const users = [
   {
@@ -293,7 +292,7 @@ const Chat = () => {
         {/* Main Chat Area */}
         <div className="flex-1 flex flex-col bg-white">
           {/* Chat Header */}
-          <div className="bg-gradient-to-r from-green-500 to-green-600 text-white p-4 shadow-sm">
+          <div className="bg-gradient-to-r from-[#00e0b7] to-[#0e1527] text-white p-4 shadow-sm">
             <div className="flex items-center gap-4">
               <div className="relative">
                 <img
@@ -331,7 +330,7 @@ const Chat = () => {
                 <div
                   className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl shadow-sm ${
                     msg.sender === "me"
-                      ? "bg-[#74AA2E] text-white rounded-br-md"
+                      ? "bg-[#00e0b7] text-white rounded-br-md"
                       : "bg-white text-gray-800 border rounded-bl-md"
                   }`}
                 >

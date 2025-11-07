@@ -9,24 +9,17 @@ import PrivacyPolicy from "../pages/Privacy Policy/PrivacyPolicy";
 import TermsCondition from "../pages/Terms Condition/TermsCondition";
 import UserDetails from "../pages/userDetails/UserDetails";
 import CreateUser from "../pages/userDetails/CreateUser";
-import AddClinic from "../pages/Add Clinic/AddClinic";
 import Notifications from "../pages/Notifications/Notifications";
 import ProfilePage from "../pages/profile/ProfilePage";
 import Chat from "../pages/Chat/Chat";
-import MediaSocial from "../pages/Media&Social/MediaSocial";
 import EventManagement from "../pages/eventManagement/eventManagement";
 import Reports from "../pages/Reports/Reports";
-import Interactivity from "../pages/Interactivity/Interactivity";
 import Settings from "../pages/Settings/Settings";
 import ChangePass from "../pages/profile/ChangePass";
 import AboutUs from "../pages/optional/AboutUs";
 import EditProfile from "../pages/profile/EditProfile";
 import CreateAdmin from "../pages/Create Admin/CreateAdmin";
 import AddAdmin from "../pages/Add Admin/AddAdmin";
-import LabManagment from "../pages/LabManagment/LabManagment";
-import ClinicManagement from "../pages/ClinicManagement/ClinicManagement";
-import AddLab from "../pages/Add Lab/AddLab";
-import CaseManagment from "../pages/CaseManagment/CaseManagment";
 import Product from "../pages/Product/Product";
 
 const router = createBrowserRouter([
@@ -76,15 +69,7 @@ const router = createBrowserRouter([
         element: <Chat />,
       },
 
-      // media and social
-      {
-        path: "/media-social",
-        element: <MediaSocial />,
-      },
-      {
-        path: "/interactivity",
-        element: <Interactivity />,
-      },
+    
 
       // settings
       {
@@ -122,26 +107,6 @@ const router = createBrowserRouter([
       {
         path: "/add-admin",
         element: <AddAdmin />,
-      },
-      {
-        path: "/lab-management",
-        element: <LabManagment />,
-      },
-      {
-        path: "/add-lab",
-        element: <AddLab />,
-      },
-      {
-        path: "/clinic-management",
-        element: <ClinicManagement />,
-      },
-      {
-        path: "/add-clinic",
-        element: <AddClinic />,
-      },
-      {
-        path: "/case-management",
-        element: <CaseManagment />,
       },
       {
         path: "/product",

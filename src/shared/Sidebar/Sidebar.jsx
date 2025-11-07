@@ -36,8 +36,8 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       </button>
 
       {/* Logo */}
-      <div className="flex justify-center items-center gap-2 px-5 mt-2">
-        <img src="/logo.png" className="w-[150px] h-[100px]" alt="User Avatar" />
+      <div className="flex justify-center items-center gap-2 px-5 mt-2 md:mt-5">
+        <img src="/logo.png" className="w-[150px] h-[60px]" alt="User Avatar" />
       </div>
 
       {/* Sidebar Menu */}
@@ -79,46 +79,6 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           >
             <MdOutlineInventory2 className="w-5 h-5" />
             <p className="text-lg font-semibold">Product</p>
-          </li>
-        </Link>
-
-        {/* Case Management */}
-        <Link to="/case-management">
-          <li
-            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
-              isActive("/case-management")
-                ? "bg-[#74AA2E] text-white px-3 py-3 rounded-lg"
-                : ""
-            }`}
-          >
-            <MdOutlineAssignment className="w-5 h-5" />
-            <p className="text-lg font-semibold">Case Management</p>
-          </li>
-        </Link>
-        {/* Clinic Management */}
-        <Link to="/clinic-management">
-          <li
-            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
-              isActive("/clinic-management")
-                ? "bg-[#74AA2E] text-white px-3 py-3 rounded-lg"
-                : ""
-            }`}
-          >
-            <MdLocalHospital className="w-5 h-5" />
-            <p className="text-lg font-semibold">Clinic Management</p>
-          </li>
-        </Link>
-        {/* Lab Management */}
-        <Link to="/lab-management">
-          <li
-            className={`flex items-center gap-2 mt-5 cursor-pointer transition-all duration-300 ease-in-out ${
-              isActive("/lab-management")
-                ? "bg-[#74AA2E] text-white px-3 py-3 rounded-lg"
-                : ""
-            }`}
-          >
-            <RiFlaskLine className="w-5 h-5" />
-            <p className="text-lg font-semibold">Lab Management</p>
           </li>
         </Link>
 

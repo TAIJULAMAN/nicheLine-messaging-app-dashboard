@@ -167,14 +167,14 @@ function Reports() {
       render: (_, record) => (
         <div className="flex gap-2">
           <button className="" onClick={() => navigate("/chat")}>
-            <LuMessageSquareText className=" w-10 h-10 cursor-pointer rounded-md" />
+            <LuMessageSquareText className=" w-6 h-6 cursor-pointer rounded-md" />
           </button>
 
           <button className="" onClick={() => showViewModal(record)}>
-            <FaRegEye className="text-[#6BB43A] w-10 h-10 cursor-pointer rounded-md" />
+            <FaRegEye className="text-[#00e0b7] w-6 h-6 cursor-pointer rounded-md" />
           </button>
           <button className="" onClick={() => showModal(record)}>
-            <RiDeleteBin6Line className="text-red-500 w-10 h-10 cursor-pointer rounded-md" />
+            <RiDeleteBin6Line className="text-red-500 w-6 h-6 cursor-pointer rounded-md" />
           </button>
         </div>
       ),
@@ -183,7 +183,7 @@ function Reports() {
 
   return (
     <div>
-      <div className="bg-[#6BB43A] px-5 py-3 rounded-md mb-3 flex items-center gap-3">
+      <div className="bg-[#00e0b7] px-5 py-3 rounded-md mb-3 flex items-center gap-3">
         <button
           onClick={() => navigate(-1)}
           className="text-white hover:opacity-90 transition"
@@ -201,18 +201,22 @@ function Reports() {
               activeBorderColor: "#6BB43A",
             },
             Pagination: {
-              colorPrimaryBorder: "#6BB43A",
-              colorBorder: "#6BB43A",
-              colorPrimaryHover: "#6BB43A",
-              colorTextPlaceholder: "#6BB43A",
-              itemActiveBgDisabled: "#6BB43A",
-              colorPrimary: "#6BB43A",
+              colorPrimaryBorder: "#00e0b7",
+              colorBorder: "#00e0b7",
+              colorPrimaryHover: "#00e0b7",
+              colorTextPlaceholder: "#00e0b7",
+              itemActiveBgDisabled: "#00e0b7",
+              colorPrimary: "#00e0b7",
             },
             Table: {
-              headerBg: "#6BB43A",
-              headerColor: "rgb(255,255,255)",
+              headerBg: "#00E0B7",
+              headerColor: "#0E1527",
               cellFontSize: 16,
-              headerSplitColor: "#6BB43A",
+              headerSplitColor: "#00e0b7",
+              colorBgBase: "#0e1527",
+              colorText: "#ffffff",
+              colorBgContainer: "#0e1527",
+
             },
           },
         }}
