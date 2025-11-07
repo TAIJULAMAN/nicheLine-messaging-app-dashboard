@@ -5,22 +5,21 @@ function ForgetPassword() {
 
   return (
     <div className="bg-white min-h-screen flex items-center justify-center p-5">
-      <div className="container mx-auto">
-        <div className="flex  justify-center items-center ">
-          <div className="w-full md:w-1/2 lg:w-1/2 p-5 md:px-[100px] md:py-[200px] bg-white  shadow-[0px_10px_20px_rgba(0,0,0,0.2)] rounded-2xl">
+  
+          <div className="w-full md:max-w-3xl bg-[#0e1527] p-5 md:px-18 md:py-28 shadow-[0px_10px_30px_rgba(0,0,0,0.1)] rounded-2xl">
             <div className="flex justify-center items-center mb-10">
               <img src="/logo.png" alt="" />
             </div>
             <form className="space-y-5">
               <div>
-                <label className="text-xl text-[#0D0D0D] mb-2 font-bold">
+                <label className="text-xl text-white mb-2 font-bold">
                   Email
                 </label>
                 <input
                   type="email"
                   name="email"
                   placeholder="nahidhossain@gmail.com"
-                  className="w-full px-5 py-3 border-2 border-[#6A6D76] rounded-md outline-none mt-5 placeholder:text-xl"
+                  className="w-full px-5 py-3 border-2 border-white rounded-md outline-none mt-5 placeholder:text-xl text-white"
                   required
                 />
               </div>
@@ -29,7 +28,7 @@ function ForgetPassword() {
                 <button
                   onClick={() => navigate("/verification-code")}
                   type="button"
-                  className="w-1/3 bg-[#74AA2E] text-white font-bold py-3 rounded-lg shadow-lg cursor-pointer mt-5"
+                  className="w-1/3 bg-[#00e0b7] text-white font-bold py-3 rounded-lg shadow-lg cursor-pointer mt-5"
                 >
                   Send Code
                 </button>
@@ -37,8 +36,7 @@ function ForgetPassword() {
             </form>
           </div>
         </div>
-      </div>
-    </div>
+   
   );
 }
 
