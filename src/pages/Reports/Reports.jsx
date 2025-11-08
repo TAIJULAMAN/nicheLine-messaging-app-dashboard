@@ -198,7 +198,7 @@ function Reports() {
         theme={{
           components: {
             InputNumber: {
-              activeBorderColor: "#6BB43A",
+              activeBorderColor: "#0E1527",
             },
             Pagination: {
               colorPrimaryBorder: "#00e0b7",
@@ -235,7 +235,7 @@ function Reports() {
           footer={null}
         >
           <div className="flex flex-col justify-center items-center py-10">
-            <h1 className="text-3xl text-center text-[#6BB43A]">
+            <h1 className="text-3xl text-center text-[#00E0B7]">
               Are you sure!
             </h1>
             <p className="text-xl text-center mt-5">
@@ -244,7 +244,7 @@ function Reports() {
             <div className="text-center py-5 w-full">
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="bg-[#6BB43A] text-white font-semibold w-1/3 py-3 px-5 rounded-lg"
+                className="bg-[#00E0B7] text-white font-semibold w-1/3 py-3 px-5 rounded-lg"
               >
                 CONFIRM
               </button>
@@ -264,7 +264,7 @@ function Reports() {
           {selectedUser && (
             <div className="relative">
               {/* Header with gradient background */}
-              <div className="bg-gradient-to-r from-[#6BB43A] to-[#5EA233] p-6 -m-6 mb-6 rounded-t-lg">
+              <div className="bg-gradient-to-r from-[#00E0B7] to-[#0E1527] p-6 -m-6 mb-6 rounded-t-lg">
                 <div className="flex items-center gap-6">
                   <div className="relative">
                     <img
