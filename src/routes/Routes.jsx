@@ -12,7 +12,6 @@ import CreateUser from "../pages/userDetails/CreateUser";
 import Notifications from "../pages/Notifications/Notifications";
 import ProfilePage from "../pages/profile/ProfilePage";
 import Chat from "../pages/Chat/Chat";
-import EventManagement from "../pages/eventManagement/eventManagement";
 import Reports from "../pages/Reports/Reports";
 import Settings from "../pages/Settings/Settings";
 import ChangePass from "../pages/profile/ChangePass";
@@ -21,6 +20,8 @@ import EditProfile from "../pages/profile/EditProfile";
 import CreateAdmin from "../pages/Create Admin/CreateAdmin";
 import AddAdmin from "../pages/Add Admin/AddAdmin";
 import Product from "../pages/Product/Product";
+import Gamification from "../pages/Gamification/Gamification";
+import Category from "../pages/Category/Category";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,14 @@ const router = createBrowserRouter([
         element: <UserDetails />,
       },
       {
+        path: "/gamification",
+        element: <Gamification />,
+      },
+      {
+        path: "/category",
+        element: <Category />,
+      },
+      {
         path: "/notifications",
         element: <Notifications />,
       },
@@ -61,15 +70,9 @@ const router = createBrowserRouter([
         element: <CreateUser />,
       },
       {
-        path: "/event-management",
-        element: <EventManagement />,
-      },
-      {
         path: "/chat",
         element: <Chat />,
       },
-
-    
 
       // settings
       {
