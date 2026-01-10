@@ -46,7 +46,7 @@ const MainLayout = () => {
       {/* Main Content Wrapper */}
       <div className="flex flex-col flex-1 h-full overflow-hidden relative">
         <MainHeader toggleSidebar={toggleSidebar} />
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-[#f4f7fe] p-4 md:p-6 scroll-smooth">
+        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-[#f4f7fe] p-5 md:p-10 scroll-smooth">
           <div className="mx-auto min-h-full">
             <Outlet />
           </div>

@@ -40,7 +40,7 @@ function DashboardPage() {
       </div>
 
       <div className="w-full p-5 bg-[#0e1527] rounded-lg shadow-md mt-5">
-        <div className="flex flex-col md:flex-row md:justify-between lg:justify-between items-center gap-5 my-5">
+        <div className="flex justify-between items-center gap-5 my-5">
           <div>
             <h1 className="text-white text-xl font-semibold">User Growth</h1>
           </div>
@@ -76,7 +76,6 @@ function DashboardPage() {
         <TotalView />
       </div>
       <div className="mt-5">
-        <h1 className="text-2xl font-bold mb-5">Recent Joined User</h1>
         <RecentUsers />
       </div>
     </div>

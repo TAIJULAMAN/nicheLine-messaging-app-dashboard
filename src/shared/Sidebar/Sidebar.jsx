@@ -40,12 +40,12 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           {[
             { path: "/", icon: RxDashboard, label: "Dashboard" },
             { path: "/user-details", icon: LuUsers, label: "User Management" },
-            { path: "/product", icon: MdOutlineInventory2, label: "Product" },
-            { path: "/gamification", icon: MdOutlineInventory2, label: "Gamification" },
-            { path: "/category", icon: MdOutlineInventory2, label: "Category" },
-            { path: "/create-admin", icon: MdAdminPanelSettings, label: "Create Admin" },
-            { path: "/chat", icon: TbBrandWechat, label: "Chat" },
-            { path: "/reports", icon: TbReport, label: "Reports" },
+            { path: "/subscribers", icon: LuUsers, label: "All Subscribers" },
+            { path: "/subscription", icon: MdOutlineInventory2, label: "Subscription" },
+            // { path: "/category", icon: MdOutlineInventory2, label: "Category" },
+            // { path: "/create-admin", icon: MdAdminPanelSettings, label: "Create Admin" },
+            // { path: "/chat", icon: TbBrandWechat, label: "Chat" },
+            // { path: "/reports", icon: TbReport, label: "Reports" },
             { path: "/settings", icon: IoMdSettings, label: "Settings" },
           ].map((item) => (
             <Link to={item.path} key={item.path}>

@@ -1,4 +1,4 @@
-import { ConfigProvider, Modal, Table } from "antd";
+import { ConfigProvider, Table } from "antd";
 
 const RecentUsers = () => {
   const dataSource = [
@@ -67,7 +67,7 @@ const RecentUsers = () => {
             className="w-10 h-10 object-cover rounded-full"
             alt="User Avatar"
           />
-          <span className="leading-none">{value}</span>
+          <span className="font-medium text-white">{value}</span>
         </div>
       ),
     },
@@ -79,14 +79,13 @@ const RecentUsers = () => {
   ];
 
   return (
-    <>
+    <div className="bg-[#0e1527] rounded-2xl p-6 shadow-lg shadow-gray-200/50">
+      <div className="mb-6">
+        <h2 className="text-xl font-bold text-white">Recent Joined Users</h2>
+      </div>
       <ConfigProvider
         theme={{
           components: {
-            InputNumber: {
-              activeBorderColor: "#00c0b5",
-            },
-
             Table: {
               headerBg: "#00E0B7",
               headerColor: "#0E1527",
@@ -95,7 +94,8 @@ const RecentUsers = () => {
               colorBgBase: "#0e1527",
               colorText: "#ffffff",
               colorBgContainer: "#0e1527",
-
+              borderColor: "#1f2937",
+              rowHoverBg: "#1f2937",
             },
           },
         }}
@@ -105,9 +105,10 @@ const RecentUsers = () => {
           columns={columns}
           pagination={false}
           scroll={{ x: "max-content" }}
+          rowClassName="hover:bg-white/5 transition-colors"
         />
       </ConfigProvider>
-    </>
+    </div>
   );
 };
 

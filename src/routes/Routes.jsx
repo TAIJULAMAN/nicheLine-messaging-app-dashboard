@@ -22,6 +22,8 @@ import AddAdmin from "../pages/Add Admin/AddAdmin";
 import Product from "../pages/Product/Product";
 import Gamification from "../pages/Gamification/Gamification";
 import Category from "../pages/Category/Category";
+import SubscribersPage from "../pages/Subscribers/SubscribersPage";
+import SubscriptionPage from "../pages/Subscription/SubscriptionPage";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "/category",
         element: <Category />,
+      },
+      {
+        path: "/subscribers",
+        element: <SubscribersPage />,
       },
       {
         path: "/notifications",
@@ -114,6 +120,10 @@ const router = createBrowserRouter([
       {
         path: "/product",
         element: <Product />,
+      },
+      {
+        path: "/subscription",
+        element: <SubscriptionPage />,
       },
 
       //  navbar profile
