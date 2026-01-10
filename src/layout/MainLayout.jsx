@@ -7,7 +7,6 @@ const MainLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
 
-  // Ensure: initially closed on mobile, open on desktop (lg: 1024px)
   useEffect(() => {
     if (typeof window === "undefined" || typeof window.matchMedia !== "function") return;
     const mql = window.matchMedia("(min-width: 1024px)");
@@ -25,7 +24,6 @@ const MainLayout = () => {
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
-  // Auto-close sidebar on route change when on mobile
   useEffect(() => {
     if (typeof window === "undefined" || typeof window.matchMedia !== "function") return;
     const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
@@ -35,19 +33,23 @@ const MainLayout = () => {
   }, [location.pathname]);
 
   return (
-    <div className="flex min-h-screen relative overflow-hidden">
-      {/* Mobile Overlay */}
+    <div className="flex h-screen w-full bg-[#f4f7fe] relative overflow-hidden">
       {isSidebarOpen && (
         <div
           onClick={toggleSidebar}
-          className="fixed inset-0 bg-black/30 backdrop-blur-[1px] z-40 lg:hidden"
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300"
         />
       )}
+
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-      <div className="flex flex-col w-full overflow-hidden my-5">
+
+      {/* Main Content Wrapper */}
+      <div className="flex flex-col flex-1 h-full overflow-hidden relative">
         <MainHeader toggleSidebar={toggleSidebar} />
-        <main className="p-5 bg-white flex-1 overflow-auto">
-          <Outlet />
+        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-[#f4f7fe] p-4 md:p-6 scroll-smooth">
+          <div className="mx-auto min-h-full">
+            <Outlet />
+          </div>
         </main>
       </div>
     </div>

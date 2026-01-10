@@ -1,4 +1,4 @@
-import { FaChevronDown, FaUsers, FaVideo } from "react-icons/fa";
+import { FaChevronDown } from "react-icons/fa";
 import { useState } from "react";
 import dayjs from "dayjs";
 import RecentUsers from "../../components/dashboard/RecentUsers";
@@ -22,20 +22,20 @@ function DashboardPage() {
 
   return (
     <div className="flex flex-col">
-      <div className="grid grid-cols-1 md:grid-cols-3 whitespace-nowrap h-[100px] rounded-xl bg-[#0e1527] text-[#fff]">
-        <div className="relative flex flex-col justify-center items-center p-3 gap-1">
-          <p className=" text-2xl font-bold mr-10">1200k</p>
-          <p className="text-xl font-semibold">Total User</p>
-          <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-1 h-12 bg-white" />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-0 whitespace-nowrap min-h-[100px] md:h-[100px] rounded-2xl bg-[#0e1527] text-[#fff] p-4 md:p-0 shadow-lg shadow-gray-200/50">
+        <div className="relative flex flex-col justify-center items-center p-3 gap-1 border-b border-gray-700 md:border-b-0">
+          <p className="text-3xl font-bold bg-gradient-to-r from-[#00E0B7] to-white/80 bg-clip-text text-transparent">1200k</p>
+          <p className="text-sm font-medium text-gray-400 uppercase tracking-wider">Total User</p>
+          <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-12 bg-gray-700" />
         </div>
-        <div className="relative flex flex-col justify-center items-center p-3 gap-1">
-          <p className="text-2xl font-bold mr-10">120</p>
-          <p className="text-xl font-semibold">Last Month User</p>
-          <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-1 h-12 bg-white" />
+        <div className="relative flex flex-col justify-center items-center p-3 gap-1 border-b border-gray-700 md:border-b-0">
+          <p className="text-3xl font-bold bg-gradient-to-r from-[#00E0B7] to-white/80 bg-clip-text text-transparent">120</p>
+          <p className="text-sm font-medium text-gray-400 uppercase tracking-wider">Last Month User</p>
+          <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-12 bg-gray-700" />
         </div>
         <div className="flex flex-col justify-center items-center p-3 gap-1">
-          <p className="text-2xl font-bold mr-10">120</p>
-          <p className="text-xl font-semibold">This Week User</p>
+          <p className="text-3xl font-bold bg-gradient-to-r from-[#00E0B7] to-white/80 bg-clip-text text-transparent">120</p>
+          <p className="text-sm font-medium text-gray-400 uppercase tracking-wider">This Week User</p>
         </div>
       </div>
 

@@ -7,56 +7,60 @@ const MainHeader = ({ toggleSidebar }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="relative w-full px-5">
-      <header className="bg-[#0e1527] shadow-sm rounded-lg">
-        <div className="flex justify-between items-center px-5 md:px-10 h-[80px]">
-          <div>
+    <div className="sticky top-0 z-30 mx-0 md:top-4 md:mx-6">
+      <header className="bg-white/90 md:bg-white/80 backdrop-blur-md shadow-sm md:shadow-lg md:shadow-gray-200/50 rounded-b-2xl md:rounded-2xl border-b md:border border-white/50 transition-all duration-300">
+        <div className="flex justify-between items-center px-4 md:px-6 h-[70px] md:h-[80px]">
+          <div className="flex items-center gap-4">
             <button
               onClick={toggleSidebar}
               aria-label="Toggle sidebar"
-              className="p-2 rounded hover:opacity-80 focus:outline-none cursor-pointer"
+              className="p-2 rounded-lg hover:bg-gray-100 text-gray-600 transition-colors focus:outline-none cursor-pointer lg:hidden"
             >
-              <IoMenu className="w-8 h-8 text-white" />
+              <IoMenu className="w-6 h-6" />
             </button>
-            <div className="hidden md:inline-block ml-4 text-white">
-              <h1 className="text-white text-2xl font-bold">Welcome, Aman</h1>
-              <p>Have a nice day!</p>
+            <div className="hidden md:block">
+              <h1 className="text-gray-800 text-xl font-bold tracking-tight">Welcome, Aman</h1>
+              <p className="text-gray-500 text-xs font-medium">Have a nice day!</p>
             </div>
           </div>
-          <div className="flex items-center gap-3">
+
+          <div className="flex items-center gap-4">
             {/* Notification */}
             <button
               type="button"
               aria-label="Notifications"
               onClick={() => navigate('/notifications')}
-              className="relative p-2 rounded-full border border-[#00e0b7]"
+              className="relative p-2.5 rounded-full hover:bg-gray-100 transition-colors active:scale-95 duration-200"
             >
-              <IoNotificationsOutline className="w-6 h-6 text-[#00e0b7]" />
-              <span className="absolute -top-0.5 -right-0.5 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-[#00e0b7] text-white text-[10px] px-1 leading-none">3</span>
+              <IoNotificationsOutline className="w-6 h-6 text-gray-600" />
+              <span className="absolute top-2 right-2.5 h-2 w-2 rounded-full bg-[#00E0B7] ring-2 ring-white"></span>
             </button>
             {/* Chat */}
             <button
               type="button"
               aria-label="Open chat"
               onClick={() => navigate('/chat')}
-              className="p-2 rounded-full border border-[#00e0b7]"
+              className="relative p-2.5 rounded-full hover:bg-gray-100 transition-colors active:scale-95 duration-200"
             >
-              <IoChatbubbleEllipsesOutline className="w-6 h-6 text-[#00e0b7]" />
+              <IoChatbubbleEllipsesOutline className="w-6 h-6 text-gray-600" />
             </button>
+
+            <div className="h-8 w-[1px] bg-gray-200 mx-1 hidden md:block"></div>
+
             <div
               onClick={() => navigate("/profile")}
-              className="flex items-center gap-2 cursor-default"
+              className="flex items-center gap-3 cursor-pointer p-1.5 pr-3 rounded-full hover:bg-gray-50 border border-transparent hover:border-gray-200 transition-all duration-300"
             >
               <img
                 src="https://avatar.iran.liara.run/public/31"
-                className="w-8 md:w-12 h-8 md:h-12 object-cover rounded-full"
+                className="w-9 h-9 object-cover rounded-full ring-2 ring-white shadow-sm"
                 alt="User Avatar"
               />
-              <div className="hidden md:block">
-                <h3 className="text-white text-lg font-semibold">
+              <div className="hidden md:block text-left">
+                <h3 className="text-sm font-bold text-gray-700 leading-tight">
                   Mr. Admin
                 </h3>
-                <p className="text-white text-lg font-semibold">Admin</p>
+                <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Admin</p>
               </div>
             </div>
           </div>
