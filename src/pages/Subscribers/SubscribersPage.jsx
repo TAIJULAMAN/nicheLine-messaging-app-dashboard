@@ -214,7 +214,6 @@ const SubscribersPage = () => {
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                     <div>
                         <h1 className="text-2xl font-bold text-[#0E1527]">All Subscribers</h1>
-                        <p className="text-gray-500">Manage and view all your subscribers</p>
                     </div>
                     <Input
                         placeholder="Search users..."

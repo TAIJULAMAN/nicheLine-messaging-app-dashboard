@@ -236,7 +236,6 @@ function UserDetails() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div>
             <h1 className="text-2xl font-bold text-[#0E1527]">User Management</h1>
-            <p className="text-gray-500">Manage your users, clients, and vendors</p>
           </div>
           <Input
             placeholder="Search users..."

@@ -8,20 +8,12 @@ import DashboardPage from "../pages/dashboard/DashboardPage";
 import PrivacyPolicy from "../pages/Privacy Policy/PrivacyPolicy";
 import TermsCondition from "../pages/Terms Condition/TermsCondition";
 import UserDetails from "../pages/userDetails/UserDetails";
-import CreateUser from "../pages/userDetails/CreateUser";
 import Notifications from "../pages/Notifications/Notifications";
 import ProfilePage from "../pages/profile/ProfilePage";
-import Chat from "../pages/Chat/Chat";
-import Reports from "../pages/Reports/Reports";
 import Settings from "../pages/Settings/Settings";
 import ChangePass from "../pages/profile/ChangePass";
 import AboutUs from "../pages/optional/AboutUs";
 import EditProfile from "../pages/profile/EditProfile";
-import CreateAdmin from "../pages/Create Admin/CreateAdmin";
-import AddAdmin from "../pages/Add Admin/AddAdmin";
-import Product from "../pages/Product/Product";
-import Gamification from "../pages/Gamification/Gamification";
-import Category from "../pages/Category/Category";
 import SubscribersPage from "../pages/Subscribers/SubscribersPage";
 import SubscriptionPage from "../pages/Subscription/SubscriptionPage";
 
@@ -56,14 +48,6 @@ const router = createBrowserRouter([
         element: <UserDetails />,
       },
       {
-        path: "/gamification",
-        element: <Gamification />,
-      },
-      {
-        path: "/category",
-        element: <Category />,
-      },
-      {
         path: "/subscribers",
         element: <SubscribersPage />,
       },
@@ -72,26 +56,12 @@ const router = createBrowserRouter([
         element: <Notifications />,
       },
       {
-        path: "/create-user",
-        element: <CreateUser />,
-      },
-      {
-        path: "/chat",
-        element: <Chat />,
-      },
-
-      // settings
-      {
         path: "/privacy-policy",
         element: <PrivacyPolicy />,
       },
       {
         path: "/terms-and-condition",
         element: <TermsCondition />,
-      },
-      {
-        path: "/reports",
-        element: <Reports />,
       },
       {
         path: "/settings",
@@ -110,24 +80,9 @@ const router = createBrowserRouter([
         element: <AboutUs />,
       },
       {
-        path: "/create-admin",
-        element: <CreateAdmin />,
-      },
-      {
-        path: "/add-admin",
-        element: <AddAdmin />,
-      },
-      {
-        path: "/product",
-        element: <Product />,
-      },
-      {
         path: "/subscription",
         element: <SubscriptionPage />,
       },
-
-      //  navbar profile
-
       {
         path: "/profile",
         element: <ProfilePage />,
