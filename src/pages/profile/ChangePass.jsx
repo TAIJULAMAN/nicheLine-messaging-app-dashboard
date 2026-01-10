@@ -5,15 +5,15 @@ function ChangePass() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="bg-white w-full max-w-xl mx-auto px-4 sm:px-6 md:px-8 pt-8 py-5 rounded-md border border-gray-200 shadow-sm">
-      <p className="text-primary text-center font-bold text-xl sm:text-2xl mb-5">
+    <div className="bg-[#0e1527] w-full max-w-xl mx-auto px-6 sm:px-8 md:px-10 pt-8 py-8 rounded-2xl shadow-lg shadow-gray-200/50">
+      <p className="text-white text-center font-bold text-xl sm:text-2xl mb-8">
         Change Password
       </p>
-      <form className="space-y-4">
+      <form className="space-y-6">
         <div className="w-full">
           <label
             htmlFor="password"
-            className="text-sm md:text-base text-[#0D0D0D] mb-2 font-semibold"
+            className="text-sm md:text-base text-gray-300 mb-2 font-medium block"
           >
             Current Password
           </label>
@@ -22,13 +22,13 @@ function ChangePass() {
               type={showPassword ? "text" : "password"}
               name="password"
               placeholder="**********"
-              className="w-full border border-gray-300 rounded-md outline-none px-4 py-3 placeholder:text-sm md:placeholder:text-base focus:ring-2 focus:ring-[#74AA2E]"
+              className="w-full bg-[#1f2937] border border-gray-700 text-white rounded-xl outline-none px-4 py-3 placeholder:text-gray-500 focus:border-[#00e0b7] focus:ring-1 focus:ring-[#00e0b7] transition-all"
               required
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center text-[#6A6D76]"
+              className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center text-gray-400 hover:text-white transition"
             >
               {showPassword ? (
                 <IoEyeOffOutline className="w-5 h-5" />
@@ -41,7 +41,7 @@ function ChangePass() {
         <div className="w-full">
           <label
             htmlFor="password"
-            className="text-sm md:text-base text-[#0D0D0D] mb-2 font-semibold"
+            className="text-sm md:text-base text-gray-300 mb-2 font-medium block"
           >
             New Password
           </label>
@@ -50,13 +50,13 @@ function ChangePass() {
               type={showPassword ? "text" : "password"}
               name="password"
               placeholder="**********"
-              className="w-full border border-gray-300 rounded-md outline-none px-4 py-3 placeholder:text-sm md:placeholder:text-base focus:ring-2 focus:ring-[#74AA2E]"
+              className="w-full bg-[#1f2937] border border-gray-700 text-white rounded-xl outline-none px-4 py-3 placeholder:text-gray-500 focus:border-[#00e0b7] focus:ring-1 focus:ring-[#00e0b7] transition-all"
               required
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center text-[#6A6D76]"
+              className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center text-gray-400 hover:text-white transition"
             >
               {showPassword ? (
                 <IoEyeOffOutline className="w-5 h-5" />
@@ -69,7 +69,7 @@ function ChangePass() {
         <div className="w-full">
           <label
             htmlFor="password"
-            className="text-sm md:text-base text-[#0D0D0D] mb-2 font-semibold"
+            className="text-sm md:text-base text-gray-300 mb-2 font-medium block"
           >
             Confirm New Password
           </label>
@@ -78,13 +78,13 @@ function ChangePass() {
               type={showPassword ? "text" : "password"}
               name="password"
               placeholder="**********"
-              className="w-full border border-gray-300 rounded-md outline-none px-4 py-3 placeholder:text-sm md:placeholder:text-base focus:ring-2 focus:ring-[#74AA2E]"
+              className="w-full bg-[#1f2937] border border-gray-700 text-white rounded-xl outline-none px-4 py-3 placeholder:text-gray-500 focus:border-[#00e0b7] focus:ring-1 focus:ring-[#00e0b7] transition-all"
               required
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center text-[#6A6D76]"
+              className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center text-gray-400 hover:text-white transition"
             >
               {showPassword ? (
                 <IoEyeOffOutline className="w-5 h-5" />
@@ -94,8 +94,8 @@ function ChangePass() {
             </button>
           </div>
         </div>
-        <div className="text-center pt-2">
-          <button className="bg-[#00e0b7] text-white font-semibold w-full py-3 rounded-md hover:opacity-95 transition">
+        <div className="text-center pt-4">
+          <button className="bg-[#00e0b7] text-[#0E1527] font-bold w-full py-3.5 rounded-xl hover:opacity-90 transition duration-300 shadow-lg shadow-[#00e0b7]/20 hover:shadow-xl hover:shadow-[#00e0b7]/30">
             Save & Change
           </button>
         </div>

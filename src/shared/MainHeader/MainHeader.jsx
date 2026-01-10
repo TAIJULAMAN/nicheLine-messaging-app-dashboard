@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import { useNavigate } from "react-router-dom";
-import { IoMenu, IoNotificationsOutline, IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import { IoMenu, IoNotificationsOutline } from "react-icons/io5";
 
 const MainHeader = ({ toggleSidebar }) => {
   const navigate = useNavigate();
@@ -35,16 +35,6 @@ const MainHeader = ({ toggleSidebar }) => {
               <IoNotificationsOutline className="w-6 h-6 text-gray-600" />
               <span className="absolute top-2 right-2.5 h-2 w-2 rounded-full bg-[#00E0B7] ring-2 ring-white"></span>
             </button>
-            {/* Chat */}
-            <button
-              type="button"
-              aria-label="Open chat"
-              onClick={() => navigate('/chat')}
-              className="relative p-2.5 rounded-full hover:bg-gray-100 transition-colors active:scale-95 duration-200"
-            >
-              <IoChatbubbleEllipsesOutline className="w-6 h-6 text-gray-600" />
-            </button>
-
             <div className="h-8 w-[1px] bg-gray-200 mx-1 hidden md:block"></div>
 
             <div

@@ -15,64 +15,62 @@ function ProfilePage() {
         <div className="bg-[#00e0b7] px-4 md:px-5 py-3 rounded-md mb-3 flex flex-wrap md:flex-nowrap items-start md:items-center gap-2 md:gap-3">
           <button
             onClick={() => navigate(-1)}
-            className="text-white hover:opacity-90 transition"
+            className="text-[#0E1527] hover:opacity-90 transition"
             aria-label="Go back"
           >
             <IoChevronBack className="w-6 h-6" />
           </button>
-          <h1 className="text-white text-xl sm:text-2xl font-bold">Profile</h1>
+          <h1 className="text-[#0E1527] text-xl sm:text-2xl font-bold">Profile</h1>
         </div>
         <div className="mx-auto flex flex-col justify-center items-center">
           {/* Profile Picture Section */}
-          <div className="flex flex-col md:flex-row justify-center items-center bg-[#00e0b7] mt-5 text-white w-full max-w-3xl mx-auto p-4 md:p-5 gap-4 md:gap-5 rounded-lg">
+          <div className="flex flex-col md:flex-row justify-center items-center bg-[#0e1527] mt-5 text-white w-full max-w-3xl mx-auto p-6 md:p-8 gap-6 rounded-2xl shadow-lg shadow-gray-200/50">
             <div className="relative">
-              <div className="w-[122px] h-[122px] bg-gray-300 rounded-full border-4 border-white shadow-xl flex justify-center items-center">
+              <div className="w-[122px] h-[122px] bg-[#1f2937] rounded-full border-4 border-[#00e0b7] shadow-xl flex justify-center items-center">
                 <img
                   src="https://avatar.iran.liara.run/public/44"
                   alt="profile"
-                  className="h-30 w-32 rounded-full"
+                  className="h-full w-full rounded-full object-cover"
                 />
                 {/* Upload Icon */}
-                <div className="absolute bottom-2 right-2 bg-white p-2 rounded-full shadow-md cursor-pointer">
+                <div className="absolute bottom-1 right-1 bg-[#00e0b7] p-2 rounded-full shadow-md cursor-pointer border-2 border-[#0e1527]">
                   <label htmlFor="profilePicUpload" className="cursor-pointer">
-                    <FaCamera className="text-[#575757]" />
+                    <FaCamera className="text-[#0E1527] text-sm" />
                   </label>
                   <input type="file" id="profilePicUpload" className="hidden" />
                 </div>
               </div>
             </div>
             <div className="text-center md:text-left">
-              <p className="text-lg sm:text-xl md:text-3xl font-bold">Shah Aman</p>
-              <p className="text-base sm:text-lg font-semibold">Admin</p>
+              <p className="text-2xl sm:text-3xl font-bold text-white mb-1">Shah Aman</p>
+              <p className="text-lg font-medium text-[#00e0b7]">Admin</p>
             </div>
           </div>
 
           {/* Tab Navigation Section */}
-          <div className="flex flex-wrap justify-center items-center gap-3 md:gap-5 text-sm sm:text-base md:text-xl font-semibold my-4 md:my-5">
+          <div className="flex flex-wrap justify-center items-center gap-3 md:gap-8 text-sm sm:text-base md:text-lg font-semibold my-6 md:my-8">
             <p
               onClick={() => setActiveTab("editProfile")}
-              className={`cursor-pointer px-3 py-1 rounded-md pb-1 ${
-                activeTab === "editProfile"
-                  ? "text-[#00e0b7] border-b-2 border-[#00e0b7]"
-                  : "text-[#6A6D76]"
-              }`}
+              className={`cursor-pointer px-4 py-2 rounded-lg transition-all duration-300 ${activeTab === "editProfile"
+                  ? "bg-[#00e0b7] text-[#0E1527] shadow-lg shadow-[#00e0b7]/20"
+                  : "bg-[#0e1527] text-white hover:bg-[#1f2937]"
+                }`}
             >
               Edit Profile
             </p>
             <p
               onClick={() => setActiveTab("changePassword")}
-              className={`cursor-pointer px-3 py-1 rounded-md pb-1 ${
-                activeTab === "changePassword"
-                  ? "text-[#00e0b7] border-b-2 border-[#00e0b7]"
-                  : "text-[#6A6D76]"
-              }`}
+              className={`cursor-pointer px-4 py-2 rounded-lg transition-all duration-300 ${activeTab === "changePassword"
+                  ? "bg-[#00e0b7] text-[#0E1527] shadow-lg shadow-[#00e0b7]/20"
+                  : "bg-[#0e1527] text-white hover:bg-[#1f2937]"
+                }`}
             >
               Change Password
             </p>
           </div>
 
           {/* Tab Content Section */}
-          <div className="flex justify-center items-center p-0 md:p-5 rounded-md w-full">
+          <div className="flex justify-center items-center p-0 md:p-0 rounded-md w-full">
             <div className="w-full max-w-3xl">
               {activeTab === "editProfile" && <EditProfile />}
               {activeTab === "changePassword" && <ChangePass />}

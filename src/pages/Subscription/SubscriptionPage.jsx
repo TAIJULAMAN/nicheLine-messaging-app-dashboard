@@ -166,6 +166,7 @@ const SubscriptionPage = () => {
                         dataSource={plans}
                         columns={columns}
                         pagination={false}
+                        scroll={{ x: "max-content" }}
                         rowClassName="hover:bg-white/5 transition-colors"
                     />
 

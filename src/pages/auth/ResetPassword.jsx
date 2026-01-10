@@ -7,14 +7,14 @@ function ResetPassword() {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-white min-h-screen flex items-center justify-center p-5">
-      <div className="w-full md:max-w-3xl bg-[#0e1527] p-5 md:px-18 md:py-28 shadow-[0px_10px_30px_rgba(0,0,0,0.1)] rounded-2xl">
-        <div className="flex justify-center items-center mb-10">
-          <img src="/logo.png" alt="" />
+    <div className="bg-[#f4f7fe] min-h-screen flex items-center justify-center p-5">
+      <div className="w-full md:max-w-xl bg-[#0e1527] p-8 md:px-10 md:py-12 shadow-2xl shadow-gray-200/50 rounded-2xl">
+        <div className="flex justify-center items-center mb-8">
+          <img src="/logo.png" alt="Logo" className="h-12" />
         </div>
         <form className="space-y-6">
           <div className="w-full">
-            <label className="text-xl text-white mb-2 font-bold">
+            <label className="text-base text-gray-300 mb-2 font-medium block">
               New Password
             </label>
             <div className="w-full relative">
@@ -22,13 +22,13 @@ function ResetPassword() {
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="**********"
-                className="w-full px-5 py-3 border-2 border-white rounded-md outline-none mt-5 placeholder:text-xl text-white"
+                className="w-full px-4 py-3 bg-[#1f2937] border border-gray-700 text-white rounded-xl outline-none placeholder:text-gray-500 focus:border-[#00e0b7] focus:ring-1 focus:ring-[#00e0b7] transition-all"
                 required
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 bottom-4 flex items-center text-[#6A6D76]"
+                className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center text-gray-400 hover:text-white transition"
               >
                 {showPassword ? (
                   <IoEyeOffOutline className="w-5 h-5" />
@@ -39,7 +39,7 @@ function ResetPassword() {
             </div>
           </div>
           <div className="w-full">
-            <label className="text-xl text-white mb-2 font-bold">
+            <label className="text-base text-gray-300 mb-2 font-medium block">
               Confirm New Password
             </label>
             <div className="w-full relative">
@@ -47,13 +47,13 @@ function ResetPassword() {
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="**********"
-                className="w-full px-5 py-3 border-2 border-white rounded-md outline-none mt-5 placeholder:text-xl text-white"
+                className="w-full px-4 py-3 bg-[#1f2937] border border-gray-700 text-white rounded-xl outline-none placeholder:text-gray-500 focus:border-[#00e0b7] focus:ring-1 focus:ring-[#00e0b7] transition-all"
                 required
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 bottom-4 flex items-center text-[#6A6D76]"
+                className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center text-gray-400 hover:text-white transition"
               >
                 {showPassword ? (
                   <IoEyeOffOutline className="w-5 h-5" />
@@ -63,11 +63,11 @@ function ResetPassword() {
               </button>
             </div>
           </div>
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center mt-8">
             <button
               onClick={() => navigate("/sign-in")}
               type="button"
-              className="w-1/3 bg-[#00e0b7] text-white font-bold py-3 rounded-lg shadow-lg cursor-pointer mt-5"
+              className="w-full bg-[#00e0b7] text-[#0E1527] font-bold py-3.5 rounded-xl shadow-lg shadow-[#00e0b7]/20 hover:shadow-xl hover:shadow-[#00e0b7]/30 hover:opacity-95 transition-all duration-300"
             >
               Update Password
             </button>
