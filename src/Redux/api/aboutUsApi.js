@@ -4,17 +4,17 @@ const aboutUsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         getAboutUs: builder.query({
             query: () => ({
-                url: "legalDoc/get-doc/aboutUs",
+                url: "setting/find_by_about_us",
                 method: "GET",
             }),
             providesTags: ["aboutUs"],
         }),
 
         createAboutUs: builder.mutation({
-            query: ({ description }) => ({
-                url: "legalDoc/create-doc/aboutUs",
-                method: "PATCH",
-                body: { description },
+            query: ({ aboutUs }) => ({
+                url: "setting/about",
+                method: "POST",
+                body: { aboutUs },
             }),
             invalidatesTags: ["aboutUs"],
         }),
