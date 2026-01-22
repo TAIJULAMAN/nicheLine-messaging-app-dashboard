@@ -4,6 +4,7 @@ import { FaCamera } from "react-icons/fa";
 import EditProfile from "./EditProfile";
 import ChangePass from "./ChangePass";
 import { IoChevronBack } from "react-icons/io5";
+import { useGetProfileQuery } from "../../Redux/api/profileApi";
 
 function ProfilePage() {
   const [activeTab, setActiveTab] = useState("editProfile");
@@ -28,7 +29,7 @@ function ProfilePage() {
             <div className="relative">
               <div className="w-[122px] h-[122px] bg-[#1f2937] rounded-full border-4 border-[#00e0b7] shadow-xl flex justify-center items-center">
                 <img
-                  src="https://avatar.iran.liara.run/public/44"
+                  src="1.avif"
                   alt="profile"
                   className="h-full w-full rounded-full object-cover"
                 />
@@ -52,8 +53,8 @@ function ProfilePage() {
             <p
               onClick={() => setActiveTab("editProfile")}
               className={`cursor-pointer px-4 py-2 rounded-lg transition-all duration-300 ${activeTab === "editProfile"
-                  ? "bg-[#00e0b7] text-[#0E1527] shadow-lg shadow-[#00e0b7]/20"
-                  : "bg-[#0e1527] text-white hover:bg-[#1f2937]"
+                ? "bg-[#00e0b7] text-[#0E1527] shadow-lg shadow-[#00e0b7]/20"
+                : "bg-[#0e1527] text-white hover:bg-[#1f2937]"
                 }`}
             >
               Edit Profile
@@ -61,8 +62,8 @@ function ProfilePage() {
             <p
               onClick={() => setActiveTab("changePassword")}
               className={`cursor-pointer px-4 py-2 rounded-lg transition-all duration-300 ${activeTab === "changePassword"
-                  ? "bg-[#00e0b7] text-[#0E1527] shadow-lg shadow-[#00e0b7]/20"
-                  : "bg-[#0e1527] text-white hover:bg-[#1f2937]"
+                ? "bg-[#00e0b7] text-[#0E1527] shadow-lg shadow-[#00e0b7]/20"
+                : "bg-[#0e1527] text-white hover:bg-[#1f2937]"
                 }`}
             >
               Change Password

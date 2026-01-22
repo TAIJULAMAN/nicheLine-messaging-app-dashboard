@@ -12,7 +12,6 @@ function PrivacyPolicy() {
   const [content, setContent] = useState("");
 
   const { data: privacyData, isLoading: isFetching } = useGetPrivacyQuery();
-  console.log("privacyData", privacyData);
   const [createPrivacy, { isLoading: isUpdating }] = useCreatePrivacyMutation();
 
   useEffect(() => {
