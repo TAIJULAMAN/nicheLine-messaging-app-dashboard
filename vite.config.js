@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://estimates-knight-grade-schema.trycloudflare.com',
+        target: 'https://supervisors-wallpaper-astronomy-mouse.trycloudflare.com',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path,

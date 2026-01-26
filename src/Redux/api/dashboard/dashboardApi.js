@@ -11,15 +11,22 @@ export const dashboardApi = baseApi.injectEndpoints({
       providesTags: ["dashboard"],
     }),
     userGrowth: builder.query({
-      query: ({ year } = {}) => ({
-        url: "user/user-growth",
+      query: ({ year }) => ({
+        url: "user/get_user_growth",
         method: "GET",
         params: { year },
+      }),
+      providesTags: ["dashboard"],
+    }),
+    totalUser: builder.query({
+      query: () => ({
+        url: "auth/dashboard_entity_count",
+        method: "GET",
       }),
       providesTags: ["dashboard"],
     }),
   }),
 });
 
-export const { useGetAllDashboardQuery, useUserGrowthQuery } =
+export const { useGetAllDashboardQuery, useUserGrowthQuery, useTotalUserQuery } =
   dashboardApi;

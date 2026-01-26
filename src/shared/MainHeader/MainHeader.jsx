@@ -2,9 +2,13 @@
 
 import { useNavigate } from "react-router-dom";
 import { IoMenu, IoNotificationsOutline } from "react-icons/io5";
+import { useGetProfileQuery } from "../../Redux/api/profileApi";
+import { imgUrl } from "../../config/envConfig";
 
 const MainHeader = ({ toggleSidebar }) => {
   const navigate = useNavigate();
+  const { data: profileData } = useGetProfileQuery();
+  console.log(profileData, "profileData");
 
   return (
     <div className="sticky top-0 z-30 mx-0 md:top-4 md:mx-6">
@@ -19,7 +23,7 @@ const MainHeader = ({ toggleSidebar }) => {
               <IoMenu className="w-6 h-6" />
             </button>
             <div className="hidden md:block">
-              <h1 className="text-gray-800 text-xl font-bold tracking-tight">Welcome, Aman</h1>
+              <h1 className="text-gray-800 text-xl font-bold tracking-tight">Welcome, {profileData?.data?.name?.split(" ")[0] || "User"}</h1>
               <p className="text-gray-500 text-xs font-medium">Have a nice day!</p>
             </div>
           </div>
@@ -42,15 +46,18 @@ const MainHeader = ({ toggleSidebar }) => {
               className="flex items-center gap-3 cursor-pointer p-1.5 pr-3 rounded-full hover:bg-gray-50 border border-transparent hover:border-gray-200 transition-all duration-300"
             >
               <img
-                src="https://avatar.iran.liara.run/public/31"
-                className="w-9 h-9 object-cover rounded-full ring-2 ring-white shadow-sm"
-                alt="User Avatar"
+                src={profileData?.data?.photo ?
+                  `${imgUrl}/${profileData?.data?.photo}` :
+                  "1.avif"
+                }
+                alt="profile"
+                className="h-8 w-8 rounded-full object-cover"
               />
               <div className="hidden md:block text-left">
                 <h3 className="text-sm font-bold text-gray-700 leading-tight">
-                  Mr. Admin
+                  {profileData?.data?.name || "N/A"}
                 </h3>
-                <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Admin</p>
+                <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">ADMIN</p>
               </div>
             </div>
           </div>

@@ -8,48 +8,51 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-
-const demoData = [
-  { month: "Jan", videoView: 50 },
-  { month: "Feb", videoView: 70 },
-  { month: "Mar", videoView: 60 },
-  { month: "Apr", videoView: 80 },
-  { month: "May", videoView: 90 },
-  { month: "Jun", videoView: 75 },
-  { month: "Jul", videoView: 85 },
-  { month: "Aug", videoView: 95 },
-  { month: "Sep", videoView: 70 },
-  { month: "Oct", videoView: 80 },
-  { month: "Nov", videoView: 100 },
-  { month: "Dec", videoView: 110 },
-];
-
-const maxTrainerCount = Math.max(...demoData.map((item) => item.trainer), 100);
+import { useUserGrowthQuery } from "../../Redux/api/dashboard/dashboardApi";
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
-    const { month, videoView } = payload[0].payload;
+    const { month, count } = payload[0].payload;
     return (
       <div className="bg-white shadow-md p-3 rounded-md border text-gray-700">
         <p className="font-medium">Month: {month}</p>
-        <p className="font-medium">Trainers: {videoView}</p>
+        <p className="font-medium">Users: {count}</p>
       </div>
     );
   }
   return null;
 };
 
-const TotalView = () => {
+const TotalView = ({ year }) => {
   const [chartHeight, setChartHeight] = useState(220);
+  const { data: userGrowthData } = useUserGrowthQuery({ year });
+  const monthlyStats = userGrowthData?.data?.monthlyStats || [];
+
+  const getMonthName = (monthNum) => {
+    const date = new Date();
+    date.setMonth(monthNum - 1);
+    return date.toLocaleString('default', { month: 'short' });
+  };
+
+  const chartData = Array.from({ length: 12 }, (_, i) => {
+    const monthNum = i + 1;
+    const stat = monthlyStats.find((item) => item.month == monthNum);
+    return {
+      month: getMonthName(monthNum),
+      count: stat ? Number(stat?.count) : 0,
+    };
+  });
+
+  const maxUserCount = Math.max(...chartData.map((item) => item.count), 10);
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 220) {
         setChartHeight(250);
       } else if (window.innerWidth < 768) {
-        setChartHeight(220); 
+        setChartHeight(220);
       } else {
-        setChartHeight(220); 
+        setChartHeight(220);
       }
     };
 
@@ -58,11 +61,12 @@ const TotalView = () => {
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
   return (
     <div>
       <ResponsiveContainer width="100%" height={chartHeight}>
         <BarChart
-          data={demoData}
+          data={chartData}
           margin={{
             top: 0,
             right: 0,
@@ -73,14 +77,14 @@ const TotalView = () => {
           <XAxis tickLine={false} dataKey="month" className="text-gray-600" />
           <YAxis
             tickLine={false}
-            domain={[0, maxTrainerCount + 10]}
+            domain={[0, maxUserCount + (maxUserCount * 0.2)]} // Add 20% padding
             className="text-gray-600"
           />
           <Tooltip content={<CustomTooltip />} />
           <Bar
             barSize={30}
             radius={[5, 5, 0, 0]}
-            dataKey="videoView"
+            dataKey="count"
             fill="#00e0b7"
           />
         </BarChart>

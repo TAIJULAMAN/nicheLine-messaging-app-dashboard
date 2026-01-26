@@ -1,42 +1,45 @@
-import { ConfigProvider, Table, Input, Button, Space, Modal, Form, Select, message } from "antd";
+import { ConfigProvider, Table, Input, Button, Modal, message } from "antd";
 import { SearchOutlined, ExclamationCircleFilled } from "@ant-design/icons";
-import { useState, useMemo } from "react";
-import { FaEdit, FaRegEye } from "react-icons/fa";
-import { MdBlock } from "react-icons/md";
+import { useState } from "react";
+import { FaRegEye } from "react-icons/fa";
+import { MdBlock, MdDelete } from "react-icons/md";
+import { useGetAllUsersQuery, useUpdateUserMutation, useDeleteUserMutation } from "../../Redux/api/user/userApi";
 
 function UserDetails() {
   const [isBlockModalOpen, setIsBlockModalOpen] = useState(false);
   const [isViewModalOpen, setIsViewModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
-  const [editUser, setEditUser] = useState(null);
   const [searchText, setSearchText] = useState("");
-  const [roleFilter, setRoleFilter] = useState("");
-  const [form] = Form.useForm();
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
-  const [dataSource, setDataSource] = useState(
-    Array.from({ length: 45 }).map((_, i) => ({
-      key: i.toString(),
-      fullName: `User ${i + 1}`,
-      role: i % 3 === 0 ? "Vendor" : i % 2 === 0 ? "Clients" : "User",
-      email: `user${i + 1}@example.com`,
-      phone: `+1 987 654 32${i % 10}${i % 10}`,
-      joined: "2024-01-15",
-      status: i % 5 === 0 ? "Blocked" : "Active",
-      address: `${i + 1}23 Main St, New York, NY 10001`,
-      lastLogin: "2024-03-20 10:30 AM",
-      subscription: i % 2 === 0 ? "Premium Plan" : "Free Plan"
-    }))
-  );
+  const { data: userData, isLoading } = useGetAllUsersQuery({
+    page,
+    limit,
+    searchTerm: searchText,
+  });
+
+  const [updateUser] = useUpdateUserMutation();
+  const [deleteUser] = useDeleteUserMutation();
+
+  const dataSource = userData?.data?.all_users?.map((user) => ({
+    key: user?._id,
+    fullName: user?.name,
+    email: user?.email,
+    joined: new Date(user?.createdAt).toLocaleDateString(),
+    status: user?.status === "isProgress" ? "Active" : "Blocked",
+    address: user?.location || "N/A",
+    photo: user?.photo,
+    role: "User", // Placeholder
+    phone: "N/A", // Placeholder
+    lastLogin: "N/A", // Placeholder
+    subscription: "Free Plan", // Placeholder
+  })) || [];
+
+
   const showViewModal = (user) => {
     setSelectedUser(user);
     setIsViewModalOpen(true);
-  };
-
-  const showEditModal = (user) => {
-    setEditUser({ ...user });
-    form.setFieldsValue(user);
-    setIsEditModalOpen(true);
   };
 
   const showBlockModal = (user) => {
@@ -44,66 +47,36 @@ function UserDetails() {
     setIsBlockModalOpen(true);
   };
 
-  const handleEditOk = () => {
-    form.validateFields().then((values) => {
-      setDataSource((prev) =>
-        prev.map((r) => (r.key === editUser.key ? { ...r, ...values } : r))
-      );
-      message.success("User updated successfully");
-      setIsEditModalOpen(false);
+  const handleDelete = (id) => {
+    Modal.confirm({
+      title: 'Are you sure you want to delete this user?',
+      icon: <ExclamationCircleFilled />,
+      content: 'This action cannot be undone.',
+      okText: 'Delete',
+      okType: 'danger',
+      cancelText: 'Cancel',
+      onOk: async () => {
+        try {
+          await deleteUser(id).unwrap();
+          message.success("User deleted successfully");
+        } catch (error) {
+          message.error("Failed to delete user");
+        }
+      },
     });
   };
 
-  const confirmBlock = () => {
-    setDataSource((prev) =>
-      prev.map((r) => r.key === selectedUser.key ? { ...r, status: "Blocked" } : r)
-    );
-    message.success("User blocked successfully");
-    setIsBlockModalOpen(false);
+  const confirmBlock = async () => {
+    if (!selectedUser) return;
+    try {
+      const newStatus = selectedUser.status === 'Active' ? 'blocked' : 'isProgress';
+      await updateUser({ id: selectedUser.key, data: { status: newStatus } }).unwrap();
+      message.success(`User ${selectedUser.status === 'Active' ? 'Blocked' : 'Activated'} successfully`);
+      setIsBlockModalOpen(false);
+    } catch (error) {
+      message.error("Failed to update status");
+    }
   };
-  const filteredData = useMemo(() => {
-    return dataSource.filter((r) => {
-      const matchesSearch = Object.values(r).some(val =>
-        String(val).toLowerCase().includes(searchText.toLowerCase())
-      );
-      const matchesRole = roleFilter ? r.role === roleFilter : true;
-      return matchesSearch && matchesRole;
-    });
-  }, [dataSource, searchText, roleFilter]);
-
-
-  const getColumnSearchProps = (dataIndex) => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
-      <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
-        <Input
-          placeholder={`Search ${dataIndex}`}
-          value={selectedKeys[0]}
-          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-          onPressEnter={() => confirm()}
-          style={{ marginBottom: 8, display: "block" }}
-        />
-        <Space>
-          <Button
-            type="primary"
-            onClick={() => confirm()}
-            icon={<SearchOutlined />}
-            size="small"
-            style={{ width: 90, backgroundColor: "#00E0B7", borderColor: "#00E0B7" }}
-          >
-            Search
-          </Button>
-          <Button onClick={() => clearFilters && clearFilters()} size="small" style={{ width: 90 }}>
-            Reset
-          </Button>
-        </Space>
-      </div>
-    ),
-    filterIcon: (filtered) => (
-      <SearchOutlined style={{ color: filtered ? "#00E0B7" : undefined }} />
-    ),
-    onFilter: (value, record) =>
-      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
-  });
 
 
   const columns = [
@@ -111,37 +84,19 @@ function UserDetails() {
       title: "No",
       key: "no",
       width: 70,
-      render: (_, _r, index) => index + 1,
+      render: (_, _r, index) => (page - 1) * limit + index + 1,
     },
     {
       title: "Full Name",
       dataIndex: "fullName",
       key: "fullName",
-      ...getColumnSearchProps("fullName"),
-      render: (value, record) => (
+      render: (value) => (
         <div className="flex items-center gap-3">
-          <img
-            src={`https://avatar.iran.liara.run/public/${record.key}`}
-            className="w-10 h-10 object-cover rounded-full"
-            alt="User Avatar"
-          />
           <span className="font-medium text-white">{value}</span>
         </div>
       ),
     },
-    {
-      title: "Role",
-      dataIndex: "role",
-      key: "role",
-      filters: [
-        { text: 'User', value: 'User' },
-        { text: 'Clients', value: 'Clients' },
-        { text: 'Vendor', value: 'Vendor' },
-      ],
-      onFilter: (value, record) => record.role === value,
-    },
     { title: "Email", dataIndex: "email", key: "email" },
-    { title: "Phone No", dataIndex: "phone", key: "phone" },
     { title: "Joined Date", dataIndex: "joined", key: "joined" },
     {
       title: "Status",
@@ -170,16 +125,16 @@ function UserDetails() {
           <Button
             type="primary"
             size="small"
-            onClick={() => showEditModal(record)}
-            className="bg-blue-500"
+            onClick={() => handleDelete(record.key)}
+            className="bg-red-500 border-red-500 hover:bg-red-600 hover:border-red-600 text-white"
           >
-            <FaEdit />
+            <MdDelete />
           </Button>
           <Button
             type="primary"
             size="small"
             onClick={() => showBlockModal(record)}
-            style={{ backgroundColor: "#FF0000", borderColor: "#FF0000" }}
+            style={{ backgroundColor: record.status === 'Active' ? "#FF0000" : "#28a745", borderColor: record.status === 'Active' ? "#FF0000" : "#28a745" }}
           >
             <MdBlock />
           </Button>
@@ -205,19 +160,14 @@ function UserDetails() {
           },
           Pagination: {
             itemActiveBg: "#00E0B7",
-            colorPrimary: "#0e1527",
+            colorPrimary: "#0e1527", // Fixed pagination text color to match theme
+            colorText: "#ffffff",
           },
           Modal: {
             contentBg: "#0e1527",
             headerBg: "#0e1527",
             titleColor: "#ffffff",
             colorText: "#ffffff",
-          },
-          Select: {
-            selectorBg: "#1f2937",
-            colorText: "#ffffff",
-            optionSelectedBg: "#00E0B7",
-            colorBorder: "#374151"
           },
           Input: {
             colorBgContainer: "#1f2937",
@@ -247,9 +197,18 @@ function UserDetails() {
 
         <div className="bg-[#0e1527] rounded-2xl p-6 shadow-lg shadow-gray-200/50">
           <Table
-            dataSource={filteredData}
+            dataSource={dataSource}
             columns={columns}
-            pagination={{ pageSize: 8 }}
+            loading={isLoading}
+            pagination={{
+              current: page,
+              pageSize: limit,
+              total: userData?.data?.meta?.total,
+              onChange: (p, l) => {
+                setPage(p);
+                setLimit(l);
+              }
+            }}
             scroll={{ x: "max-content" }}
             rowClassName="hover:bg-white/5 transition-colors"
           />
@@ -268,9 +227,10 @@ function UserDetails() {
                 <div className="bg-gradient-to-r from-[#00e0b7] to-[#0e1527] p-8 -m-6 mb-8 rounded-t-lg">
                   <div className="flex flex-col md:flex-row items-center gap-6">
                     <img
-                      src={`https://avatar.iran.liara.run/public/${selectedUser.key}`}
+                      src={selectedUser.photo ? `${import.meta.env.VITE_BASE_URL || ''}/${selectedUser.photo}` : `https://avatar.iran.liara.run/public/${selectedUser.key}`}
                       alt={selectedUser.fullName}
                       className="w-32 h-32 rounded-full border-4 border-white shadow-xl object-cover"
+                      onError={(e) => { e.target.src = `https://avatar.iran.liara.run/public/${selectedUser.key}`; }}
                     />
                     <div className="text-white text-center md:text-left">
                       <h2 className="text-4xl font-bold mb-2">{selectedUser.fullName}</h2>
@@ -294,10 +254,6 @@ function UserDetails() {
                         <p className="text-lg font-medium">{selectedUser.email}</p>
                       </div>
                       <div className="bg-[#1f2937] p-4 rounded-xl">
-                        <h4 className="text-gray-400 text-xs uppercase tracking-wider mb-1">Phone Number</h4>
-                        <p className="text-lg font-medium">{selectedUser.phone}</p>
-                      </div>
-                      <div className="bg-[#1f2937] p-4 rounded-xl md:col-span-2">
                         <h4 className="text-gray-400 text-xs uppercase tracking-wider mb-1">Address</h4>
                         <p className="text-lg font-medium">{selectedUser.address}</p>
                       </div>
@@ -307,15 +263,12 @@ function UserDetails() {
                   {/* Account Details */}
                   <div>
                     <h3 className="text-[#00E0B7] text-lg font-semibold mb-3 border-b border-gray-700 pb-2">Account Details</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-white">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-white">
                       <div className="bg-[#1f2937] p-4 rounded-xl">
                         <h4 className="text-gray-400 text-xs uppercase tracking-wider mb-1">Joined Date</h4>
                         <p className="text-base font-medium">{selectedUser.joined}</p>
                       </div>
-                      <div className="bg-[#1f2937] p-4 rounded-xl">
-                        <h4 className="text-gray-400 text-xs uppercase tracking-wider mb-1">Last Login</h4>
-                        <p className="text-base font-medium">{selectedUser.lastLogin}</p>
-                      </div>
+
                       <div className="bg-[#1f2937] p-4 rounded-xl">
                         <h4 className="text-gray-400 text-xs uppercase tracking-wider mb-1">Subscription</h4>
                         <p className="text-base font-medium text-[#00E0B7]">{selectedUser.subscription}</p>
@@ -327,51 +280,20 @@ function UserDetails() {
             )}
           </Modal>
 
-
-          {/* Edit Modal */}
-          <Modal
-            title="Edit User"
-            open={isEditModalOpen}
-            onOk={handleEditOk}
-            onCancel={() => setIsEditModalOpen(false)}
-            okText="Save"
-            okButtonProps={{ style: { backgroundColor: "#00E0B7", borderColor: "#00E0B7" } }}
-          >
-            <Form form={form} layout="vertical" className="mt-4">
-              <Form.Item name="fullName" label={<span className="text-white">Full Name</span>} rules={[{ required: true }]}>
-                <Input className="text-white" />
-              </Form.Item>
-              <Form.Item name="email" label={<span className="text-white">Email</span>} rules={[{ required: true, type: 'email' }]}>
-                <Input disabled className="text-white" />
-              </Form.Item>
-              <Form.Item name="role" label={<span className="text-white">Role</span>} rules={[{ required: true }]}>
-                <Select>
-                  <Select.Option value="User">User</Select.Option>
-                  <Select.Option value="Clients">Clients</Select.Option>
-                  <Select.Option value="Vendor">Vendor</Select.Option>
-                </Select>
-              </Form.Item>
-              <Form.Item name="phone" label={<span className="text-white">Phone</span>} rules={[{ required: true }]}>
-                <Input className="text-white" />
-              </Form.Item>
-            </Form>
-          </Modal>
-
           {/* Block Modal */}
           <Modal
-            title={<span className="text-white">Block User</span>}
+            title={<span className="text-white">{selectedUser?.status === "Active" ? "Block User" : "Unblock User"}</span>}
             open={isBlockModalOpen}
             onOk={confirmBlock}
             onCancel={() => setIsBlockModalOpen(false)}
-            okText="Block"
-            okButtonProps={{ danger: true }}
+            okText={selectedUser?.status === "Active" ? "Block" : "Unblock"}
+            okButtonProps={{ danger: selectedUser?.status === "Active", style: selectedUser?.status !== "Active" ? { backgroundColor: "#28a745", borderColor: "#28a745" } : {} }}
           >
             <div className="flex items-center gap-3 text-white">
-              <ExclamationCircleFilled className="text-red-500 text-2xl" />
-              <p>Are you sure you want to block <span className="font-bold text-[#00E0B7]">{selectedUser?.fullName}</span>?</p>
+              <ExclamationCircleFilled className={selectedUser?.status === "Active" ? "text-red-500 text-2xl" : "text-green-500 text-2xl"} />
+              <p>Are you sure you want to {selectedUser?.status === "Active" ? "block" : "unblock"} <span className="font-bold text-[#00E0B7]">{selectedUser?.fullName}</span>?</p>
             </div>
           </Modal>
-
         </div>
       </div>
     </ConfigProvider>
