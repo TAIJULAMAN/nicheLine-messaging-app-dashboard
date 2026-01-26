@@ -1,222 +1,163 @@
-import { ConfigProvider, Table, Button, Modal, Form, Input, Select, message, Space } from "antd";
-import { PlusOutlined, SearchOutlined, ExclamationCircleFilled } from "@ant-design/icons";
+import { Spin, Card, Button, List, Modal, Form, Input, message } from "antd";
+import { CheckCircleFilled, EditOutlined } from "@ant-design/icons";
+import { useGetAllSubscriptionsQuery, useUpdateSubscriptionMutation } from "../../Redux/api/subscribers/subscribersApi";
 import { useState } from "react";
-import { FaEdit, FaTrash } from "react-icons/fa";
 
 const SubscriptionPage = () => {
-    const [plans, setPlans] = useState([
-        { key: '1', name: "Free", price: "0", duration: "Lifetime", status: "Active" },
-        { key: '2', name: "1 Year", price: "9.99", duration: "1 Year", status: "Active" },
-        { key: '3', name: "3 Year", price: "24.99", duration: "3 Years", status: "Active" },
-    ]);
+    const { data: subscriptionData, isLoading } = useGetAllSubscriptionsQuery();
+    const [updateSubscription] = useUpdateSubscriptionMutation();
+    const planData = subscriptionData?.data?.all_subscription_list?.[0];
 
-    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-    const [selectedPlan, setSelectedPlan] = useState(null);
+    const [editingKey, setEditingKey] = useState(null);
     const [form] = Form.useForm();
 
-    // --- Add Plan ---
-    const showAddModal = () => {
-        form.resetFields();
-        setIsAddModalOpen(true);
-    };
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center h-[60vh]">
+                <Spin size="large" />
+            </div>
+        );
+    }
 
-    const handleAddOk = () => {
-        form.validateFields().then((values) => {
-            const newPlan = {
-                key: Date.now().toString(),
-                ...values,
-            };
-            setPlans([...plans, newPlan]);
-            message.success("Plan added successfully");
-            setIsAddModalOpen(false);
+    if (!planData) {
+        return <div className="text-white text-center">No subscription plan details available.</div>;
+    }
+
+    const { _id, description, subscriptionType30, subscriptionType15, subscriptionPrice } = planData;
+
+    const showEditModal = (key, data) => {
+        setEditingKey(key);
+        form.setFieldsValue({
+            title: data.title,
+            price: data.price
         });
-    };
-
-    // --- Edit Plan ---
-    const showEditModal = (record) => {
-        setSelectedPlan(record);
-        form.setFieldsValue(record);
         setIsEditModalOpen(true);
     };
 
-    const handleEditOk = () => {
-        form.validateFields().then((values) => {
-            const updatedPlans = plans.map(p =>
-                p.key === selectedPlan.key ? { ...p, ...values } : p
-            );
-            setPlans(updatedPlans);
+    const handleUpdate = async () => {
+        try {
+            const values = await form.validateFields();
+            const currentPlanData = planData[editingKey];
+            const updatedPlanData = {
+                ...currentPlanData,
+                title: values.title,
+                price: values.price,
+            };
+
+            // Synchronize subscriptionPrice
+            let updatedSubscriptionPrice = [...subscriptionPrice];
+            if (editingKey === 'subscriptionType30' && updatedSubscriptionPrice.length > 0) {
+                updatedSubscriptionPrice[0] = {
+                    ...updatedSubscriptionPrice[0],
+                    pricetype: `Upgrade to ${values.price}/year`
+                };
+            } else if (editingKey === 'subscriptionType15' && updatedSubscriptionPrice.length > 1) {
+                updatedSubscriptionPrice[1] = {
+                    ...updatedSubscriptionPrice[1],
+                    pricetype: `Upgrade to ${values.price} for a year`
+                };
+            }
+
+            await updateSubscription({
+                id: _id,
+                data: {
+                    [editingKey]: updatedPlanData,
+                    subscriptionPrice: updatedSubscriptionPrice
+                }
+            }).unwrap();
+
             message.success("Plan updated successfully");
             setIsEditModalOpen(false);
-        });
+        } catch (error) {
+            message.error("Failed to update plan");
+        }
     };
 
-    // --- Delete Plan ---
-    const showDeleteModal = (record) => {
-        setSelectedPlan(record);
-        setIsDeleteModalOpen(true);
-    };
+    const renderPlanCard = (typeData, discount, key) => (
+        <div className="flex-1 bg-[#1f2937] rounded-xl p-6 border border-gray-700 hover:border-[#00E0B7] transition-all duration-300 relative overflow-hidden group">
+            <div className="absolute top-4 right-4 z-20">
+                <Button
+                    type="text"
+                    icon={<EditOutlined className="text-white text-lg" />}
+                    onClick={() => showEditModal(key, typeData)}
+                />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-2">{typeData?.title}</h3>
+            <p className="text-[#00E0B7] text-3xl font-bold mb-4">{typeData?.price}</p>
 
-    const handleDeleteOk = () => {
-        const filteredPlans = plans.filter(p => p.key !== selectedPlan.key);
-        setPlans(filteredPlans);
-        message.success("Plan deleted successfully");
-        setIsDeleteModalOpen(false);
-    };
-
-    const columns = [
-        { title: "Plan Name", dataIndex: "name", key: "name" },
-        {
-            title: "Price ($)",
-            dataIndex: "price",
-            key: "price",
-            render: (price) => <span className="font-semibold">${price}</span>
-        },
-        { title: "Duration", dataIndex: "duration", key: "duration" },
-        {
-            title: "Status",
-            dataIndex: "status",
-            key: "status",
-            render: (status) => (
-                <span className={`px-3 py-1 rounded-full text-xs font-semibold ${status === "Active" ? "bg-green-500/20 text-green-500" : "bg-red-500/20 text-red-500"
-                    }`}>
-                    {status}
-                </span>
-            )
-        },
-        {
-            title: "Action",
-            key: "action",
-            render: (_, record) => (
-                <div className="flex items-center gap-2">
-                    <Button
-                        type="primary"
-                        size="small"
-                        onClick={() => showEditModal(record)}
-                        style={{ backgroundColor: "#00E0B7", borderColor: "#00E0B7" }}
-                    >
-                        <FaEdit />
-                    </Button>
-                    <Button
-                        type="primary"
-                        size="small"
-                        onClick={() => showDeleteModal(record)}
-                        style={{ backgroundColor: "#FF0000", borderColor: "#FF0000" }}
-                    >
-                        <FaTrash />
-                    </Button>
-                </div>
-            ),
-        },
-    ];
+            <List
+                dataSource={typeData?.features}
+                renderItem={(item) => (
+                    <List.Item className="border-b-0 px-0 py-2">
+                        <div className="flex items-start gap-3 text-gray-300">
+                            <CheckCircleFilled className="text-[#00E0B7] mt-1 shrink-0" />
+                            <span>{item}</span>
+                        </div>
+                    </List.Item>
+                )}
+            />
+            <Button
+                type="primary"
+                block
+                className="mt-6 font-semibold h-10"
+                style={{
+                    backgroundColor: discount === "30%" ? "#00E0B7" : "transparent",
+                    color: discount === "30%" ? "#0E1527" : "#00E0B7",
+                    borderColor: "#00E0B7"
+                }}
+            >
+                Choose {discount} Off
+            </Button>
+        </div>
+    );
 
     return (
-        <div className="space-y-6">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                <div>
-                    <h1 className="text-2xl font-bold text-[#0E1527]">Subscription Plans</h1>
-                    <p className="text-gray-500">Manage your subscription packages</p>
+        <div className="space-y-8">
+            <div className="text-center max-w-2xl mx-auto space-y-4">
+                <p className="text-gray-400 text-lg leading-relaxed">
+                    {description}
+                </p>
+            </div>
+
+            <div className="bg-[#0e1527] rounded-3xl p-8 shadow-2xl border border-gray-800 relative overflow-hidden">
+                {/* Background decorative glow */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[#00E0B7]/5 blur-3xl rounded-full -z-0 pointer-events-none" />
+
+                <div className="relative z-10 flex flex-col md:flex-row gap-6 justify-center items-stretch">
+                    {/* 15% Plan */}
+                    {renderPlanCard(subscriptionType15, "15%", "subscriptionType15")}
+
+                    {/* 30% Plan */}
+                    {renderPlanCard(subscriptionType30, "30%", "subscriptionType30")}
                 </div>
-                <Button
-                    type="primary"
-                    icon={<PlusOutlined />}
-                    onClick={showAddModal}
-                    style={{ backgroundColor: "#00E0B7", borderColor: "#00E0B7", height: '40px' }}
-                >
-                    Add New Plan
-                </Button>
             </div>
 
-            <div className="bg-[#0e1527] rounded-2xl p-6 shadow-lg shadow-gray-200/50">
-                <ConfigProvider
-                    theme={{
-                        components: {
-                            Table: {
-                                headerBg: "#00E0B7",
-                                headerColor: "#0E1527",
-                                cellFontSize: 16,
-                                headerSplitColor: "#00e0b7",
-                                colorBgBase: "#0e1527",
-                                colorText: "#ffffff",
-                                colorBgContainer: "#0e1527",
-                                borderColor: "#1f2937",
-                                rowHoverBg: "#1f2937",
-                            },
-                            Modal: {
-                                contentBg: "#0e1527",
-                                headerBg: "#0e1527",
-                                titleColor: "#ffffff",
-                                colorText: "#ffffff",
-                            },
-                            Select: {
-                                selectorBg: "#1f2937",
-                                colorText: "#ffffff",
-                                optionSelectedBg: "#00E0B7",
-                            },
-                            Input: {
-                                colorBgContainer: "#1f2937",
-                                colorText: "#ffffff",
-                                activeBorderColor: "#00E0B7",
-                            }
-                        },
-                    }}
-                >
-                    <Table
-                        dataSource={plans}
-                        columns={columns}
-                        pagination={false}
-                        scroll={{ x: "max-content" }}
-                        rowClassName="hover:bg-white/5 transition-colors"
-                    />
-
-                    {/* Add/Edit Modal */}
-                    <Modal
-                        title={<span className="text-white">{isAddModalOpen ? "Add New Plan" : "Edit Plan"}</span>}
-                        open={isAddModalOpen || isEditModalOpen}
-                        onOk={isAddModalOpen ? handleAddOk : handleEditOk}
-                        onCancel={() => { setIsAddModalOpen(false); setIsEditModalOpen(false); }}
-                        okText="Save"
-                        okButtonProps={{ style: { backgroundColor: "#00E0B7", borderColor: "#00E0B7" } }}
+            <Modal
+                title="Edit Plan Details"
+                open={isEditModalOpen}
+                onOk={handleUpdate}
+                onCancel={() => setIsEditModalOpen(false)}
+                okText="Update"
+                okButtonProps={{ style: { backgroundColor: "#00E0B7", borderColor: "#00E0B7" } }}
+            >
+                <Form form={form} layout="vertical" className="mt-4">
+                    <Form.Item
+                        name="title"
+                        label="Plan Title"
+                        rules={[{ required: true }]}
                     >
-                        <Form form={form} layout="vertical" className="mt-4">
-                            <Form.Item name="name" label={<span className="text-white">Plan Name</span>} rules={[{ required: true }]}>
-                                <Input className="text-white" placeholder="e.g. Premium" />
-                            </Form.Item>
-                            <div className="grid grid-cols-2 gap-4">
-                                <Form.Item name="price" label={<span className="text-white">Price ($)</span>} rules={[{ required: true }]}>
-                                    <Input type="number" className="text-white" placeholder="99" />
-                                </Form.Item>
-                                <Form.Item name="duration" label={<span className="text-white">Duration</span>} rules={[{ required: true }]}>
-                                    <Input className="text-white" placeholder="e.g. 1 Year" />
-                                </Form.Item>
-                            </div>
-                            <Form.Item name="status" label={<span className="text-white">Status</span>} rules={[{ required: true }]}>
-                                <Select>
-                                    <Select.Option value="Active">Active</Select.Option>
-                                    <Select.Option value="Inactive">Inactive</Select.Option>
-                                </Select>
-                            </Form.Item>
-                        </Form>
-                    </Modal>
-
-                    {/* Delete Modal */}
-                    <Modal
-                        title={<span className="text-white">Delete Plan</span>}
-                        open={isDeleteModalOpen}
-                        onOk={handleDeleteOk}
-                        onCancel={() => setIsDeleteModalOpen(false)}
-                        okText="Delete"
-                        okButtonProps={{ danger: true }}
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        name="price"
+                        label="Price"
+                        rules={[{ required: true }]}
                     >
-                        <div className="flex items-center gap-3 text-white">
-                            <ExclamationCircleFilled className="text-red-500 text-2xl" />
-                            <p>Are you sure you want to delete <span className="font-bold text-[#00E0B7]">{selectedPlan?.name}</span>?</p>
-                        </div>
-                    </Modal>
-
-                </ConfigProvider>
-            </div>
+                        <Input />
+                    </Form.Item>
+                </Form>
+            </Modal>
         </div>
     );
 };

@@ -22,19 +22,19 @@ function UserDetails() {
   const [updateUser] = useUpdateUserMutation();
   const [deleteUser] = useDeleteUserMutation();
 
-  const dataSource = userData?.data?.all_users?.map((user) => ({
-    key: user?._id,
-    fullName: user?.name,
-    email: user?.email,
-    joined: new Date(user?.createdAt).toLocaleDateString(),
-    status: user?.status === "isProgress" ? "Active" : "Blocked",
-    address: user?.location || "N/A",
-    photo: user?.photo,
-    role: "User", // Placeholder
-    phone: "N/A", // Placeholder
-    lastLogin: "N/A", // Placeholder
-    subscription: "Free Plan", // Placeholder
-  })) || [];
+  const dataSource = userData?.data?.all_users
+    ?.filter((user) =>
+      user?.name?.toLowerCase().includes(searchText.toLowerCase())
+    )
+    ?.map((user) => ({
+      key: user?._id,
+      fullName: user?.name,
+      email: user?.email,
+      joined: new Date(user?.createdAt).toLocaleDateString(),
+      status: user?.status === "isProgress" ? "Active" : "Blocked",
+      address: user?.location || "N/A",
+      photo: user?.photo,
+    })) || [];
 
 
   const showViewModal = (user) => {
@@ -159,9 +159,10 @@ function UserDetails() {
             rowHoverBg: "#1f2937",
           },
           Pagination: {
-            itemActiveBg: "#00E0B7",
-            colorPrimary: "#0e1527", // Fixed pagination text color to match theme
-            colorText: "#ffffff",
+            colorPrimary: "#00E0B7",
+            colorPrimaryHover: "#00E0B7",
+            colorText: "#00E0B7",
+            colorTextActive: "#00E0B7",
           },
           Modal: {
             contentBg: "#0e1527",
@@ -182,7 +183,7 @@ function UserDetails() {
         },
       }}
     >
-      <div className="space-y-6">
+      <div className="space-y-5">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div>
             <h1 className="text-2xl font-bold text-[#0E1527]">User Management</h1>
