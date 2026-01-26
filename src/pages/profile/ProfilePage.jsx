@@ -68,10 +68,7 @@ function ProfilePage() {
             <div className="relative">
               <div className="w-[122px] h-[122px] bg-[#1f2937] rounded-full border-4 border-[#00e0b7] shadow-xl flex justify-center items-center">
                 <img
-                  src={profileData?.data?.photo ?
-                    `${imgUrl}/${profileData?.data?.photo}` :
-                    "1.avif"
-                  }
+                  src={profileData?.data?.photo || "1.avif"}
                   alt="profile"
                   className="h-full w-full rounded-full object-cover"
                 />

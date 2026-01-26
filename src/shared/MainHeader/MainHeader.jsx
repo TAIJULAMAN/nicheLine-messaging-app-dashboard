@@ -3,7 +3,6 @@
 import { useNavigate } from "react-router-dom";
 import { IoMenu, IoNotificationsOutline } from "react-icons/io5";
 import { useGetProfileQuery } from "../../Redux/api/profileApi";
-import { imgUrl } from "../../config/envConfig";
 
 const MainHeader = ({ toggleSidebar }) => {
   const navigate = useNavigate();
@@ -46,10 +45,7 @@ const MainHeader = ({ toggleSidebar }) => {
               className="flex items-center gap-3 cursor-pointer p-1.5 pr-3 rounded-full hover:bg-gray-50 border border-transparent hover:border-gray-200 transition-all duration-300"
             >
               <img
-                src={profileData?.data?.photo ?
-                  `${imgUrl}/${profileData?.data?.photo}` :
-                  "1.avif"
-                }
+                src={profileData?.data?.photo || "1.avif"}
                 alt="profile"
                 className="h-8 w-8 rounded-full object-cover"
               />

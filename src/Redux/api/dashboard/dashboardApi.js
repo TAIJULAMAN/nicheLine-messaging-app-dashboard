@@ -12,7 +12,7 @@ export const dashboardApi = baseApi.injectEndpoints({
     }),
     userGrowth: builder.query({
       query: ({ year }) => ({
-        url: "user/get_user_growth",
+        url: "users/user_graph",
         method: "GET",
         params: { year },
       }),

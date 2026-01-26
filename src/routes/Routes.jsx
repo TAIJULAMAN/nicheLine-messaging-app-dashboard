@@ -16,6 +16,7 @@ import AboutUs from "../pages/optional/AboutUs";
 import EditProfile from "../pages/profile/EditProfile";
 import SubscribersPage from "../pages/Subscribers/SubscribersPage";
 import SubscriptionPage from "../pages/Subscription/SubscriptionPage";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -37,7 +38,11 @@ const router = createBrowserRouter([
 
   {
     path: "/",
-    element: <MainLayout />,
+    element: (
+      <PrivateRoute>
+        <MainLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/",

@@ -1,15 +1,24 @@
 /* eslint-disable react/prop-types */
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { RxDashboard } from "react-icons/rx";
 import { LuUsers } from "react-icons/lu";
-import { TbBrandWechat, TbReport } from "react-icons/tb";
 import { IoMdSettings } from "react-icons/io";
 import { IoCloseSharp, IoLogOutOutline } from "react-icons/io5";
-import { MdOutlineInventory2, MdAdminPanelSettings } from "react-icons/md";
+import { MdOutlineInventory2 } from "react-icons/md";
+import { logout } from "../../Redux/Slice/authSlice";
+
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const currentPath = location.pathname;
   const isActive = (path) => currentPath === path;
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/sign-in");
+  };
 
   return (
     <div
@@ -42,10 +51,6 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             { path: "/user-details", icon: LuUsers, label: "User Management" },
             { path: "/subscribers", icon: LuUsers, label: "All Subscribers" },
             { path: "/subscription", icon: MdOutlineInventory2, label: "Subscription" },
-            // { path: "/category", icon: MdOutlineInventory2, label: "Category" },
-            // { path: "/create-admin", icon: MdAdminPanelSettings, label: "Create Admin" },
-            // { path: "/chat", icon: TbBrandWechat, label: "Chat" },
-            // { path: "/reports", icon: TbReport, label: "Reports" },
             { path: "/settings", icon: IoMdSettings, label: "Settings" },
           ].map((item) => (
             <Link to={item.path} key={item.path}>
@@ -68,12 +73,13 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
       {/* Logout Button (Fixed at bottom) */}
       <div className="p-4 bg-[#0E1527] absolute bottom-0 w-full rounded-b-[20px] bg-gradient-to-t from-[#0E1527] via-[#0E1527] to-transparent">
-        <Link to="/sign-in">
-          <button className="flex items-center justify-center gap-3 w-full py-3.5 rounded-xl bg-white/5 hover:bg-[#ff4757]/10 text-gray-400 hover:text-[#ff4757] border border-white/5 hover:border-[#ff4757]/20 transition-all duration-300 group">
-            <IoLogOutOutline className="w-5 h-5 group-hover:rotate-180 transition-transform duration-500" />
-            <span className="font-medium">Logout</span>
-          </button>
-        </Link>
+        <button
+          onClick={handleLogout}
+          className="flex items-center justify-center gap-3 w-full py-3.5 rounded-xl bg-white/5 hover:bg-[#ff4757]/10 text-gray-400 hover:text-[#ff4757] border border-white/5 hover:border-[#ff4757]/20 transition-all duration-300 group"
+        >
+          <IoLogOutOutline className="w-5 h-5 group-hover:rotate-180 transition-transform duration-500" />
+          <span className="font-medium">Logout</span>
+        </button>
       </div>
     </div>
   );
