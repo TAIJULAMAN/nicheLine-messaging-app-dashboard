@@ -5,7 +5,6 @@ import { useLogInMutation } from "../../Redux/api/auth/authApi";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../Redux/Slice/authSlice";
 import Swal from "sweetalert2";
-import { decodeAuthToken } from "../../utils/decode-access-token";
 
 function SignInPage() {
   const [showPassword, setShowPassword] = useState(false);

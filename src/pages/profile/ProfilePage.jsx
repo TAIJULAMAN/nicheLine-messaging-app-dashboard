@@ -6,7 +6,6 @@ import ChangePass from "./ChangePass";
 import { IoChevronBack } from "react-icons/io5";
 import { useGetProfileQuery, useUpdateProfileMutation } from "../../Redux/api/profileApi";
 import Loader from "../../components/Loader/Loader";
-import { imgUrl } from "../../config/envConfig";
 import Swal from "sweetalert2";
 
 function ProfilePage() {
