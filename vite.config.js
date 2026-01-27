@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://supervisors-wallpaper-astronomy-mouse.trycloudflare.com',
+        target: 'http://13.61.60.192:5000',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path,
